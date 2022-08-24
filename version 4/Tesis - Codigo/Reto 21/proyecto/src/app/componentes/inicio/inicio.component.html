@@ -1,0 +1,338 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+  <!-- fin seccion de imaganes principal-->
+<div class="color">
+<div class="slider">
+    <ul>
+        <li>
+            <img src="https://i.blogs.es/a7dc34/2560_3000/1366_2000.jpeg"></li><!-- imagenes tamaño ideal 1280x720 pixeles-->
+        <li>
+            <img src="https://images.ecestaticos.com/cD8ADKVW4yRYrKblwQ2YaMQV9f0=/0x110:2117x1301/1600x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fd5b%2Fc94%2F34a%2Fd5bc9434a152ac07185aa6bf6b976c41.jpg"></li><!-- imagenes tamaño ideal 1280x720 pixeles-->
+     <li>
+        <img src="https://www.sabervivirtv.com/medio/2017/11/16/9-errores-gimnasio_1200x800_6779e5e3.jpg"></li><!-- imagenes tamaño ideal 1280x720 pixeles-->
+    </ul>
+</div>
+  <!-- fin seccion de imaganes principal-->
+    <!--seccion de planes-->
+
+    <div class="container2" *ngFor="let plans of listPlans">
+      <div class="row" style="  margin-left: 5%;">
+        <div class="card" data-aos="flip-left" style="width: 20rem;">
+          <div class="card-body">
+            <p class="titulo">{{plans.titulo_suscripcion}}</p>
+            <div class="preciocontenedor">
+              <p class="precio">${{plans.precio}}</p>
+              <p class="preciodescripcion">/Mes</p>
+            </div>
+            <p class="descripcion">Este plan incluye:</p>
+            <ul class="beneficio">
+              <li>{{plans.descripcion}}</li>
+            </ul>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    <div style="height: 150px; overflow: hidden; margin-top:-2.5px;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 271.49,-49.98 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+      <!-- fin seccion de planes-->
+    </div>
+
+
+
+  <!--seccion menu redes sociales-->
+  <div class="social">
+    <ul>
+    <li><a href="https://www.facebook.com/reto21silvania"  target="_blank"><img src="https://img.icons8.com/nolan/64/facebook-f.png" width="30px" height="30px"/></a></li>
+    <li><a href="https://www.instagram.com/reto21_silvania/?hl=es"  target="_blank"><img src="https://img.icons8.com/nolan/64/instagram-new.png" width="30px" height="30px"/></a></li>
+  </ul>
+  </div>
+    <!-- fin seccion menu redes sociales-->
+      <!--seccion foto instagram y frase-->
+      <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+<div class="containerm">
+  <div class="row">
+    <div class="col bg d-lg-block " data-aos="zoom-in-down">
+      <iframe class="iframe" src="https://www.instagram.com/p/CXdgVmAAFrk/embed" frameborder="0"></iframe>
+    </div>
+
+  <div class="col d-lg-block" >
+ <h1 class="fw-bold text-center py-5"  data-aos="fade-right"  data-aos-offset="350"
+ data-aos-easing="ease-in-sine"> Los obstáculos no tienen que frenarte. Si te encuentras con una pared, no das la vuelta y abandonas. Encuentras la manera de subir a ella, pasar a través de ella o rodearla.</h1>
+ <h1 class="fw-bold2 text-center py-5"> Michael Jordan </h1>
+</div>
+</div>
+ <!-- fin seccion foto instagram y frase-->
+</div>
+<div style="height: 150px; overflow: hidden; margin-top:-2.8px;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 271.49,-49.98 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+
+ <!--seccion del personal-->
+<div class="personal" style="padding-top: 4rem;">
+  <div class="row">
+    <div class="col bg d-lg-block ">
+     <h1 class="fw-bold text-center py-5"> Personal</h1>
+    </div>
+
+  <div class="col">
+    <div class="card-personal" data-aos="zoom-in-down" data-aos-offset="350">
+      <div class="card-details">
+        <img src="data:image/png;base64,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"/>
+        <p class="text-title">Manager</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">Mas info</button>
+    </div>
+    <div class="card-personal" style="margin-top:1rem;" data-aos="zoom-out-up" data-aos-offset="350">
+      <div class="card-details">
+        <img src="data:image/png;base64,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"/>
+        <p class="text-title">Entrenador</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">Mas info</button>
+    </div>
+</div>
+<div class="col" style="margin-top:1rem ;">
+  <div class="card-personal" data-aos="flip-up" data-aos-offset="350">
+    <div class="card-details">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEXklEQVR4nO2aTWhcVRSAvztz3+AyIlUM1UVpu+mioihoJ1hFShdduEgEq5Mu/KH1J0XQNm6SMQEpVIRI/WmpmwmYkATtopVSRAqNVijBLuymRcFFspNaqRaa5F4Xb146M+++9+7NzItR7wchcN4555537rn33PfegMfj8Xg8Ho/H4/F4/n8Ie1Uttr3CAQQDwBag0HBRAdcEjP10gs9A6M6GmV8M1gl46GX9OnDMwuFrP54Un9r6dSGPGArZKiFS8aZUUNS8cHkjxcsnhVj520gxULwoFRQVA7Y+XckjBusEBIotgYK5B5ikKlTTxapQlx5kIlAQKLY63JMTecTgUgEFqcKBjApVoaQK9Wx9upJHDNJWMTAP6azTDnnEYExAX58u/SEZ1YIKcD8Q7rFZznJOgI3/SGfXXh11gQUN412LDE1Pi9sxfZOTv4qMSM0hHJvZOq2AbuDwLYkG3m29aFwrUlGRCiTsODMpxJlJIeprKxUbnXZwiSGKu7RMj1RQXKbfqG8SBopugJkp8X2DLJHe3nq5rVEFROPNzIjYOaY1zq+mxWxvr4awEmIkJcBKZnOtk6x2E0yzMybAVGZppTfxZTgTlWd1Tkfg5hjGT8VnvlUnS7ZyzSR0zaKLTjvkUgF9fbp09y1GEVTQyS0vKYuv7mmYdWWQdRKD/xOnm6shrQIa7Ba0YPz3uxiS995kBMGhrLGTsrhW698WywroBg7f9ydaSk0FDVqx46Nz4a5/cHd8BpMq4OOv78xAZDd2Ni4rDrndyPJI+N/kq1FmE2cki+wO7tZl4ALQL6OW98G59JbX7vq7ZzHbvpHfcoghYuysmH17V9gape2u2SobfMawzlPsNjgm4EaKL9PYR74JZ9f1fqTtbLfKbNd+sMoE/JpjBTTKVl0Bo9/G1+F7O5P3DtcEpMUwfL79c0BjBSwA3Ud26vLgeTEL+ewBG5ay7W19tWv3/pO6p75c52VJUdMwiOLC0XJ9Ah0GP1qOnwNMslMfZgffNJ6l/3dmm6shLQErdsv1C4KavHmd4a4u0NBPwgMDgEw42iTJ/ylM8Rhk80DtxnWqsnpF3CZ8Tl55Vj72eHwtJ1XAW9/dmYHI7o2LyWu0HWz8p1WAya4jD0MuOu2w2hhyfxj6/NG1fR8QjffSpez3AUmyiI5UQN4z7zKOa+zGV2KBYiFQ8MUjutwgS8zkvjkh9s0JkabTCSL/0XhpOhETD+ueumzepJ9UATXqrXFqe3JrNNjliksFTG1vbnlaUDPqG70sMVwqZLfGVtbjCxEN80JQW1yiatI3JuA5Q2s8vS37Jcd6SsCeK3at2PrL0L+5Dabh8nFUBQqqaKNNFV2obza5pSGPGKwTUFRckwqe2szzuiUAjS48vZm99Y8SV219upJHDNZH1oub9AEt+MRCdf8TP4vjtn5dyCMG6wRotPhhE/sFDABbif885aqAscd+4bjI6Scy6yEGj8fj8Xg8Ho/H4/H8F/gb0JQodPuHfoUAAAAASUVORK5CYII="/>
+      <p class="text-title">Nutricionista</p>
+      <p class="text-body">Here are the details of the card</p>
+    </div>
+    <button class="card-button">Mas info</button>
+  </div>
+  <div class="card-personal"style="margin-top: 1rem;" data-aos="fade-down-right" data-aos-offset="350">
+    <div class="card-details">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAGIElEQVR4nO2aa2xU1RaAv3X2nlKJ1oLapFCqJgjXiwSMaBRRqVYkiIaLdzBBQaMRH4nxFfBBVKIxGE1MNNGoiY+AilC9cAVS4d5EBEV/aOKrKv4Q4gz4jA+IltKZvfxxpjDUHubMOad0GudLJpmcWXuvtddZa5291xmoUqVKlSpVqvxdkaQnHH2zDsk5rgfmAqcULn8myktDG3i2Y4nsS1pnHBJ1wJgbdKQT1itM6Ot3hY+sMvOrp2Vnknrj4CU10eibdYjAeqNMsEompfzbdlFnu6gzymyrbEspEz1YOy6tNUnpjYtNaqKaLq7Hv/MZyTOx4zn5uejn1eOu1bfV8DFwKsO4DngyKd1xSCwCPOUKo2CV23otHoCO5+RnA7cbBU+5Mim9cUksAlKOfwL8oWwMkhn6Oxv21YLAuKT0xiV2ETxtgaYkx0PAQoAPnpdDzjnpGtXC10ePbOaeTUskF9eGOMSOgFQ3S1HuCK3Q7f+6sHMHAIvi2hCH2DXAOK4yCj2fkvJFsla5Oq7+uMSOAONKy8SR729iR4BVXrT+3cQqnH2NHhUk25rWo4tljeOFuPrjEtsBLsvdxvGEcf7dHdpFa6CwpbVHzjge050sjqs/LrFToK6RY7qV0/dfUJZelNa3N7QdvBe4KK3DPVjKgToxqbaReuCn3nNOn6szRHkGaCqhPotjQftKaY9qf6zH4My0jsRjK9AMbAd2AxNQsirc7iwbAGw3F6qwFDgJ+BioB44HvvY8Jr+xQr4/aN45mkFKLr6HzLqV0hx1DZEjYOpUtVZ4FaUZZUveMlvAeDnWIUxCWUV30QAFlA+cZabZi7oU/xU4kzyvpNM6ra1N8kVGNaHomlVyyBSdNUcVGBV1DRCjBgw/loXGMcU4tqdg1toV8tMbK+T7hmFMNspNxrHVOH41jl+N8q7Jc2PDMP9ur14tP9Qol5o8GeM4X5Xbiucu1IiS0dlTT+IQKQXSaT1CHDuABpTzVv1HNkeZZ85l2gr8D/h2zx+c2N4uXYXrGUrnfzFZERasfK38WhApAlLdzLWOBuvYHHXxAKtel/9bx3vW0Tislsv3z59ngXVkrPN3jiE+TSbPM1FsiFQDDJxXqOYvRxlfjKcsFzhLhKnAMoCX10g70Dxvliqgy9ccuhYU5CLVgkgOsMoZAArvRRlfjOd41whQ/Cg9oAdCpKkNsQUPInDydFpr6jt5UIV5QGN0FQPKLoXlu2u5r62t715kYAQM38sDAouI4d0KYARw5zGdKHB3XwKBDrA55iGgwtlPrZet/WVhf3LTdJ0iHltQ5hPggMDiYmCEURisiwd46k15x6i/liCZ4AjotcF4/C0dVMlwS4vfmeq9jt4EOqB3c2N0Z3yjBoJSTZrQEXDxjEP3+iqVUhEQXAOUXUZhcatOSdqow8W9F+g5hfZb4Juo4BTIswzhLmDL/S2DKv0PULj7Uthh9kWgA+Q47vd+BFHmI8FVtMLZibAsfyxLggRC5fVD5+rnAierx/jFm+Sz5OxLnofP1fEOPgE+v2ezlHwBE+o0mHJkrUIqV9YRdUCweZoKTddsKPkwQsaRwT+wxOq+HBaEUYUmSSaMeDgHKFkBVCs/AlJKU+H8klwEpJSsfzKvfAeY/H4bk3OAQNbzvVrxKWAKaSpegg6oyZFRvwZUfARY59uoLskakCOrvuRgiIAmgO6QT4HQ+/tlp+lu4KhaqJ/zofwW0b5+5YWJWm8MvwB75n8odWHGhO4Ke46scbC3u3KjIGX8R6AJGf5QhgNSStYoWFu5dcA6mgqHn1DhD2V0hU2+sBnKV3AE5BilflKHjoDQDrD4ewHp443N6vED0y3616cH9yg8Cpsg6YcI8JRvxF/m2L9MUiH/+kjlGasCInwTdkxoB9Q43ncAwvSNY3XEtG2yq+e3SzoGvlu0doyO9GA6Ck7Cv7Apy/CN/9ANwDTgU1Vurelia8sO2VuusUny1glau28Ik0V4HDgFoX3aFzIj7PiyHLD5ZG3sdmwCxpRr6GHiS8/S0tIh34UdUHbovj9a6zqFRQKXAyeQ4L9NI5IDtgusNB6PTNkmewbYnipVqlSpUqXKIOFPHLUHux1ps8AAAAAASUVORK5CYII="/>
+      <p class="text-title">Recepcion</p>
+      <p class="text-body">Here are the details of the card</p>
+    </div>
+    <button class="card-button">Mas info</button>
+  </div>
+</div>
+</div>
+</div>
+<div>
+ <!-- fin seccion del personal-->
+
+<!-- Galeria -->
+<div class="galeria">
+<div class="row " style="padding-top: 3rem; margin-left: 12px; margin-right: 12px;">
+  <div class="col-lg-4 mb-4 mb-lg-0" data-aos="flip-left"
+  data-aos-easing="ease-out-cubic"
+  data-aos-duration="2000" >
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Boat on Calm Water"
+    />
+
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Wintry Mountain Landscape"
+    />
+  </div>
+
+  <div class="col-lg-4 mb-4 mb-lg-0">
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Mountains in the Clouds"
+    />
+
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Boat on Calm Water"
+    />
+  </div>
+
+  <div class="col-lg-4 mb-4 mb-lg-0">
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Waves at Sea"
+    />
+
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Yosemite National Park"
+    />
+  </div>
+</div>
+<!-- Galleria -->
+</div>
+</div>
+
+<!--seccion noticias-->
+<div style="height: 150px; overflow: hidden; margin-top:2.5px;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+<div class="blog">
+<h1 class="titulo-b" data-aos="fade-right" data-aos-offset="350">Informacion de Interes</h1>
+<h2 class="col bg d-none d-lg-block"></h2>
+<div class="row">
+  <div class="col bg d-lg-block ">
+    <table>
+    <div class="wrapper">
+      <div class="blog_post">
+        <div class="img_pod">
+          <td><img src="https://pbs.twimg.com/profile_images/890901007387025408/oztASP4n.jpg" alt="random image"></td>
+        </div>
+        <div class="container_copy">
+          <tr>
+          <td><h1>CSS Positioning</h1></td>
+        </tr>
+        <tr>
+          <td><p>The position property specifies the type of positioning method used for an element (static, relative, absolute, fixed, or sticky).</p></td>
+        </tr>
+        </div>
+        <a class="btn_primary" href='#'>Read More</a>
+      </div>
+    </div>
+  </table>
+  </div>
+
+<div class="col">
+  <table>
+    <div class="wrapper2">
+      <div class="blog_post2">
+        <div class="img_pod2">
+          <td><img src="https://pbs.twimg.com/profile_images/890901007387025408/oztASP4n.jpg" alt="random image"></td>
+        </div>
+        <div class="container_copy">
+          <tr>
+          <td><h1>CSS Positioning</h1></td>
+        </tr>
+        <tr>
+          <td><p>The position property specifies the type of positioning method used for an element (static, relative, absolute, fixed, or sticky).</p></td>
+        </tr>
+        </div>
+        <a class="btn_primary" href='#'>Read More</a>
+      </div>
+    </div>
+  </table>
+  <table>
+    <div class="wrapper3">
+      <div class="blog_post3">
+        <div class="img_pod3">
+          <td><img src="https://pbs.twimg.com/profile_images/890901007387025408/oztASP4n.jpg" alt="random image"></td>
+        </div>
+        <div class="container_copy">
+          <tr>
+          <td><h1>CSS Positioning</h1></td>
+        </tr>
+        <tr>
+          <td><p>The position property specifies the type of positioning method used for an element (static, relative, absolute, fixed, or sticky).</p></td>
+        </tr>
+        </div>
+        <a class="btn_primary" href='#'>Read More</a>
+      </div>
+    </div>
+  </table>
+
+</div>
+</div>
+<!-- fin seccion noticias-->
+</div>
+
+<div style="height: 150px; overflow: hidden; margin-top:-1px;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 271.49,-49.98 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+
+<!--seccion de contacto-->
+<div class="container3">
+  <h1 for="exampleFormControlTextarea1" class="suge" data-aos="fade-up"
+  data-aos-anchor-placement="center-bottom">Contactanos</h1>
+  <div class="row">
+    <div class="col d-lg-block">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputnombre" data-aos="fade-up"
+      data-aos-anchor-placement="center-bottom" data-aos-duration="1100">Nombre</label>
+      <input type="input" class="form-control" id="exampleInputnombre" aria-describedby="nombreHelp" placeholder="Ingresa tu nombre" data-aos="fade-up"
+      data-aos-anchor-placement="center-bottom" data-aos-duration="1100">
+    </div>
+  </form>
+  </div>
+  <div class="col d-lg-block">
+    <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1" data-aos="zoom-out-up"
+      data-aos-anchor-placement="center-bottom" data-aos-duration="1100">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" data-aos="zoom-out-up"
+      data-aos-anchor-placement="center-bottom" data-aos-duration="1100">
+    </div>
+  </form>
+  </div>
+  <div class="col d-lg-block">
+    <form>
+    <div class="form-group">
+      <label for="exampleInputcelular" data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000">NUmero de celular</label>
+      <input type="text" class="form-control" id="exampleInputcelular" aria-describedby="celularHelp" placeholder="Ingresa tu numero de celular" data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000">
+    </div>
+  </form>
+</div>
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1" data-aos="zoom-in-down"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000">Mensaje</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="mensaje"data-aos="zoom-in-down"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"></textarea>
+      <button type="submit" class="btn-c btn-warning" style="margin-top: 0.5rem;">Enviar</button>
+    </div>
+ </form>
+</div>
+  <!--fin seccion de contacto-->
+</div>
+
+<!--seccion de sugerencias-->
+<div style="height: 150px; overflow: hidden; margin-top:-2.5px;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+
+<div class="container4">
+  <div class="row">
+    <div class="col d-lg-block">
+  <form>
+    <div class="form-group">
+      <h1 for="exampleFormControlTextarea1" class="buzon" data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000">Buzon de Sugerencia</h1>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="redacta tu sugerencia"data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"></textarea>
+      <button type="submit" class="btn-b btn-warning" style="margin-top: 0.5rem;" >Enviar</button>
+    </div>
+ </form>
+</div>
+  <!--fin seccion de sugerencias-->
+</div>
+</div>
+<!--seccion del mapa-->
+
+<div style="padding-top: 3rem;">
+
+  <div>
+    <h3 style="color:white;">Como encontrarnos:</h3>
+  </div>
+
+  <google-map width="100%;" [options]="mapOptions">
+    <map-marker [position]="marker.position"></map-marker>
+ </google-map>
+
+
+</div>
+
+<!--fin seccion mapa-->
+<script src="bootstrap.bundble.min.js"></script>
+</body>

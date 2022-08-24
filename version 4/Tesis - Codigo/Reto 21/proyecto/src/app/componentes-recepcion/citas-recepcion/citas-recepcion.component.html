@@ -1,0 +1,333 @@
+<body>
+    <div class="calendario ">
+        <div class="row ">
+            <div class="col d-lg-block">
+              <div class="contenedor">
+                <div class="cabecera">
+                    <div class="ver2" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+                    <h1 class="titulo">Citas</h1>
+                    <h1 class="titulo2">Asignadas</h1>
+                    <img src="data:image/png;base64,{{img}}" class="logo">
+                </div>
+                </div>
+                  <div class="col d-lg-block ver">
+                        <div class="centros">
+                          <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro"> 
+                        </div>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>Documento</th>
+                              <th>Nombre</th>
+                              <th>Tipo de Valoracion</th>
+                              <th>Accion</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                          <tr *ngFor="let list of listUser | clientes:filtro | paginate: { id: 'client' , itemsPerPage: 10, currentPage: p }">           
+                              <td><label for="">{{list.documento}}</label></td>
+                              <td><label for="">{{list.nombres + ' ' + list.primer_apellido + ' ' + list.segundo_apellido}}</label></td>
+                              <td><label for="">{{list.nombre_reservacion}}</label></td>
+                              <td><a class="ic" data-bs-toggle="modal" data-bs-target="#citaa" (click)="assingDateUser(list.documento,list.id_reservacion)"><img src="https://img.icons8.com/ios-filled/50/000000/assignment-turned-in.png" class="icono"/></a></td>
+                          </tr>
+
+                          </tbody>
+                      </table>
+                      <pagination-controls id="client" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>  
+
+                    <div class="row text-center">
+
+                      <h2 style="margin-left: 30rem;">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
+
+                        <div class="col-sm-8">
+                            <div class="btn-group">
+                                <div class="btn" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                                  <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/circled-chevron-left.png"/></a>
+                                </div>
+                                <div class="btn" mwlCalendarToday [(viewDate)]="viewDate">
+                                  <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/today.png" width="150px" height="150px"/></a>
+                                </div>
+                                <div class="btn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" style="background-color: transparent;">
+                                    <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/circled-chevron-right.png"/></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="btn-group">
+                              <div class="btn btn-dark" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+                                  Mes
+                              </div>
+                              <div class="btn btn-warning" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+                                  Semana
+                              </div>
+                              <div class="btn btn-dark btn-dark2" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+                                  Dia
+                              </div>
+                          </div>
+                      </div>
+                    
+                    </div>
+                    
+                    <div [ngSwitch]="view">
+                    
+                      <mwl-calendar-month-view data-bs-toggle="modal" data-bs-target="#exampleModalCenter" style="cursor: pointer;"
+                      *ngSwitchCase="CalendarView.Month"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [refresh]="refresh"
+                      (dayClicked)="dayClicked($event.day)"
+                      (eventClicked)="handleEvent('Clicked', $event.event)"
+                      (eventTimesChanged)="eventTimesChanged($event)"
+                    >
+                    </mwl-calendar-month-view>
+
+                    <mwl-calendar-week-view style="cursor: pointer;"
+                      *ngSwitchCase="CalendarView.Week"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [refresh]="refresh"
+                      [eventSnapSize]="15"
+                      (eventClicked)="handleEvent('Clicked', $event.event)"
+                      (eventTimesChanged)="eventTimesChanged($event)"
+                    >
+                    </mwl-calendar-week-view>
+
+                    <mwl-calendar-day-view style="cursor: pointer;"
+                      *ngSwitchCase="CalendarView.Day"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [refresh]="refresh"
+                      (eventClicked)="handleEvent('Clicked', $event.event)"
+                      (eventTimesChanged)="eventTimesChanged($event)"
+                    >
+                    </mwl-calendar-day-view>
+                    </div>
+                  </div>
+    
+    </div>
+    </div>
+    </div>
+    <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+
+
+
+
+
+
+    
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Cita Agendada</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="centroo">
+              <input type="text" class="buscar" placeholder="Buscar"  name="filtro_reservacion" [(ngModel)]="filtro_reservacion"> 
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Documento</th>
+                  <th>Nombre</th>
+                  <th>Tipo de Valoracion</th>
+                  <th>Estado</th>
+                  <th>Fecha y Hora</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let date of dateQuotes | quotes:filtro_reservacion | paginate: { id: 'reservacion' , itemsPerPage: 10, currentPage: p }">                  
+                  <td><label for="">{{date.documento_reservacion}}</label></td>
+                  <td><label for="">{{date.nombres + ' ' + date.primer_apellido + ' ' + date.segundo_apellido}}</label></td>
+                  <td><label for="">{{date.nombre_reservacion}}</label></td>
+                  <td><label for="">{{date.tipo_de_estado}}</label></td>
+                  <td><label for="">{{formatDateAndTime(date.fecha,date.horas)}}</label></td>
+                  <td><a class="ic" data-bs-toggle="modal" data-bs-target="#updateQuote" (click)="searchOneQuote(date.documento_reservacion,date.fecha)"><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v1.png" class="icono"/></a></td>
+                </tr>
+
+              </tbody>
+          </table>
+
+          <pagination-controls id="reservacion" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>  
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+      <!--Modal asignar cita-->
+
+  <div class="modal fade" id="citaa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Asignar Fecha y Hora</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="formAssingQuote" (ngSubmit)="assingQuote(formAssingQuote.value)">
+
+                <div class="row">
+                  <strong style="text-align: center;">Bienvenido. <br>
+      
+                  </strong>
+                  <div class="col">
+                      <div class="mb-4 ">
+                        <label for="descripcion" class="form-label text-center">Fecha de Realizacion</label>
+                        <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha" (change)="selectDate($event)"  min="{{fecha_min}}">
+                      </div>
+      
+                      <div class="mb-3">
+                        <label for="" class="form-label">Tipo de Cita</label>
+                        <select class="form-control" name="" id="" [(ngModel)]="id_reservacion" formControlName="id_reservacion_usuario">
+                          <option selected value="0"> Seleccione </option>
+                          
+                          <option *ngFor="let type of listTypeQuote" value="{{type.id_reservacion}}"> {{type.nombre_reservacion}} </option>
+                        </select>
+
+
+                      </div>
+      
+                      
+                      </div>
+                      <div class="col">
+                        <div class="mb-4 ">
+                          <label for="descripcion" class="form-label text-center">Hora de la Cita</label>
+                          <select class="form-control" name="" id="" formControlName="hora">
+                            <option selected value="0"> Seleccione </option>
+                            
+                            <option *ngFor="let time of listTime" value="{{time.id_hora}}"> {{time.horas}} </option>
+                          </select>
+
+
+                    </div>
+
+
+
+                  </div>
+                </div>
+      
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-warning">Registrar</button>
+                </div>
+
+          </form>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateQuote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar información de la cita</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePage()"></button>
+      </div>
+      <div class="modal-body">
+
+        <div *ngFor="let one of oneQuote">
+
+                <form [formGroup]="formUpdateQuote" (ngSubmit)="updateQuote(formAssingQuote.value)">
+
+                  <div class="row">
+                    <strong style="text-align: center;">Bienvenido. <br>
+        
+                    </strong>
+                    <div class="col">
+                        <div class="mb-4 ">
+                          <label for="descripcion" class="form-label text-center">Fecha de Realizacion</label>
+                          <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha" (change)="selectDate($event)"  min="{{fecha_min}}" [(ngModel)]="fecha_temp">
+                        </div>
+        
+                        <div class="mb-3">
+                          <label for="" class="form-label">Tipo de Cita</label>
+                          <select class="form-control" name="" id="" [(ngModel)]="one.id_reservacion_usuario" formControlName="id_reservacion_usuario">
+                            <option selected value="0"> Seleccione </option>
+                            
+                            <option *ngFor="let type of listTypeQuote" value="{{type.id_reservacion}}"> {{type.nombre_reservacion}} </option>
+                          </select>
+
+
+                        </div>
+        
+                        
+                        </div>
+                        <div class="col">
+                          <div class="mb-4 ">
+                            <label for="descripcion" class="form-label text-center">Hora de la Cita</label>
+                            <select class="form-control" name="" id="" formControlName="hora" [(ngModel)]="one.hora">
+                              <option selected value="0"> Seleccione </option>
+                              
+                              <option *ngFor="let time of listTime; let index=index" [selected]="index == one.hora" [value]="time.id_hora"> {{time.horas}} </option>
+                            </select>
+
+
+                          </div>
+
+
+                          <div class="mb-4 ">
+                            <label for="descripcion" class="form-label text-center">Estado de la cita</label>
+                            <select class="form-control" name="" id="" formControlName="state">
+                              <option selected value="0"> Seleccione </option>
+                              
+                              <option *ngFor="let state of listState" value="{{state.id_tipo}}"> {{state.tipo_de_estado}} </option>
+                            </select>
+
+
+                          </div>
+
+
+
+                    </div>
+                  </div>
+        
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="backToList(one.documento_reservacion)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Regresar</button>
+                    <button type="submit" class="btn btn-warning">Actualizar</button>
+                  </div>
+
+
+            </form>
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

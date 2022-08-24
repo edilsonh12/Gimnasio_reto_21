@@ -1,0 +1,207 @@
+<body>
+    <div class="container">
+    <div class="contenedor">
+      <div class="cabecera">
+          <div class="ver2" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+          <h1 class="titulo">NOTIFICACIONES</h1>
+          <h1 class="titulo2">CACIONES</h1>
+          <img src="data:image/png;base64,{{img}}" class="logo">
+      </div>
+      </div>
+    <div class="row">
+      <div class="col">
+        <mat-card class="card2">
+        <strong class="subt">Lista de Notificaciones</strong>
+        <div class="centroo">
+          <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#nueva">
+            <div class="add-icon"></div>
+            <div class="btn-txt">Agregar</div>
+        </button>
+          <input type="text" class="buscar" placeholder="Buscar"  name="filtro_notification" [(ngModel)]="filtro_notification"> 
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Notificacion</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let list of listNotification | notifications:filtro_notification | paginate: { id: 'notification' , itemsPerPage: 10, currentPage: p }">                  
+              <td><label for="">{{list.texto}}</label></td>
+              <td><a class="ic" data-bs-toggle="modal" data-bs-target="#modificar" ><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v1.png" class="icono"/></a></td>
+            </tr>
+          </tbody>
+      </table>
+      <pagination-controls id="notification" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+
+    </mat-card>
+      </div>
+      <div class="col">
+        <mat-card class="card2">
+        <strong class="subt">Lista de Clientes</strong>
+        <div class="centroo">
+        <input type="text" class="buscar" placeholder="Buscar"  name="filtro_client" [(ngModel)]="filtro_client"> 
+      </div>
+      <div class="tab2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><mat-checkbox class="example-margin"></mat-checkbox></th>
+              <th>Documento</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let list of listClient | clientes:filtro_client | paginate: { id: 'client' , itemsPerPage: 10, currentPage: p }">                  
+              <td><mat-checkbox class="example-margin" (change)="changueStateCheck($event,list.documento)"></mat-checkbox></td>
+              <td><label for="">{{list.documento}}</label></td>
+              <td><label for="">{{list.nombres + ' ' + list.primer_apellido + ' ' + list.segundo_apellido}}</label></td>
+              <td><a class="ic" data-bs-toggle="modal" data-bs-target="#asignar" (click)="assingDocument(list.documento)"><img src="https://img.icons8.com/ios-glyphs/30/000000/add-user-male.png" class="icono"/></a></td>
+            </tr>
+
+          </tbody>
+      </table>
+      <pagination-controls id="client" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+      </div>
+      <button class="enviar" data-bs-toggle="modal" data-bs-target="#asignar" >
+        <b>Enviar</b>
+    </button>
+    </mat-card>
+  </div>
+    </div>
+  </div>
+      <footer>
+        <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+      </footer>
+  
+  
+
+
+
+
+        <!--Modal nueva notificaciones-->
+  
+    <div class="modal fade" id="nueva" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Redactar Notificaciones</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+
+            <form [formGroup]="formCreateNotification" (ngSubmit)="createNewNotifications(formCreateNotification.value)">
+
+                <div class="row">
+                    <strong style="text-align: center;">Bienvenido.<br>
+                        aqui podras redactar todas las notificaciones necesarias
+                    </strong>
+                    <div class="col">
+                        <div class="mb-4 ">
+                          <textarea type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="texto" ></textarea>
+                        </div>
+                    </div>
+                  </div>
+      
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-warning">Crear</button>
+                  </div>
+
+            </form>
+
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  
+          <!--Modal modificar notificaciones-->
+  
+          <div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modificar Notificaciones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <strong style="text-align: center;">Bienvenido.<br>
+                          aqui podras modificar las notificaciones redactadas
+                      </strong>
+                      <div class="col">
+                          <div class="mb-4 ">
+                            <textarea type="text" class="form-control align-items-center" required="required" name="titulo" ></textarea>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-warning">Enviar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+
+
+
+
+
+                    <!--Modal Asignar Notificaciones-->
+  
+          <div class="modal fade" id="asignar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modificar Notificaciones</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                   <form [formGroup]="formCreateMultiNotification" (ngSubmit)="createNewMultipleNotification(formCreateMultiNotification.value)">
+
+                        <div class="row">
+                            <strong style="text-align: center;">Bienvenido.<br>
+                                selecciona la notificacion que recibiran los clientes
+                            </strong>
+                            <span></span><hr>
+                            <div class="selectdiv" >
+                                <select  name="categoria" class="categoria" id="categoria" formControlName="id_noti_us">
+                                    <option selected value="0"> Seleccione</option>
+                                    <option *ngFor="let notification of listNotification" value="{{notification.id_noti}}">{{formatText(notification.texto)}}</option>
+                                </select>
+                        </div>
+                        </div>
+        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-warning">Enviar</button>
+                        </div>
+
+                   </form> 
+
+
+
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+  </body>

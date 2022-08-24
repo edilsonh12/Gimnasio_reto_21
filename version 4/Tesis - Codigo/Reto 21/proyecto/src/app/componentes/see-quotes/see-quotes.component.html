@@ -1,0 +1,201 @@
+
+<body>
+    <div class="calendario ">
+        <div class="row ">
+            <div class="col d-lg-block">
+              <div class="centro">
+                <h1 class="titulo"> Citas Asignadas </h1>
+                <h2 class="titulo">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
+              </div>
+
+              
+
+              <div style="height: 150px; overflow: hidden; margin-top:-18px;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 271.49,-49.98 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>    
+                  <div class="col d-lg-block ver">
+                    <div class="row text-center">
+
+                        <div class="col-sm-8">
+                            <div class="btn-group">
+                                <div class="btn" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                                  <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/circled-chevron-left.png"/></a>
+                                </div>
+                                <div class="btn" mwlCalendarToday [(viewDate)]="viewDate">
+                                  <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/today.png" width="150px" height="150px"/></a>
+                                </div>
+                                <div class="btn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" style="background-color: transparent;">
+                                    <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/circled-chevron-right.png"/></a>
+                                </div>
+                            </div>
+                        </div>
+       
+                    
+                    </div>
+                    
+                    <div [ngSwitch]="view">
+                    
+                      <mwl-calendar-month-view data-bs-toggle="modal" data-bs-target="#exampleModalCenter" style="cursor: pointer;"
+                      *ngSwitchCase="CalendarView.Month"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [refresh]="refresh"
+                      (dayClicked)="dayClicked($event.day)"
+                      (eventClicked)="handleEvent('Clicked', $event.event)"
+                      (eventTimesChanged)="eventTimesChanged($event)"
+                    >
+                    </mwl-calendar-month-view>
+
+                    <mwl-calendar-week-view style="cursor: pointer;"
+                      *ngSwitchCase="CalendarView.Week"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [refresh]="refresh"
+                      [eventSnapSize]="15"
+                      (eventClicked)="handleEvent('Clicked', $event.event)"
+                      (eventTimesChanged)="eventTimesChanged($event)"
+                    >
+                    </mwl-calendar-week-view>
+
+                    <mwl-calendar-day-view style="cursor: pointer;"
+                      *ngSwitchCase="CalendarView.Day"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [refresh]="refresh"
+                      (eventClicked)="handleEvent('Clicked', $event.event)"
+                      (eventTimesChanged)="eventTimesChanged($event)"
+                    >
+                    </mwl-calendar-day-view>
+                    </div>
+                  </div>
+    
+    </div>
+    </div>
+    </div>
+    <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+
+    </body>
+    
+
+    
+
+    <!----------------  Modal view for quotes   ---------------->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Citas Agendadas: {{fecha_agendada}}</h5>
+            <i type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </i>
+          </div>
+          <div class="modal-body">
+
+            <div class="centroo">
+
+              <input type="text" class="buscar" placeholder="Buscar"   [(ngModel)]="filtro" name="filtro">
+
+            </div>
+
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Documento</th>
+                  <th>Nombre</th>
+                  <th>Tipo de Valoracion</th>
+                  <th>Fecha y Hora</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              <tr *ngFor="let list of listQuotes | quotes:filtro | paginate: { id: 'quotes' , itemsPerPage: 10, currentPage: p }">                  
+                  <td><label for="">{{list.documento_reservacion}}</label></td>
+                  <td><label for="">{{list.nombres + " " + list.primer_apellido + " " + list.segundo_apellido}}</label></td>
+                  <td><label for="">{{list.nombre_reservacion}}</label></td>
+                  <td><label for="">{{list.fecha.substring(0,10)}} {{list.hora.substring(0,5)}}</label></td>
+                  <td> <a href="" style="cursor: pointer;" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="uploadDataOneQuote(list.documento_reservacion)"> Ver Detalles </a> </td>
+                </tr>
+
+              </tbody>
+          </table>
+
+          <pagination-controls id="quotes" (pageChange)="handlePageChange($event)" previousLabel="Prev" nextLabel="Next"></pagination-controls>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<!-- Modal for view details -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Cita Agendada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div *ngFor="let one of oneQuote">
+
+          <div class="mb-3">
+            <label for="" class="form-label">Nombres y Apellidos</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{one.nombres + ' ' + one.primer_apellido + ' ' + one.segundo_apellido}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Documento: </label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{one.documento_reservacion}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Número de Teléfono:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{one.numero_telefono}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Correo:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{one.correo}}" readonly>
+          </div>
+
+          <hr width=465>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Tipo de cita:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{one.nombre_reservacion}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Estado de la cita:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" readonly value="{{one.tipo_de_estado}}">
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Fecha y hora de la cita:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{one.fecha.substring(0,10) + '  ' + one.hora.substring(0,5)}}" readonly>
+          </div>
+
+
+        
+
+
+        </div>
+
+
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
