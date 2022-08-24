@@ -1,0 +1,119 @@
+<div class="contenedor" style="padding-top: 4rem;">
+    <div class="cabecera">
+        <div class=" selectdiv">
+  
+          <h1 class="titulo">Ejercicios</h1>
+  
+          </div>
+    </div>
+    <div style="height: 150px; overflow: hidden; " ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 271.49,-49.98 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+  
+    <div class="row">
+      <div class="col bg d-lg-block">
+  
+  
+          <div cdkDropListGroup>
+            <div class="example-container">
+              <h2>Plan de entrenamiento:</h2>
+  
+              <div
+                cdkDropList
+                [cdkDropListData]="todo"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" >
+  
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Ejercicio</th>
+                        <th scope="col">categoria</th>
+                        <th scope="col">Sub-Categoria</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+  
+  
+                      <tr *ngFor="let list of todo | paginate: { itemsPerPage: 10, currentPage: pagina }" cdkDrag [cdkDragData]="list.id">
+                        <th scope="row">{{list.nombre}}</th>
+                        <td>{{list.categoria}}</td>
+                        <td>{{list.sub_categoria}}</td>
+                      </tr>
+  
+                    </tbody>
+                  </table>
+  
+  
+  
+  
+                </div>
+                <pagination-controls (pageChange)="changuePague($event)" previousLabel="Prev" nextLabel="Next"></pagination-controls>
+  
+              </div>
+            </div>
+  
+            <div class="example-container">
+              <h2>Ejercicios:</h2>
+  
+              <div class="busco">
+                <h4 class="text-center mb-4"><input placeholder="Buscar" type="text" class="buscar" required="" [(ngModel)]="filtro" name="filtro"> </h4>
+              </div>
+  
+              <div
+                cdkDropList
+                [cdkDropListData]="done"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" >
+  
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Sub-Categoria</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+  
+                      <tr *ngFor="let list of done | assign:filtro | paginate: { itemsPerPage: 10, currentPage: p }" cdkDrag [cdkDragData]="list.id">
+                        <th scope="row">{{list.nombre}}</th>
+                        <td scope="row">{{list.categoria}}</td>
+                        <td scope="row">{{list.sub_categoria}}</td>
+                      </tr>
+  
+                    </tbody>
+                  </table>
+  
+  
+              </div>
+              <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Prev" nextLabel="Next"></pagination-controls>              </div>
+            </div>
+          </div>
+  
+  
+  
+          <div class="col d-lg-block conbtn">
+            <div class="reg">
+            <button class="boton" (click)="finishRoutine()">
+                Registrar
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                </div>
+            </button>
+        </div>
+            <button class="cancelar" (click)="cancellRoutine()">
+                <span class="text">Cancelar</span>
+                <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+        </svg></span>
+      </button>
+      </div>
+  
+  
+  
+  
+  </div>
+  </div>
+  </div>

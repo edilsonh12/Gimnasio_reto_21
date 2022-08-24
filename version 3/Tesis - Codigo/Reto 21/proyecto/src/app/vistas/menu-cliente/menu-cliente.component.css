@@ -1,0 +1,712 @@
+body{
+    overflow-x: hidden;
+  }
+
+.noti {
+    background: none;
+    border: none;
+    padding: 15px 15px;
+    border-radius: 10px;
+  }
+  
+  .noti:hover {
+    background: rgba(182, 179, 0, 0.548);
+    transition: 0.5s;
+  }
+  
+  .noti svg {
+    color: #fff;
+  }
+  .barra{
+    height: 100%;
+    background-color:black;
+    width: 234px;
+    position: fixed;
+  }
+  
+  .nav-link{
+    border-radius:0px !important;
+    transition:all 0.5s;
+    width:234px;
+    flex-direction:column;
+  }
+  .imag{
+    padding: 60px 0 12px 65px;
+  }
+   .imag .img{
+    width:100px;
+    height:100px;
+   }
+  .content{
+    margin-top: -3.0rem; 
+    margin-left: 175px;
+    width: 100%;
+  }
+  .content .navbar{
+    width: 100%;
+  }
+  .container-content{
+    margin-left: 12.1px;
+    margin-top: -1.3rem; 
+    width: 100%;
+  }
+  small{
+    color: white;
+  }
+  .texto{
+    color: white;
+  }
+  i{
+    color: white;
+  }
+  .nav-link small{
+    font-size:15px;
+  }
+  .nav-link:hover{
+    background-color: #fbff04e1 !important;
+  }
+  .nav-link .fa{
+    padding: 0 12px 0 12px;
+    transition: all 1s;
+    font-size:14px
+  }
+  .nav-link:hover .fa{
+    transform: rotate(360deg);
+    color: black;
+  }
+  .nav-link:hover small{
+    color: black;
+  }
+
+
+  .social {
+
+    cursor: pointer;
+
+    position: fixed; /* Hacemos que la posición en pantalla sea fija para que siempre se muestre en pantalla*/
+
+    right: 9px; /* Establecemos la barra en la izquierda */
+
+    top: 200px; /* Bajamos la barra 200px de arriba a abajo */
+
+    z-index: 9000; /* Utilizamos la propiedad z-index para que no se superponga algún otro elemento como sliders, galerías, etc */
+
+    overflow-y: scroll;
+
+    height: 70%;
+
+  }
+
+ 
+
+ .social::-webkit-scrollbar {
+
+    width: 8px;     /* Tamaño del scroll en vertical */
+
+    height: 8px;    /* Tamaño del scroll en horizontal */
+
+    display: none;  /* Ocultar scroll */
+
+}
+  
+    .social ul {
+      list-style: none;
+    }
+  
+    .social ul li a {
+      display: inline-block;
+      color:#fff;
+      right: 0;
+      background:transparent;
+      padding: 10px 15px;
+      text-decoration: none;
+      -webkit-transition:all 500ms ease;
+      -o-transition:all 500ms ease;
+      transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
+    }
+  
+    .social ul li a:hover {
+      background: transparent; /* Cambiamos el fondo cuando el usuario pase el mouse */
+      padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
+    }
+  .footer{
+    color: white;
+    font-size: 12px;
+  }
+  .notifi{
+    width: 310px;
+    height: 100%;
+    display: flex;
+    margin-left: 105px;
+    background: transparent;
+
+  }
+  .card{
+    width: 65%;
+    background: white;
+  }
+  @media(max-width:1137px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:1063px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:958px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:890px){
+    .nav-link .texto{
+      font-size:5px;
+    }
+    .texto{
+      visibility: hidden;
+    }
+    .imag{
+      padding: 20px 0 12px 30px;
+    }
+    .imag .img{
+      width:60px;
+      height:60px;
+     }
+    .barra{
+      height: 100%;
+      background-color:black;
+      width: 120px;
+      position: fixed;
+    }
+    .nav-link{
+      border-radius:0px !important;
+      transition:all 0.5s;
+      width:116px;
+      display: flex;
+      flex-direction:column
+    }
+    .nav-link .fa{
+      transition: all 1s;
+      font-size:23px
+    }
+    .content .navbar{
+      width: 780px
+    }
+    .content{
+      margin-top: -3.0rem; 
+      margin-left: 72px;
+    }
+    .container-content{
+      margin-left: -230px;
+      margin-top: -1.3rem; 
+      width:100%;
+    }
+  }
+  @media(max-width:853px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:812px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:797px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:766px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:763px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:753px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:715px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:664px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:613px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:593px){
+    small{
+      visibility: hidden;
+    }
+    .barra{
+      height: 100%;
+      background-color:black;
+      width: 100px;
+      position: fixed;
+    }
+    .nav-link{
+      border-radius:0px !important;
+      transition:all 0.5s;
+      width:100px;
+      display: flex;
+      flex-direction:column
+    }
+    .imag{
+        padding: 60px 0 12px 20px;
+      }
+      .content .navbar{
+        width:100%;
+      }
+      .content{
+        margin-top: -2.0rem; 
+        margin-left: 75px;
+      }
+  }
+  @media(max-width:569px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 60px;
+    }
+  }
+  @media(max-width:566px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+    .barra{
+        height: 100%;
+        background-color:black;
+        width: 100px;
+        position: fixed;
+      }
+      .nav-link{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:100px;
+        display: flex;
+        flex-direction:column
+      }
+      .imag{
+          padding: 60px 0 12px 20px;
+        }
+  }
+  @media(max-width:524px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+    .barra{
+        height: 100%;
+        background-color:black;
+        width: 100px;
+        position: fixed;
+      }
+      .nav-link{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:100px;
+        display: flex;
+        flex-direction:column
+      }
+      .imag{
+          padding: 60px 0 12px 20px;
+        }
+  }
+  @media(max-width:517px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:495px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:485px){
+    .notifi{
+      width: 210px;
+      height: 100%;
+      display: flex;
+      margin-left: 90px;
+      background: transparent;
+      padding: 50px;
+    }
+    .card{
+      width: 65%;
+      background: transparent;
+    }
+  }
+  @media(max-width:468px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:415px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+    .notifi{
+      width: 110px;
+      height: 100%;
+      display: flex;
+      margin-left: 50px;
+      background: transparent;
+      padding: 50px;
+    }
+    .card{
+      width: 65%;
+      font-size: 12px;
+      background: transparent;
+    }
+  }
+  @media(max-width:380px){
+    .notifi{
+      width: 110px;
+      height: 100%;
+      display: flex;
+      margin-left: 50px;
+      background: transparent;
+      overflow-y: scroll;
+      padding: 50px;
+    }
+    .card{
+      width: 65%;
+      font-size: 12px;
+      background: transparent;
+    }
+  }
+  @media(max-width:375px){
+    .content .navbar{
+      width:100%;
+      }
+      .content{
+        margin-top: -2.0rem; 
+        margin-left: 55px;
+      }
+    .barra{
+        height: 100%;
+        background-color:black;
+        width: 80px;
+        position: fixed;
+      }
+      .nav-link{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:80px;
+        display: flex;
+        flex-direction:column
+      }
+      .imag{
+          padding: 60px 0 12px 10px;
+        }
+
+  }
+
+
+
+
+
+
+
+  .table tr:hover{
+
+    background: rgba(3, 3, 3, 0.336);
+
+    color: #fff;
+
+  }
+
+ 
+
+  .table thead{
+
+    background-color:rgb(248, 233, 14);
+
+  }
+
+  .table tbody{
+
+    background-color: rgb(253, 253, 253);
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  .centro1{
+    padding: 0 0 12px 0;
+  }
+  .centro1 .buscar{
+    margin-left: 110px;
+    padding-top: -100px;
+    width: 60%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: .3s ease;
+    }
+    .centro1 .buscar::placeholder {
+    color: #9e9ea7;
+    }
+  
+    .centro1 .buscar:focus,.centro1 .buscar:hover {
+    outline: none;
+    border-color: rgba(253, 249, 3, 0.993);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(252, 248, 2, 0.452);
+    } 
+
+
+
+
+
+    .atras {
+      display: flex;
+      height: 3em;
+      width: 100px;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffee004b;
+      border-radius: 3px;
+      letter-spacing: 1px;
+      transition: all 0.2s linear;
+      cursor: pointer;
+      border: none;
+      background: rgb(255, 238, 1);
+     }
+     
+     .atras > svg {
+      margin-right: 5px;
+      margin-left: 5px;
+      font-size: 20px;
+      transition: all 0.4s ease-in;
+     }
+     
+     .atras:hover > svg {
+      font-size: 1.2em;
+      transform: translateX(-5px);
+     }
+     
+     .atras:hover {
+      box-shadow: 9px 9px 33px #fffb00, -9px -9px 33px #ffe601;
+      transform: translateY(-2px);
+     }
+
+
+
+
+
+
+
+
+
+     .card_cronograma {
+      width: 100%;
+      height: 100%;
+      color: white;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1px;
+      overflow: visible;
+     }
+     
+     .card_cronograma .item {
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+     }
+     
+     .item:hover {
+      transform: scale(0.95);
+      transition: all 0.3s;
+     }
+     
+     
+     .item--1 {
+       display: flex;
+     }
+     
+     .item--2 {
+       display: flex;
+     }
+     
+     .item--3 {
+       display: flex;
+     }
+     
+     .item--4 {
+     display: flex;
+     }
+     
+     .quantity {
+      font-size: 25px;
+      font-weight: 600;
+     }
+     .imagen{
+       width:100%; 
+       height:250px;
+       object-fit: cover;
+     }
+     .text {
+      font-size: 15px;
+      font-family: inherit;
+      font-weight: 600;
+     }
+     .text--1 {
+       color: rgb(0, 0, 0);
+     }
+     
+     .text--2 {
+      color: rgb(2, 2, 2);
+     }
+     
+     .text--3 {
+       color: rgb(0, 0, 0);
+     }
+     
+     .text--4 {
+       color: rgb(0, 0, 0);
+     }
+     
+     .button-container{
+       display:inline-block;
+       position:relative;
+       }
+       
+       .button-container a{
+       position: absolute;
+       bottom:4em;
+       right:-5em;
+       border-radius:1.5em;
+       text-transform:uppercase;
+       padding:1em 1.5em;
+       }
+       .ic{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:234px;
+      }
+      .ic .icono{
+        transition: all 1s;
+        font-size:14px;
+        cursor: pointer;
+      }
+      .ic:hover .icono{
+        transform: rotate(360deg);
+        background-color: #fffb04;
+        border-radius: 50%;
+      }
+    
+
+
+
+  
+      
+
+
+      .logo_noti{
+        object-fit: cover;
+        margin-top: -10px;
+      }
+    
+    
+      .notifi{
+        width: 350px;
+        height: 100%;
+        display: flex;
+        margin-left: 105px;
+        background: black;
+      }
+      .notifica{
+        width: 100%;
+        background: white;
+        border-color: #000000;
+        border-radius: 10px;
+      }
+      .texto-cont{
+        margin-left: -200px;
+      }

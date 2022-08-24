@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@700&family=Anton&family=Bangers&family=Koulen&family=Permanent+Marker&family=Signika+Negative:wght@700&display=swap');
+
+.table tr:hover{
+  background: rgba(3, 3, 3, 0.336);
+  color: #fff;
+}
+
+.table thead{
+  background-color:rgb(248, 233, 14);
+}
+.table tbody{
+  background-color: rgb(253, 253, 253);
+}
+
+.t2 tr:hover{
+  background: rgba(3, 3, 3, 0.336);
+  color: #fff;
+}
+.centro{
+  margin-left: -120px;
+  padding: 0 0 5px 0 ;
+}
+.titulo{
+  margin-left: 55px;
+  font-family: 'Akshar', sans-serif;
+}
+.t2 thead{
+  background-color:rgb(248, 233, 14);
+}
+.t2 tbody{
+  background-color: rgb(253, 253, 253);
+}
+  .centro{
+    max-width: 2000px;
+
+    margin-left: 12px;
+
+    }
+
+    .centro .titulo{
+      padding:40px 0 0 250px;
+      color: black;
+       font-size: 40px;
+      }
+
+      .centro .buscar{
+      margin-left: 300px;
+      padding-top: -100px;
+      width: 40%;
+      height: 40px;
+      line-height: 28px;
+      padding: 0 1rem;
+      padding-left: 2.5rem;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      outline: none;
+      background-color: #f3f3f4;
+      color: #0d0c22;
+      transition: .3s ease;
+      }
+      .centro .buscar::placeholder {
+      color: #9e9ea7;
+      }
+
+      .cento .buscar:focus,.centro .buscar:hover {
+      outline: none;
+      border-color: rgba(253, 249, 3, 0.993);
+      background-color: #fff;
+      box-shadow: 0 0 0 4px rgba(252, 248, 2, 0.452);
+      }
+
+      .asignar {
+        position: relative;
+        padding: 1em 1.8em;
+        outline: none;
+        border: 1px solid #000000;
+        background: #000000;
+        color: #eeff00;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 15px;
+        overflow: hidden;
+        transition: 0.2s;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+       }
+
+       .asignar:hover {
+        box-shadow: 0 0 10px #fffb00, 0 0 25px #fbff00, 0 0 50px #fffb00;
+        transition-delay: 0.6s;
+       }
+
+       .asignar span {
+        position: absolute;
+       }
+       .busco{
+        padding: 0 0 0 1px;
+     }
+     .busca {
+      line-height: 28px;
+      border: 2px solid transparent;
+      border-bottom-color: rgb(0, 0, 0);
+      padding: .2rem 0;
+      outline: none;
+      background-color: transparent;
+      color: #0d0c22;
+      transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+     }
+
+     .busca:focus, .buscar:hover {
+      outline: none;
+      padding: .2rem 1rem;
+      border-radius: 1rem;
+      border-color: #fffb04;
+     }
+
+     .busca::placeholder {
+      color: rgb(0, 0, 0);
+     }
+
+     .busca:focus::placeholder {
+      opacity: 0;
+      transition: opacity .3s;
+     }
+
+       .asignar span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #fbff00);
+       }
+
+       .asignar:hover span:nth-child(1) {
+        left: 100%;
+        transition: 0.7s;
+       }
+
+       .asignar span:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #fbff00);
+       }
+
+       .asignar:hover span:nth-child(3) {
+        right: 100%;
+        transition: 0.7s;
+        transition-delay: 0.35s;
+       }
+
+       .asignar span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #fbff00);
+       }
+
+       .asignar:hover span:nth-child(2) {
+        top: 100%;
+        transition: 0.7s;
+        transition-delay: 0.17s;
+       }
+
+       .asignar span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #fbff00);
+       }
+
+       .asignar:hover span:nth-child(4) {
+        bottom: 100%;
+        transition: 0.7s;
+        transition-delay: 0.52s;
+       }
+
+       .asignar:active {
+        background: #020202;
+        background: linear-gradient(to top right, #fffb00, #ffffff);
+        color: #030303;
+        box-shadow: 0 0 8px #fbff00, 0 0 8px #fbff00, 0 0 8px #eeff00;
+        transition: 0.1s;
+       }
+
+       .asignar:active span:nth-child(1)
+       span:nth-child(2)
+       span:nth-child(2)
+       span:nth-child(2) {
+        transition: none;
+        transition-delay: none;
+       }
+       .crear {
+        margin-left: 2px;
+        position: relative;
+        padding: 1em 1.8em;
+        outline: none;
+        border: 1px solid #000000;
+        background: #f8fc01;
+        color: #000000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 15px;
+        overflow: hidden;
+        transition: 0.2s;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+       }
+
+       .crear:hover {
+        box-shadow: 0 0 10px #000000, 0 0 25px #000000, 0 0 50px #ffffff;
+        transition-delay: 0.6s;
+       }
+
+       .crear span {
+        position: absolute;
+       }
+
+       .crear span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #000000);
+       }
+
+       .crear:hover span:nth-child(1) {
+        left: 100%;
+        transition: 0.7s;
+       }
+
+       .crear span:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #020202);
+       }
+
+       .crear:hover span:nth-child(3) {
+        right: 100%;
+        transition: 0.7s;
+        transition-delay: 0.35s;
+       }
+
+       .crear span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #000000);
+       }
+
+       .crear:hover span:nth-child(2) {
+        top: 100%;
+        transition: 0.7s;
+        transition-delay: 0.17s;
+       }
+
+       .crear span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #000000);
+       }
+
+       .crear:hover span:nth-child(4) {
+        bottom: 100%;
+        transition: 0.7s;
+        transition-delay: 0.52s;
+       }
+
+       .crear:active {
+        background: #020202;
+        background: linear-gradient(to top right, #fffb00, #ffffff);
+        color: #030303;
+        box-shadow: 0 0 8px #fbff00, 0 0 8px #fbff00, 0 0 8px #eeff00;
+        transition: 0.1s;
+       }
+
+       .crear:active span:nth-child(1)
+       span:nth-child(2)
+       span:nth-child(2)
+       span:nth-child(2) {
+        transition: none;
+        transition-delay: none;
+       }
+       .texto{
+        padding: 20px;
+      }
+
+    @media(max-width:988px){
+      .centro{
+        padding: 0 0 6px 1px;
+        margin-left: -100px;
+      }
+    }
+
+ @media(max-width:630px){
+      .centro .buscar{
+      width: 40%;
+      height: 40px;
+      line-height: 28px;
+       padding: 0 1rem;
+      padding-left: 1.5rem;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      outline: none;
+      background-color: #f3f3f4;
+      color: #0d0c22;
+      transition: .3s ease;
+      }
+      .centro .buscar::placeholder {
+      color: #9e9ea7;
+      }
+
+  .centro .buscar:focus,.centro .buscar:hover {
+
+  outline: none;
+
+   border-color: rgba(253, 249, 3, 0.993);
+
+    background-color: #fff;
+
+    box-shadow: 0 0 0 4px rgba(252, 248, 2, 0.452);
+
+    }
+  }
+
+  @media(max-width:479px){
+    .centro{
+      padding: 0 0 6px 1px;
+      margin-left: -290px;
+    }
+    .centro .titulo{
+      font-size: 25px;
+      margin-left: 12px;
+    }
+    .table {
+      width:100%;
+  }
+  .table-wrap{
+    padding: 0 0 0 30px;
+  }
+  .table thead {
+      display: none;
+  }
+  .table tr:nth-of-type(2n) {
+      background-color: inherit;
+  }
+  .table tr td:first-child {
+      background: #f0f0f0;
+      font-weight:bold;
+      font-size:1.3em;
+  }
+  .table tbody td {
+      display: block;
+      text-align:center;
+  }
+  .table tbody td:before {
+      content: attr(data-th);
+      display: block;
+      text-align:center;
+  }
+  }
+
+
+
+
+  .ic{
+
+    border-radius:0px !important;
+
+    transition:all 0.5s;
+
+    width:234px;
+
+  }
+
+  .ic .icono{
+
+    transition: all 1s;
+
+    font-size:14px
+
+  }
+
+  .ic:hover .icono{
+
+    transform: rotate(360deg);
+
+    background-color: #fffb04;
+
+    border-radius: 50%;
+
+  }
+
+
+
+
+
+
+  .dias{
+    padding: 5px;
+    border-radius: 35px;
+    border-color: #f9fd01;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .dias:hover{
+    background:linear-gradient(rgb(255, 251, 2), rgb(255, 251, 2), rgb(255, 251, 2));
+    border-color:black;
+    color: #000;
+  }
+

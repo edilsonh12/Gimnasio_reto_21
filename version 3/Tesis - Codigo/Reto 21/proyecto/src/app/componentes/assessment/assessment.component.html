@@ -1,0 +1,343 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class=" centro">
+      <h1 class="titulo">Valoraciones clientes nuevos</h1>
+          <input type="text" class="buscar" placeholder="Buscar"  name="filtro_nuevos" [(ngModel)]="filtro_nuevos"> 
+         <div class="mensaje"> <p><img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/>En la siguiente tabla se encuentras los clientes sin una valoracion realizada. recuerda que al ser su primera vez, se debe rellenar una encuesta previa<img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="table-wrap">
+              <table class="table table-striped">
+              <thead class="thead-primary">
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>T. Valoración</th>
+                    <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let list of listNewUser | clientes:filtro_nuevos | paginate: { id: 'nuevos', itemsPerPage: 5, currentPage: p }">
+
+                  <td>{{list.documento}}</td>
+                  <td>
+                    {{list.nombres + " " + list.primer_apellido + " " + list.segundo_apellido}}
+                  </td>
+                  <td>{{list.nombre_valoracion}}</td>
+                  <td class="texto">
+                      <a class="ic" (click)="getDocumentFirst(list.documento,list.id_valoracion)" data-bs-toggle="modal" data-bs-target="#textInit"><img src="https://img.icons8.com/ios-glyphs/30/undefined/plus--v1.png" class="icono"/></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <pagination-controls id="nuevos" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+          </div>
+      </div>
+  </div>
+      
+
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class=" centro">
+      <h1 class="titulo">Valoraciones Clientes Antiguos</h1>
+          <input type="text" class="buscar" placeholder="Buscar"  name="filtro_antiguos" [(ngModel)]="filtro_antiguos"> 
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="table-wrap">
+              <table class="table table-striped">
+              <thead class="thead-primary">
+                <tr>
+                  <th>#</th>
+                    <th>Documento</th>
+                    <th>Usuarios</th>
+                    <th>Tipo de valoracion</th>
+                    <th></th>
+                    <th></th>
+                    <th>Acciones</th>
+                    <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+           <tr *ngFor="let first of listOldUserFirst | clientes:filtro_antiguos | paginate: { id: 'antiguos', itemsPerPage: 5, currentPage: page }">
+
+                  <td>{{first.contador}}</td>
+                  <td>{{first.documento}}</td>
+                  <td>
+                    {{first.nombres + " " + first.primer_apellido + " " + first.segundo_apellido}}
+                  </td>
+                  <td>{{first.nombre_valoracion}}</td>
+                  <td class="texto">
+                      <a class="ic" (click)="createOldAssessment(first.documento,first.nombre_valoracion)" ><img src="https://img.icons8.com/material-rounded/48/000000/insert-page.png" class="icono" width="35px" height="35px"/></a>
+                  </td>
+                  <td class="texto">
+                      <a class="ic" data-bs-toggle="modal" data-bs-target="#updateAssessment" (click)="searchAssessment(first.documento,first.nombre_valoracion)"><img src="https://img.icons8.com/ios-glyphs/30/undefined/edit--v1.png" class="icono"/></a>
+                  </td>
+                  <td class="texto">
+                      <a class="ic" (click)="goToDashboard(first.documento,first.nombre_valoracion)"><img src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/undefined/external-dashboard-blogger-vitaliy-gorbachev-fill-vitaly-gorbachev.png" class="icono" width="30px" height="30px"/></a>
+                  </td>
+              </tr>
+
+              <tr *ngFor="let second of listOldUserSecond | clientes:filtro_antiguos | paginate: { id: 'antiguos', itemsPerPage: 5, currentPage: page }">
+
+                <td>{{second.contador}}</td>
+                <td>{{second.documento}}</td>
+                <td>
+                  {{second.nombres + " " + second.primer_apellido + " " + second.segundo_apellido}}
+                </td>
+                <td>{{second.nombre_valoracion}}</td>
+                <td class="texto">
+                    <a class="ic" (click)="createOldAssessment(second.documento,second.nombre_valoracion)"><img src="https://img.icons8.com/material-rounded/48/000000/insert-page.png" class="icono" width="35px" height="35px"/></a>
+                </td>
+                <td class="texto">
+                    <a class="ic" data-bs-toggle="modal" data-bs-target="#updateAssessment" (click)="searchAssessment(second.documento,second.nombre_valoracion)"><img src="https://img.icons8.com/ios-glyphs/30/undefined/edit--v1.png" class="icono"/></a>
+                </td>
+                <td class="texto">
+                    <a class="ic" (click)="goToDashboard(second.documento,second.nombre_valoracion)"><img src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/undefined/external-dashboard-blogger-vitaliy-gorbachev-fill-vitaly-gorbachev.png" class="icono" width="30px" height="30px"/></a>
+                </td>
+            </tr>
+
+
+
+              </tbody>
+            </table>
+            <pagination-controls id="antiguos" (pageChange)="change_page($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+          </div>
+      </div>
+  </div>
+      
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="textInit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Encuesta Inicial</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="formFirstAssessment" (ngSubmit)="createFirstAssessment(formFirstAssessment.value)">
+
+          <input type="hidden" [(ngModel)]="documento" formControlName="documento">
+          <input type="hidden" [(ngModel)]="id_valoracion" formControlName="id_valoracion">
+
+          <div class="mb-3">
+            <label for="" class="form-label">Estatura:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Estatura" formControlName="estatura">
+          </div>
+
+          <hr class="mt-0 mb-4">
+
+          <div class="mb-3">
+            <label for="" class="form-label">Peso: </label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Peso" formControlName="peso">
+          </div>
+
+          <hr class="mt-0 mb-4">
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted fuma?</label>
+            <select class="form-control" id="" formControlName="fuma" ngModel="Seleccione" name="Seleccione">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <hr class="mt-0 mb-4">
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted consume bebidas alcoholicas?</label>
+            <select class="form-control" name="" id="" formControlName="alcohol" ngModel="Seleccione" name="Seleccione">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <hr class="mt-0 mb-4">
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted consume café?</label>
+            <select class="form-control" name="" id="" formControlName="cafe" ngModel="Seleccione" name="Seleccione">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <hr class="mt-0 mb-4">
+
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted ha tenido cirugias?</label>
+            <select class="form-control" name="" id="" formControlName="cirugias" ngModel="Seleccione" name="Seleccione">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+
+          <hr class="mt-0 mb-4">
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted hace ejercicio?</label>
+            <select class="form-control" name="" id="" formControlName="ejercicio" ngModel="Seleccione" name="Seleccione">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+
+          <hr class="mt-0 mb-4">
+
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Padece alguna alergia?</label>
+            <select class="form-control" name="alergia" id="" [(ngModel)]="alergia" (ngModelChange)="changueAlergia($event)" formControlName="alergias">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+            <div *ngIf="alergias_temp; then alergias" ></div>
+
+
+
+            <hr class="mt-0 mb-4">
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted consume medicamentos?</label>
+            <select class="form-control" name="enfermedades" id="" [(ngModel)]="medicamentos" (ngModelChange)="changueMedicamentos($event)" formControlName="medicamentos">
+
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div *ngIf="medicamentos_temp; then medicamento" ></div>
+
+
+          <hr class="mt-0 mb-4">
+
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Usted padece enfermedades?</label>
+            <select class="form-control" name="enfermedades" id="" [(ngModel)]="enfermedades" (ngModelChange)="changueEnfermedades($event)" formControlName="enfermedades">
+              <option seledted value="Seleccione">Seleccione</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div *ngIf="enfermedades_temp; then enfermedad" ></div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-warning" value="Registrar"  data-bs-dismiss="modal">
+          </div>
+        </form>
+
+        <ng-template #alergias>
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Cuales alergias padece?</label>
+            <textarea class="form-control" name="alergiasTemp" [(ngModel)]="alergiasTemp" id="" rows="2"></textarea>
+          </div>
+
+        </ng-template>
+
+
+        <ng-template #medicamento>
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Cuales medicamentos consume?</label>
+            <textarea class="form-control" name="medicamentosTemp" [(ngModel)]="medicamentosTemp" id="" rows="2"></textarea>
+          </div>
+
+        </ng-template>
+
+
+        <ng-template #enfermedad>
+
+          <div class="mb-3">
+            <label for="" class="form-label">¿Cuales enfermedades padece?</label>
+            <textarea class="form-control" name="enfermedadesTemp" [(ngModel)]="enfermedadesTemp" rows="2"></textarea>
+          </div>
+
+        </ng-template>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal for update Assessment  -->
+<div class="modal fade" id="updateAssessment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Valoraciones del usuario: </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table table-striped">
+          <thead class="thead-primary">
+            <tr>
+                <th>Fecha de valoración</th>
+                <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let list of listAssessmentDate | paginate: { id: 'edit_assessment', itemsPerPage: 10, currentPage: page_edit }">
+
+              <td>{{list.fecha.substring(0,10)}}</td>
+              <td>
+                <a class="ic" (click)="fromEditAssessment(list.id_medidas_valoracion)" data-bs-dismiss="modal"><img src="https://img.icons8.com/ios-glyphs/30/undefined/edit--v1.png" class="icono"/></a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pagination-controls id="edit_assessment" (pageChange)="change_page_edit($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,262 @@
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col  text-start ">
+          <h2 class="heading-section">Registrar Ejercicios<img style="cursor:pointer ;" src="https://img.icons8.com/ios-glyphs/30/undefined/add--v1.png" data-bs-toggle="modal" data-bs-target="#ejercicio"/></h2>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class="busco">
+          <h4 class="text-center mb-4"><input placeholder="Buscar" type="text" class="buscar" required="" [(ngModel)]="filtro" name="filtro"> </h4>
+        </div>
+          <div class="table-wrap">
+              <table class="table table-striped">
+              <thead class="thead-primary">
+                <tr>
+                  <th >Imagen</th>
+                  <th>Nombre del Ejercicio</th>
+                  <th>Categoria</th>
+                  <th>Sub-Categoria</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let training of listTraining | training:filtro | paginate: { id: 'ejercicios', itemsPerPage: 10, currentPage: p }">
+                  <td scope="row" class="scope " ><img src="data:image/png;base64,{{arrayBufferToBase64(training.imagen.data)}}" class="imagen" ></td>
+                  <td class="texto" >{{training.nombre_ejercicios}}</td>
+                  <td class="texto" >{{training.nombre_categoria}}</td>
+                  <td class="texto" >{{training.nombre_sub}}</td>
+                  <td class="texto">
+                      <a (click)="viewTraining(training.id_ejercicios)" data-bs-toggle="modal" data-bs-target="#viewTraining" ><img style="cursor: pointer;" src="https://img.icons8.com/ios-glyphs/30/undefined/view-file.png"/></a>
+                      <a (click)="getOneTrainingUpdate(training.id_ejercicios)" data-bs-toggle="modal" data-bs-target="#updateTraining"><img style="cursor: pointer;" src="https://img.icons8.com/ios-glyphs/30/undefined/edit--v1.png"/></a>
+                  </td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+          <pagination-controls id="ejercicios"
+          (pageChange)="handlePageChange($event)"
+          previousLabel="Prev"
+          nextLabel="Next"
+        ></pagination-controls>
+      </div>
+  </div>
+</div>
+
+
+
+<!--------- Modal for create training  -------->
+<div class="modal fade" id="ejercicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ejercicios</h5>
+        <i type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </i>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="trainingForm" (ngSubmit)="createTraining(trainingForm.value)">
+
+          <div class="mb-4">
+            <label for="subcategoria" class="form-label s text-center">Icono</label>
+            <input type="file" class="form-control inputfile align-items-center" required="required" name="image" accept="image/png" (change)="getImg($event)">
+            <p style="color: red; font-size: 15px; padding: 4px 0 0 0;"><img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/>Solo se admiten archivos .png<img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/></p>
+          </div>
+
+          <div class="mb-4">
+            <label for="subcategoria" class="form-label s text-center">Imagen Seleccionada:</label>
+            <img src="{{previewImg}}" class="img-fluid rounded-top" alt="">
+          </div>
+
+          <div class="mb-4">
+            <label for="titulo" class="form-label ">Nombre del Ejercico:</label>
+            <input type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="nombre_ejercicios">
+          </div>
+
+          <div class="mb-4">
+            <label for="descripcion" class="form-label text-center">Descripcion del Ejercicio </label>
+            <textarea type="text" class="form-control" required="required" name="descripcion" formControlName="descripcion"></textarea>
+          </div>
+
+          <div class="mb-4 selectdiv">
+            <label for="categoria" class="form-label s text-center">Categoria</label>
+              <select  name="categoria" style="cursor: pointers;" class="categoria" id="categoria" (changue)="changueCategory($event)" >
+                  <option value="0" style="cursor: pointers;">Seleccione</option>
+                  <option style="cursor: pointers;" *ngFor="let category of listCategory"  value="{{category.id_categoria}}">{{category.nombre_categoria}}</option>
+              </select>
+
+
+              <div class="mb-4 selectdiv">
+                <label for="subcategoria" class="form-label s text-center">Sub-Categoria</label>
+                <select name="subcategoria" class="subcategoria" id="subcategoria" formControlName="categoria">
+                  <option value="0" style="cursor: pointers;">Seleccione</option>
+                  <option *ngFor="let subCategory of listSubCategory" value="{{subCategory.id_sub}}" >{{subCategory.nombre_sub}}</option>
+                </select>
+
+              </div>
+
+          </div>
+
+          <div class="mb-4 ">
+            <label for="titulo" class="form-label ">URL del video:</label>
+            <input type="text" class="form-control align-items-center" required="required" name="video" formControlName="video" [(ngModel)]="video" name="video">
+          </div>
+
+          <div class="mb-3" *ngIf="video;" >
+            <label for="titulo" class="form-label ">Video seleccionado:</label>
+            <g-youtube-player  videoId="{{video.substring(32,43)}}"></g-youtube-player>
+
+          </div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-warning" value="Registrar">
+          </div>
+
+
+
+        </form>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--------- Modal for view training  -------->
+<div class="modal fade" id="viewTraining" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ejercicios</h5>
+        <i type="button" class="close" data-bs-dismiss="modal" (click)="refresh()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </i>
+      </div>
+      <div class="modal-body" >
+
+          <div *ngFor="let one of oneTraining">
+
+            <div class="mb-4">
+              <label for="titulo" class="form-label ">{{one.nombre_ejercicios}}</label>
+            </div>
+
+            <div class="mb-4">
+              <label for="subcategoria" class="form-label s text-center">Icono:</label>
+              <img src="data:image/png;base64,{{arrayBufferToBase64(one.imagen.data)}}" class="img-fluid rounded-top" alt="">
+            </div>
+
+            <div class="mb-4">
+              <label for="titulo" class="form-label ">Categoria: </label>
+              <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{one.nombre_categoria}}" readonly>
+            </div>
+
+            <div class="mb-4">
+              <label for="titulo" class="form-label ">Sub-Categoria: </label>
+              <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{one.nombre_sub}}" readonly>
+            </div>
+
+            <div class="mb-4">
+              <label for="descripcion" class="form-label text-center">Descripcion del Ejercicio: </label>
+              <textarea type="text" class="form-control" required="required" name="descripcion" readonly >{{one.descripcion}}</textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="titulo" class="form-label ">video ejemplificado: </label>
+              <g-youtube-player  videoId="{{one.video}}"></g-youtube-player>
+            </div>
+
+
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--------- Modal for update training  -------->
+<div class="modal fade" id="updateTraining" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Ejercicios</h5>
+        <i type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </i>
+      </div>
+      <div class="modal-body" >
+
+          <form [formGroup]="updateTrainingForm" (ngSubmit)="updateTraining(updateTrainingForm.value)">
+
+            <div *ngFor="let one of oneUpdateTraining">
+
+              <input type="hidden" [(ngModel)]="one.id_ejercicios" formControlName="id_ejercicios">
+
+              <div class="mb-4">
+                <label for="subcategoria" class="form-label s text-center">Icono Actual:</label>
+                <img src="data:image/png;base64,{{arrayBufferToBase64(one.imagen.data)}}" class="img-fluid rounded-top" alt="">
+              </div>
+
+              <div class="mb-4">
+                <label for="subcategoria" class="form-label s text-center">Icono</label>
+                <input type="file" class="form-control inputfile align-items-center" required="required" name="image" accept="image/png" (change)="getImg($event)">
+                <p style="color: red; font-size: 15px; padding: 4px 0 0 0;"><img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/>Solo se admiten archivos .png<img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/></p>
+              </div>
+
+              <div class="mb-4">
+                <label for="subcategoria" class="form-label s text-center">Imagen Seleccionada:</label>
+                <img src="{{previewImg}}" class="img-fluid rounded-top" alt="">
+              </div>
+
+              <div class="mb-4">
+                <label for="titulo" class="form-label ">Nombre del Ejercico:</label>
+                <input type="text" class="form-control align-items-center" required="required" name="titulo" [(ngModel)]="one.nombre_ejercicios" formControlName="nombre_ejercicios">
+              </div>
+
+              <div class="mb-4">
+                <label for="descripcion" class="form-label text-center">Descripcion del Ejercicio </label>
+                <textarea type="text" class="form-control" required="required" name="descripcion" [(ngModel)]="one.descripcion" formControlName="descripcion"></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="titulo" class="form-label ">video ejemplificado Actual:</label>
+                <g-youtube-player  videoId="{{one.video}}"></g-youtube-player>
+              </div>
+
+              <div class="mb-4 ">
+                <label for="titulo" class="form-label ">URL del video:</label>
+                <input type="text" class="form-control align-items-center" required="required" name="video" formControlName="video">
+              </div>
+
+
+
+            </div>
+
+
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-warning" data-bs-dismiss="modal" value="Actualizar">
+            </div>
+
+          </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
