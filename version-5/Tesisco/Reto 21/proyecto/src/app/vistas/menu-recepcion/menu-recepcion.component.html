@@ -1,0 +1,259 @@
+<body>
+    <div class="d-flex flex-column bg-black barra">
+      <!--*ngFor="let x of photo"--> 
+      <div class="imag" style="align-items: center;" *ngFor="let x of photo">
+        <img src="data:image/png;base64,{{arrayBufferToBase64(x.foto_personal.data)}}" class=" img rounded-circle">
+      </div>
+   <ul class="nav nav-pills nav-flush flex-column mb-auto  col-sm-4">
+        
+    <li>
+      <a href="#pageSubmenu" data-bs-toggle="collapse" aria-haspopup="true"  aria-expanded="false" class="nav-link py-3 text-center border-bottom " role="button"><small class="nombre"> {{nombre}} </small></a>
+      <ul class="collapse list-unstyled" id="pageSubmenu">
+        <li>
+            <a  class="nav-link py-3 border-bottom" routerLink="perfil"><i class="fa fa-cog"></i> <small class="texto">Perfil</small></a>
+        </li>
+        
+        <li>
+          <a style="cursor: pointer;" (click)="closeSession()" class="nav-link py-3 border-bottom" ><i class='fa fa-sign-out'></i><small class="texto">Cerrar Sesión</small></a>
+      </li>
+
+      </ul>
+    </li>
+    
+      <li> <a style="cursor: pointer;" routerLink="usuarios-recepcion" class="nav-link"> <i class='fa fa-address-book'></i><small class="texto">Usuarios</small> </a> </li>
+
+    <li>
+      <a href="#subMenuSistema" data-bs-toggle="collapse" aria-haspopup="true"  aria-expanded="false" class="nav-link" role="button"><i class='fa fa-tv'></i><small class="texto">Sistema</small></a>
+      <ul class="collapse list-unstyled" id="subMenuSistema">
+        <li>
+            <a class="nav-link py-3 border-bottom" routerLink="sistema"><i class='fa fa-keyboard'></i><small class="texto">Información</small></a>
+        </li>
+        <li>
+            <a class="nav-link py-3 border-bottom" routerLink="planes"><i class='fa fa-dollar'></i><small class="texto">Planes ofertados</small></a>
+        </li>
+      </ul>
+    </li>
+      <li> <a style="cursor: pointer;" class="nav-link" routerLink="challenges"><i class='fa  fa-earth-americas'></i> <small class="texto">Retos</small> </a> </li>
+      
+      <li> <a style="cursor: pointer;" class="nav-link" routerLink="assessment"><img src="https://img.icons8.com/flat-round/64/000000/bell.png" class="fa" width="45"/><small class="texto">Valoraciones</small> </a> </li>
+
+
+      <li> <a style="cursor: pointer;" class="nav-link" routerLink="citas-recepcion"> <i class='fa fa-address-book'></i><small class="texto">Citas de valoración</small> </a> </li>
+      <li> <a style="cursor: pointer;" class="nav-link" routerLink="notificaciones"><i class='fa fa-bell'></i><small class="texto">Notificaciones</small> </a> </li>
+  </ul>
+  <ul>
+    <div class="footer">
+      <p>
+       <small class="nombre">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.</small></p>
+    </div>
+  </ul>
+     </div>
+
+          <!-- Contenido de la imagen  -->
+        <div id="content" class=" content p-4 p-md-5" >
+  
+          <nav class="navbar navbar-expand-lg navbar-light bg-black" >
+            <div class="container-fluid">
+  
+              <img src="data:image/png;base64,{{content}}"  class="logo" width="65" height="65"><!-- logo del gimnasio  -->
+  
+                <ul class="nav navbar-nav ml-auto">
+  
+                  <li class="nav-item active">
+                      <a class="nav-link text-white" routerLink="inicio">Inicio</a>
+                  </li>
+  
+                  <li class="nav-item">
+                      <a class="nav-link text-white" routerLink="list-notices">Noticias</a>
+                  </li>
+  
+  
+                </ul>
+              </div>
+          </nav>
+          <div class="container-content">
+     
+    
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <div class="modal fade" id="perfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+            <div class="modal-content">
+              <div class="modal-body">
+                        <div class="d-flex text-black">
+                          <div class="flex-shrink-0">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                              alt="Generic placeholder image" class="img-fluid"
+                              style="width: 180px; border-radius: 10px;">
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Titulo del Plan</p>
+                                <p class="mb-0">RETO 21</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Numero de dias</p>
+                                <p class="mb-0">consulta 21 dias </p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1">Dias asistidos</p>
+                              <p class="mb-0">ha asistido 2 dias bago</p>
+                            </div>
+                          </div>
+                            <div class="d-flex pt-1">
+                              <button class="atras flex-grow-1">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                                <span>Atras</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="retoscli" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+            <div class="modal-content">
+              <div class="modal-body">
+                        <div class="d-flex text-black">
+                          <div class="flex-shrink-0">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                              alt="Generic placeholder image" class="img-fluid"
+                              style="width: 180px; border-radius: 10px;">
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Titulo del Reto</p>
+                                <p class="mb-0">RETO 21</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Descripcion</p>
+                                <p class="mb-0">consulta 21 dias </p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1">Fecha y Hora</p>
+                              <p class="mb-0">ha asistido 2 dias bago</p>
+                            </div>
+                          </div>
+                            <div class="d-flex pt-1">
+                              <button class="atras flex-grow-1">
+                                <svg height="20" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M0 0h24v24H0z" fill="none"></path>
+                                  <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+                                <span>Aceptar</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
+    <div class="modal fade" id="cronograma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div >
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding: 12px 0 0 12px;"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mostrar">
+                <div class="item item--1" data-bs-toggle="modal" data-bs-target="#ver">
+                  <img class="imagen" src="https://fondosmil.com/fondo/4030.jpg">
+                  <span class="quantity"></span>
+                  <span class="text text--1"> Lunes </span>
+                </div>
+                <div class="item item--2">
+                  <img class="imagen" src="https://i.pinimg.com/originals/0f/d4/34/0fd434c126cb1ded41fc975fba8d403b.jpg" >
+                  <span class="text text--2"> Martes</span>
+                </div>
+                <div class="item item--3">
+                  <img class="imagen" src="https://i.pinimg.com/originals/25/cb/30/25cb3027affd0493d1c59f526e847ce4.jpg" >
+                  <span class="text text--3"> Miercoles</span>
+                </div>
+                <div class="item item--4">
+                  <img class="imagen" src="https://i.pinimg.com/originals/78/25/90/7825909afc5c3ce07d05515b93d2393f.jpg">
+                  <span class="text text--4"> Jueves</span>
+                </div>
+                <div class="item item--3">
+                  <img class="imagen" src="https://i.pinimg.com/736x/11/de/ec/11deecaf12d3997386d019b8866e0f5d.jpg" >
+                  <span class="text text--3">Viernes</span>
+                </div>
+                <div class="item item--4">
+                  <img class="imagen" src="https://fondosmil.com/fondo/18805.jpg">
+                  <span class="text text--4">Sabado</span>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="ver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+        <div class="modal-content">
+          <div >
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           <div class="d-flex text-black">
+                    <div class="flex-shrink-0 button-container">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                          alt="Generic placeholder image" class="img-fluid"
+                          style="width: 180px; height: 210px; border-radius: 10px;">
+                          <a class="ic" >
+                            <img class="icono" src="https://img.icons8.com/material-outlined/96/000000/video.png"/>
+                          </a>
+                      </div>
+                      <div class="flex-grow-1 ms-3">
+                        <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1 ">Sentadilla</p>
+                        </div>
+                      </div>
+                       <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+                            <p class="small text-muted mb-1">Series</p>
+                            <p class="mb-0">12</p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+                            <p class="small text-muted mb-1">Repeticiones</p>
+                            <p class="mb-0">4</p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1">Descripcion</p>
+                          <p class="mb-0">movimiento rectilineo uniforme con barra</p>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

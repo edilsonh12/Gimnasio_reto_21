@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class=" centro">
+        <h1 class="titulo">Lista de Planes Nutricionales</h1>
+            <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro"> 
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrap">
+                <table class="table table-striped">
+                <thead class="thead-primary">
+                  <tr>
+                      <th>#</th>
+                      <th>Titulo</th>
+                      <th>T. Plan Nutricional</th>
+                      <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let list of listNutrition | nutrition:filtro | paginate: {id: 'nutrition', itemsPerPage: 10, currentPage: p }">
+  
+                            <td></td>
+                            <td>{{list.nombre_plan}}</td>
+                            <td>{{list.nombre_tipo_nutri}}</td>
+                            <td class="texto">
+                                <a class="ic" target="_blank" (click)="searchPlanNutrition(list.id_plan)"><img src="https://img.icons8.com/ios-glyphs/30/undefined/view-file.png" class="icono"/></a>
+                            </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+            <pagination-controls id="nutrition" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

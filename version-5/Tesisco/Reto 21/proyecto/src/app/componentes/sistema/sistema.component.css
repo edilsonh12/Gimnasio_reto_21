@@ -1,0 +1,52 @@
+body{
+  background-repeat: no-repeat;
+  padding-left: 120px;
+  background-size:cover;
+  background-position: center;
+  background-color: black;
+}
+
+.card{
+  margin-top: -1420px;
+  margin-left: 160px;
+  text-align: center;
+
+}
+p{
+  text-align: center;
+  padding: .8em 5em;
+}
+.tabla2 .card{
+  background-color: white;
+  margin-top: -1120px;
+  margin-left: 160px;
+}
+
+.tabla3 .card{
+  background-color: white;
+  margin-top: -800px;
+  margin-left: 160px;
+}
+
+.tabla4 .card{
+  background-color: white;
+  margin-top: -500px;
+  margin-left: 160px;
+}
+
+.tabla5 .card{
+  background-color: white;
+  margin-top: -200px;
+  margin-left: 160px;
+
+}
+
+a{
+  width: 120px;
+  border-radius: 12px;
+}
+
+a:hover{
+  background: linear-gradient(rgb(255, 196, 0),rgb(255, 196, 0),white);
+}
+

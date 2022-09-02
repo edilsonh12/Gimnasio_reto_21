@@ -1,0 +1,771 @@
+<body>
+  <div class="container" *ngFor="let list of listUserData">
+      <div class="row">
+          <div class="col">
+    
+        <h1>Información del usuario:</h1>
+        <br>
+    
+        <div class="mb-2">
+          <label for="" class="form-label">Nombre: {{list.nombres + " " + list.primer_apellido + " " + list.segundo_apellido}} </label>
+        </div>
+    
+        <div class="mb-2">
+          <label for="" class="form-label">Documento de identidad: {{list.documento}} </label>
+        </div>
+    
+        <div class="mb-2">
+          <label for="" class="form-label">Teléfono: {{list.numero_telefono}} </label>
+        </div>
+    
+        <div class="mb-2">
+          <label for="" class="form-label">Email: {{list.correo}}</label>
+        </div>
+    
+        <div class="mb-2">
+          <label for="" class="form-label">Edad: {{list.edad.years}} años</label>
+        </div>
+    
+      </div>
+      <div class="col">
+    
+        <h1>Información importante </h1>
+        <br>
+    
+        <div class="mb-2">
+          <label for="" class="form-label">Bebidas alcholicas: {{list.alcohol}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Fuma: {{list.fuma}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Cafeina: {{list.cafe}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Ejercicio: {{list.ejercicio}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Cirugias: {{list.cirugias}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Alergias: {{list.alergia}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Medicamentos: {{list.medicamento}} </label>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Enfermedades: {{list.enfermedad}} </label>
+        </div>
+      </div>
+  </div>
+  <hr width="100%">
+  </div>
+      <!-----------  Generales      ------------>
+      <div id="accordion">
+        <div class="card todo">
+          <div class="card-header" id="headingOne" style="background:transparent;">
+            <h5 class="mb-0">
+                <button  class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    GENERALES
+                  </button>
+            </h5>
+          </div>
+          </div>
+  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion" style="background:transparent;">
+    <div class="container">
+    
+      <div class="container">
+        <div class="row">
+          <div class="col tablas">
+    
+        <table class="table">
+          <thead>
+            <th>Fecha</th>
+            <th>Peso</th>
+            <th>Estatura</th>
+            <th>Imc</th>
+            <th>Masa Osea</th>
+            <th>Grasa Visceral</th>
+            <th>% Agua Corporal</th>
+            <th>Edad Metabolica</th>
+            <th>K/Caloria</th>
+          </thead>
+          <tbody>
+    
+            <tr class="table-active" *ngFor="let list of listGenerales">
+              <th scope="row">{{list.fecha.substring(0,10)}} {{validateImcSee(list.imc)}} {{validateMasaOseaSee(list.masa_osea,list.peso,list.nombre_tipo_genero)}} {{evaluateGrasaVisceralSee(list.grasa_visceral)}}</th>
+              <td scope="row">{{list.peso}}</td>
+              <td scope="row">{{list.estatura}} {{validateAguaCorporalSee(list.agua_corporal,list.nombre_tipo_genero)}}</td>
+    
+              <div *ngIf="imcAuxiliar=='bien_imc'; then bien_imc"></div>
+              <div *ngIf="imcAuxiliar=='imc'; then imc"></div>
+    
+            <ng-template #bien_imc>
+               <td scope="row">
+                <button class="btimc" data-bs-toggle="modal" data-bs-target="#viewImc">
+                  <span>{{cutImc(list.imc)}} {{validateImc(list.imc)}}</span>
+                  <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                      <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                  </svg>
+                </button></td>
+             </ng-template>
+    
+             <ng-template #imc>
+                <td scope="row">
+                  <button class="btred"  data-bs-toggle="modal" data-bs-target="#viewImc">
+                    <span>{{cutImc(list.imc)}} {{validateImc(list.imc)}}</span>
+                    <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                        <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                    </svg>
+                  </button></td>
+              </ng-template>
+    
+    
+              <div *ngIf="oseaAuxiliar== 'bien'; then bien"></div>
+              <div *ngIf="oseaAuxiliar== 'osea'; then osea"></div>
+              <ng-template #bien>
+                <td scope="row">
+                  <button class="btimc"  data-bs-toggle="modal" data-bs-target="#MasaOsea">
+                    <span>{{list.masa_osea}} {{validateMasaOsea(list.masa_osea,list.peso,list.nombre_tipo_genero)}}</span>
+                    <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                        <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                    </svg>
+                  </button></td>
+                </ng-template>
+    
+              <ng-template #osea>
+                <td scope="row">
+                  <button class="btred"  data-bs-toggle="modal" data-bs-target="#MasaOsea">
+                    <span>{{list.masa_osea}} {{validateMasaOsea(list.masa_osea,list.peso,list.nombre_tipo_genero)}}</span>
+                    <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                        <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                    </svg>
+                  </button></td>
+                </ng-template>
+    
+    
+    
+    
+                <div *ngIf="grasaVisceralAuxiliar=='bien_grasa_visceral'; then bien_grasa_visceral"></div>
+                <div *ngIf="grasaVisceralAuxiliar=='grasa_visceral'; then grasa_visceral"></div>
+    
+               <ng-template #bien_grasa_visceral>
+                  <td scope="row">
+                    <button class="btimc"  data-bs-toggle="modal" data-bs-target="#viewGrasaVisceral">
+                      <span>{{list.grasa_visceral}} {{evaluateGrasaVisceral(list.grasa_visceral)}}</span>
+                      <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                          <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                      </svg>
+                    </button></td>
+               </ng-template>
+    
+                <ng-template #grasa_visceral>
+                  <td scope="row">
+                    <button class="btred"  data-bs-toggle="modal" data-bs-target="#viewGrasaVisceral">
+                      <span>{{list.grasa_visceral}} {{evaluateGrasaVisceral(list.grasa_visceral)}}</span>
+                      <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                          <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                      </svg>
+                    </button></td>
+               </ng-template>
+    
+    
+                <div *ngIf="aguaCorporalAuxiliar=='bien_agua'; then bien_agua"></div>
+                <div *ngIf="aguaCorporalAuxiliar=='agua'; then agua"></div>
+    
+               <ng-template #bien_agua>
+                  <td scope="row">
+                    <button class="btimc" data-bs-toggle="modal" data-bs-target="#viewAguaCorporal">
+                      <span>{{list.agua_corporal + "%"}} {{validateAguaCorporal(list.agua_corporal,list.nombre_tipo_genero)}}</span>
+                      <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                          <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                      </svg>
+                    </button></td>
+               </ng-template>
+              
+              <ng-template #agua>
+                  <td scope="row"> 
+                    <button class="btred" data-bs-toggle="modal" data-bs-target="#viewAguaCorporal">
+                      <span>{{list.agua_corporal + "%"}} {{validateAguaCorporal(list.agua_corporal,list.nombre_tipo_genero)}}</span>
+                      <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                          <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                      </svg>
+                    </button>
+                    </td>
+            </ng-template>
+    
+    
+    
+    
+              <td scope="row">{{list.bmr}}</td> 
+              <td scope="row">{{list.k_caloria}}</td>
+            </tr>
+    
+    
+          </tbody>
+        </table>
+    
+    
+      </div>
+    <div class="col">
+    
+      <!---------  Gráficas generales    ------------------>
+      <div class="card">
+        <div class="tools">
+          <div class="circle">
+            <span class="red box"></span>
+          </div>
+          <div class="circle">
+            <span class="yellow box"></span>
+          </div>
+          <div class="circle">
+            <span class="green box"></span>
+          </div>
+        </div>
+
+        <div class="card__">
+
+          <canvas baseChart width="700" height="400"
+          chartType="line"
+          [colors]="chartColors"
+          [datasets]="chartData_imc"
+          [labels]="chartLabels"
+          [options]="chartOptions">
+          </canvas>
+
+        </div>
+
+
+      </div>
+    </div>
+        <div class="col" style="padding: 0.3 em;">
+        <div class="card" >
+          <div class="tools">
+            <div class="circle">
+              <span class="red box"></span>
+            </div>
+            <div class="circle">
+              <span class="yellow box"></span>
+            </div>
+            <div class="circle">
+              <span class="green box"></span>
+            </div>
+          </div>
+
+          <div class="card__">
+
+            <canvas baseChart width="700" height="400"
+            chartType="line"
+            [colors]="chartColors"
+            [datasets]="chartData_masaOsea"
+            [labels]="chartLabels"
+            [options]="chartOptions">
+            </canvas>
+
+          </div>
+
+ 
+
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+    </div>
+        <!---------- Masa Muscular        ------------------->
+    <div class="card todo">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            MASA MUSCULAR
+          </button>
+        </h5>
+      </div>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+        <div class="container">
+  
+          <div class="container">
+        <div class="row">
+          <div class="col tablas">
+  
+        
+            <table class="table">
+              <thead>
+                <th>Fecha</th>
+                <th>Torso</th>
+                <th>Brazo Derecho</th>
+                <th>Brazo Izquierdo</th>
+                <th>Pierna Derecha</th>
+                <th>Pierna Izquierda</th>
+                <th>Total</th>
+                <th>Valoración Física</th>
+              </thead>
+              <tbody>
+        
+                <tr class="table-active" *ngFor="let list of listMasaMuscular">
+                  <th scope="row">{{list.fecha.substring(0,10)}}</th>
+                  <td scope="row">{{list.torso}}</td>
+                  <td scope="row">{{list.brazo_derecho}}</td>
+                  <td scope="row">{{list.brazo_izquierdo}}</td>
+                  <td scope="row">{{list.pierna_derecha}}</td>
+                  <td scope="row">{{list.pierna_izquierda}}</td>
+                  <td scope="row">{{list.total}}</td>
+                  <td scope="row"> <a style="cursor: pointer; padding:0 0 0 12px;"  data-bs-toggle="modal" data-bs-target="#viewDetailsTableAssessment"><img src="data:image/png;base64,{{arrayBufferToBase64(list.icono.data)}}" width="30px;" alt=""></a> {{list.rango}} </td>
+                </tr>
+        
+        
+              </tbody>
+            </table>
+        
+          </div>
+        </div>
+          <!---- Graficas de masa muscular  --->
+          <div class="col" style="padding: 0.3em;">
+          <div class="card">
+            <div class="tools">
+              <div class="circle">
+                <span class="red box"></span>
+              </div>
+              <div class="circle">
+                <span class="yellow box"></span>
+              </div>
+              <div class="circle">
+                <span class="green box"></span>
+              </div>
+            </div>
+
+            <div class="card__">
+
+              <canvas baseChart width="700" height="400"
+              chartType="line"
+              [colors]="chartColors"
+              [datasets]="chartData_MasaMuscular"
+              [labels]="chartLabels"
+              [options]="chartOptions">
+              </canvas>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+        </div>
+         <!---- Grasa Corporal  ------------------>
+        <div class="card todo">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                GRASA CORPORAL
+              </button>
+            </h5>
+          </div>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">  
+   <div class="container">
+  
+    <div class="container">
+    <div class="row">
+      <div class="col tablas">
+  
+  
+      <table class="table">
+        <thead>
+          <th>Fecha</th>
+          <th>Torso</th>
+          <th>Brazo Derecho</th>
+          <th>Brazo Izquierdo</th>
+          <th>Pierna Derecha</th>
+          <th>Pierna Izquierda</th>
+          <th>Total</th>
+        </thead>
+        <tbody>
+  
+          <tr class="table-active" *ngFor="let list of listGrasaCorporal" >
+            <th scope="row">{{list.fecha.substring(0,10)}}</th>
+            <td scope="row">{{list.torso}}</td>
+            <td scope="row">{{list.brazo_derecho}}</td>
+            <td scope="row">{{list.brazo_izquierdo}}</td>
+            <td scope="row">{{list.pierna_derecha}}</td>
+            <td scope="row">{{list.pierna_izquierda}} {{validateGrasaCorporalSee(list.nombre_tipo_genero,list.total,list.edad.years)}}</td>
+  
+            <div *ngIf="aguaCorporalAuxiliar=='bien_grasa'; then bien_grasa"></div>
+            <div *ngIf="aguaCorporalAuxiliar=='grasa'; then grasa"></div>
+  
+            <ng-template #bien_grasa>
+              <td scope="row">
+                <button class="btimc" data-bs-toggle="modal" data-bs-target="#viewGrasaCorporal">
+                  <span>{{list.total}} {{validateGrasaCorporal(list.nombre_tipo_genero,list.total,list.edad.years)}}</span>
+                  <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                      <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                  </svg>
+                </button></td>
+            </ng-template>
+  
+            <ng-template #grasa>
+              <td scope="row">
+                <button class="btred" data-bs-toggle="modal" data-bs-target="#viewGrasaCorporal">
+                  <span>{{list.total}} {{validateGrasaCorporal(list.nombre_tipo_genero,list.total,list.edad.years)}}</span>
+                  <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                      <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                  </svg>
+                </button></td>
+            </ng-template>
+  
+  
+          </tr>
+  
+        </tbody>
+      </table>
+  
+  
+    </div>
+  </div>
+  
+    <!---------------Grafica de grasa corporal------------------------>
+    <div class="col">
+        <div class="card">
+          <div class="tools">
+            <div class="circle">
+              <span class="red box"></span>
+            </div>
+            <div class="circle">
+              <span class="yellow box"></span>
+            </div>
+            <div class="circle">
+              <span class="green box"></span>
+            </div>
+          </div>
+
+          <div class="card__">
+
+            <canvas baseChart width="700" height="400"
+            chartType="line"
+            [colors]="chartColors"
+            [datasets]="chartData_GrasaCorporal"
+            [labels]="chartLabels"
+            [options]="chartOptions">
+            </canvas>
+
+          </div>
+
+    </div>
+    </div>
+  </div>
+  
+  
+  
+  </div>
+            </div>
+            <div class="card todo">
+              <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    MEDIDAS
+                  </button>
+                </h5>
+              </div>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">  
+                 <!---------- Medidas metricas  ------------------------------>
+                 <div class="container">
+  
+                  <div class="container">
+    <div class="row">
+      <div class="col tablas">
+    
+        <table class="table">
+          <thead>
+            <th>Fecha</th>
+            <th>Pecho</th>
+            <th>Abdomen</th>
+            <th>Gluteo</th>
+            <th>Brazo Derecho</th>
+            <th>Brazo Izquierdo</th>
+            <th>Antebrazo Derecho</th>
+            <th>Antebrazo Izquierdo</th>
+            <th>Pierna Derecha</th>
+            <th>Pierna Izquierda</th>
+            <th>Pantorrilla Derecha</th>
+            <th>Pantorrrilla Izquierda</th>
+          </thead>
+          <tbody>
+    
+            <tr class="table-active" *ngFor="let measures of listMeasures" >
+              <th scope="row">{{measures.fecha.substring(0,10)}}</th>
+              <td scope="row">{{measures.pecho}}</td>
+              <td scope="row">{{measures.abdomen}}</td>
+              <td scope="row">{{measures.gluteo}}</td>
+              <td scope="row">{{measures.brazo_derecho}}</td>
+              <td scope="row">{{measures.brazo_izquierdo}}</td>
+              <td scope="row">{{measures.antebrazo_derecho}}</td>
+              <td scope="row">{{measures.antebrazo_izquierdo}}</td>
+              <td scope="row">{{measures.pierna_derecha}}</td>
+              <td scope="row">{{measures.pierna_izquierda}}</td>
+              <td scope="row">{{measures.pantorrilla_derecha}}</td>
+              <td scope="row">{{measures.pantorrilla_izquierda}}</td>
+            </tr>
+    
+    
+          </tbody>
+        </table>
+      </div>
+      </div>
+    
+      <!---  Graficas medidas   -->
+    <div class="col" style="padding: 0.3em;">
+      <div class="card">
+        <div class="tools">
+          <div class="circle">
+            <span class="red box"></span>
+          </div>
+          <div class="circle">
+            <span class="yellow box"></span>
+          </div>
+          <div class="circle">
+            <span class="green box"></span>
+          </div>
+        </div>
+
+        <div class="card__">
+
+          <canvas baseChart width="700" height="400"
+          chartType="line"
+          [colors]="chartColors"
+          [datasets]="chartData1"
+          [labels]="chartLabels"
+          [options]="chartOptions">
+          </canvas>
+
+        </div>
+
+
+      </div>
+  </div>
+      <div class="col" style="padding: 0.3em;">
+        <div class="card">
+          <div class="tools">
+            <div class="circle">
+              <span class="red box"></span>
+            </div>
+            <div class="circle">
+              <span class="yellow box"></span>
+            </div>
+            <div class="circle">
+              <span class="green box"></span>
+            </div>
+          </div>
+
+          <div class="card__">
+
+            <canvas baseChart width="700" height="400"
+            chartType="line"
+            [colors]="chartColors"
+            [datasets]="chartData2"
+            [labels]="chartLabels"
+            [options]="chartOptions">
+          </canvas>
+
+          </div>
+
+    </div>
+    </div>
+    <div class="col" style="padding: 0.3em;">
+      <div class="card">
+        <div class="tools">
+          <div class="circle">
+            <span class="red box"></span>
+          </div>
+          <div class="circle">
+            <span class="yellow box"></span>
+          </div>
+          <div class="circle">
+            <span class="green box"></span>
+          </div>
+        </div>
+
+        <div class="card__">
+
+          <canvas baseChart width="700" height="400"
+          chartType="line"
+          [colors]="chartColors"
+          [datasets]="chartData3"
+          [labels]="chartLabels"
+          [options]="chartOptions">
+          </canvas>
+
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+                </div>
+    </div> 
+    <div class="container" style="padding:12px ;">
+  
+      <div *ngIf="role != 'cli_i-dfg078op1_0i1/'; then atras"></div>
+
+      <ng-template #atras>
+
+        <button class="atras" (click)="backToList()" >
+          <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+          <span>Atras</span>
+        </button>
+
+      </ng-template>
+
+
+      
+      </div>
+  
+    
+    <!------------------------- Modal for view imc details ------------------------------------------>
+    <div class="modal fade" id="viewImc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Indicadores del IMC</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+    
+            <img src="assets/imc.png" class="img-fluid rounded-top" alt="">
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <!-- Modal View Details assessment -->
+    <div class="modal fade" id="viewDetailsTableAssessment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tabla de Valoración Física</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+    
+    
+            <div>
+    
+              <img src="https://actitud10x.com/img/Tanita-Composicion-Corporal.jpg" class="img-fluid rounded-top" alt="">
+    
+            </div>
+    
+    
+          </div>
+    
+    
+    
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    <!----------- Modal for view agua corporal ---------->
+    <div class="modal fade" id="viewAguaCorporal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nivel saludable de agua corporal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <img src="assets/agua_corporal.png" class="img-fluid rounded-top" alt="">
+    
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <!-- Modal for details grasa visceral -->
+    <div class="modal fade" id="viewGrasaVisceral" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Evaluación de grasa visceral</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+            
+            <img src="assets/grasa_visceral.png" class="img-fluid rounded-top" alt="">
+    
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="viewGrasaCorporal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Margen de grasa corporal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+            
+            <img src="https://porunavidamejor.com.ar/img/Tanita-%25Grasa.jpg" class="img-fluid rounded-top" alt="">
+    
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    <!------------ Modal view for masa osea details ------------------->
+    <div class="modal fade" id="MasaOsea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Indicadores de Masa Osea</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+            
+            <img src="https://1.bp.blogspot.com/-vZlXzhIWE9s/WBvjz5d_q4I/AAAAAAAAUMs/ZrYZdMrZj7AbTgnRtXPzWgotH61VTHvzACLcB/s1600/Masa_Osea.jpg" class="img-fluid rounded-top" alt="">
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </body>

@@ -1,0 +1,978 @@
+<body>
+    <div class="d-flex flex-column bg-black barra">
+      <!--*ngFor="let x of photo"--> 
+      <div class="imag" style="align-items: center;" *ngFor="let x of photo">
+        <img src="data:image/png;base64,{{arrayBufferToBase64(x.foto_personal.data)}}" class=" img rounded-circle">
+      </div>
+     <ul class="nav nav-pills nav-flush flex-column mb-auto  col-sm-4">
+       
+       <li>
+         <a href="#pageSubmenu" data-bs-toggle="collapse" aria-haspopup="true"  aria-expanded="false" class="nav-link py-3 text-center border-bottom " role="button"><small class="nombre"> {{nombre}} </small></a>
+         <ul class="collapse list-unstyled" id="pageSubmenu">
+           <li>
+               <a  class="nav-link py-3 border-bottom" routerLink="perfil"><i class="fa fa-cog"></i> <small class="texto">Perfil</small></a>
+           </li>
+           
+           <li>
+             <a (click)="closeSession()" class="nav-link py-3 border-bottom" ><i class='fa fa-sign-out'></i><small class="texto">Cerrar Sesión</small></a>
+         </li>
+  
+         </ul>
+       </li>
+
+       <li class="nav-item">
+        <a style="cursor: pointer;" (click)="dataUser()"  data-bs-toggle="modal" data-bs-target="#mensualidad" class="nav-link" ><i class='fa fa-dollar'></i><small class="texto">Mensualidad</small></a>
+      </li>
+
+       <li class="nav-item">
+        <a style="cursor: pointer;" routerLink="assissment-client"  class="nav-link"><i class="fa fa-user"></i><small class="texto">Asistencia</small></a>
+      </li>
+
+         <li> <a style="cursor: pointer;" (click)="validateStateChallenges()" data-bs-toggle="modal" data-bs-target="#modalChallenges" class="nav-link"><i class='fa  fa-earth-americas'></i> <small class="texto">Retos</small> </a> </li>
+
+         <li> <a style="cursor: pointer;" href="#vsubmenus" data-bs-toggle="collapse" aria-haspopup="true"  aria-expanded="false" class="nav-link" role="button"><i class='fa fa-address-book'></i><small class="texto">Planes de Entrenamiento</small> </a>
+          <ul class="collapse list-unstyled" id="vsubmenus">
+            <li>
+                <a style="cursor: pointer;" class="nav-link py-3 border-bottom" (click)="validatePlanTraining()" data-bs-toggle="modal" data-bs-target="#cronograma"><i class='fa fa-heartbeat'></i><small class="texto">Visualizar</small></a>
+            </li>
+            <li>
+                <a style="cursor: pointer;" class="nav-link py-3 border-bottom" (click)="createPlanPersonal()"><i class='fa fa-heart'></i><small class="texto">Crear</small></a>
+            </li>
+          </ul>
+        </li>
+
+
+       <li>
+         <a style="cursor: pointer;" (click)="goToDashboard()" class="nav-link"><i class='fa fa-stethoscope'></i><small class="texto">Valoraciones</small></a>
+       </li>  
+
+         <li> 
+            <a style="cursor: pointer;" (click)="validateStateAssessment()" data-bs-toggle="modal" data-bs-target="#citasValoracion" class="nav-link"> <i class='fa fa-address-book'></i><small class="texto">Citas de valoración</small> </a> 
+        </li>
+
+
+         <li> 
+            <a style="cursor: pointer;" (click)="searchPlanNutrition()" class="nav-link"> <i class='fa fa-cutlery'></i><small class="texto">Plan de alimentación</small> </a> 
+        </li>
+
+
+     </ul>
+     <ul>
+       <div class="footer">
+         <p>
+          <small class="nombre">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.</small></p>
+       </div>
+     </ul>
+     </div>
+  
+     <div class="social">
+      <ngx-toast-notifier></ngx-toast-notifier>
+      <ul>
+      <li>
+        <a href="#vsubmen" data-bs-toggle="collapse" aria-haspopup="true"  aria-expanded="false"  role="button"><button
+
+          matBadgePosition="after"
+          matBadgeColor="primary"
+          matBadgeDisabled=true
+          mat-raised-button matBadge="{{amountNotification}}" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()">
+  
+          <img src="https://img.icons8.com/material-sharp/48/000000/bell.png" width="30" height="30" style="position:fixed;"/>
+  
+      </button></a>        <ul class="collapse list-unstyled" id="vsubmen">
+
+            <div class="notifi" *ngFor="let list of listNotification" style="padding: 4px;">
+
+              <div class="card notifica">
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn-close " aria-label="Close" (click)="deleteNotification(list.id_noti)"></button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <img src="assets/logo_negroo.png" width="50" height="50" class="logo_noti">
+                    </div>
+                    <div class="col justify-content-center texto-cont">
+                        {{list.texto}}
+                    </div>
+               
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col">
+                        <strong style="font-size: 12px;"> {{formatDateNotification(list.semanas,list.dias,list.fechas,list.hora)}} </strong>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+          </div>
+
+
+
+
+
+        </ul>
+      </li>
+    </ul>    
+    </div>
+
+
+
+          <!-- Contenido de la imagen  -->
+        <div id="content" class=" content p-4 p-md-5" >
+  
+          <nav class="navbar navbar-expand-lg navbar-light bg-black" >
+            <div class="container-fluid">
+  
+              <img src="data:image/png;base64,{{content}}"  class="logo" width="65" height="65"><!-- logo del gimnasio  -->
+  
+                <ul class="nav navbar-nav ml-auto">
+  
+                  <li class="nav-item active">
+                      <a class="nav-link text-white" routerLink="inicio">Inicio</a>
+                  </li>
+  
+                  <li class="nav-item">
+                      <a class="nav-link text-white" routerLink="list-notices">Noticias</a>
+                  </li>
+  
+  
+                </ul>
+              </div>
+          </nav>
+          <div class="container-content">
+     
+    
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+
+        <!-------------- Modal para ver mensualidad ------------->
+
+
+        <div class="modal fade" id="mensualidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+            <div class="modal-content">
+              <div class="modal-body">
+                        <div class="d-flex text-black">
+                          <div class="flex-shrink-0">
+                            <img src="assets/logo_negroo.png"
+                              alt="Generic placeholder image" class="img-fluid"
+                              style="width: 180px; border-radius: 10px;">
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Titulo del Plan</p>
+                                <p class="mb-0">{{nombre_suscripcion}}</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Fecha de Inicio</p>
+                                <p class="mb-0">{{fecha_inicio}} </p>
+                              </div>
+                            </div>
+
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1">Fecha de Finalización</p>
+                              <p class="mb-0">{{fecha_fin}}</p>
+                            </div>
+                          </div>
+
+                          <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+                            <p class="small text-muted mb-1">Días Restantes</p>
+                            <p class="mb-0">{{dias_restantes}}</p>
+                          </div>
+                        </div>
+
+                          <div *ngIf="state_pago != 'pagado'; then pagos"></div>
+
+                          <ng-template #pagos>
+
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1">Estado del pago</p>
+                              <p class="mb-0"> Actualmente no se registra una actualización de mensualidad, es necesario saldar el costo de la mensualidad para evitar bloqueos de la cuenta. </p>
+                            </div>
+                          </div>
+
+                          </ng-template>
+
+
+                            <div class="d-flex pt-1">
+                              <button class="atras flex-grow-1" data-bs-dismiss="modal">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                                <span>Cerrar</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!------------ Modal para ver planes de entrenamiento ---------->
+
+
+
+        <div class="modal fade" id="cronograma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div >
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding: 12px 0 0 12px;"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="card_cronograma">
+
+                    <div *ngIf="stateTraining == 'sin'; then sin"></div>
+                    <div *ngIf="stateTraining == 'con'; then con"></div>
+
+                    <ng-template #sin>
+
+                        <div class="mb-3">
+                          <small id="helpId" class="form-text text-muted"> <h3> Actualmente no cuenta con un plan de entrenamiento asignado. </h3></small>
+                        </div>
+
+                    </ng-template>
+
+                    <ng-template #con>
+
+                      <div class="item item--1" data-bs-toggle="modal" data-bs-target="#list_training" (click)="searchListTraining(1)">
+                        <img class="imagen" src="https://fondosmil.com/fondo/4030.jpg">
+                        <span class="quantity"></span>
+                        <span class="text text--1"> Lunes </span>
+                      </div>
+                      <div class="item item--2" data-bs-toggle="modal" data-bs-target="#list_training" (click)="searchListTraining(2)">
+                        <img class="imagen" src="https://i.pinimg.com/originals/0f/d4/34/0fd434c126cb1ded41fc975fba8d403b.jpg" >
+                        <span class="text text--2"> Martes</span>
+                      </div>
+                      <div class="item item--3" data-bs-toggle="modal" data-bs-target="#list_training" (click)="searchListTraining(3)">
+                        <img class="imagen" src="https://i.pinimg.com/originals/25/cb/30/25cb3027affd0493d1c59f526e847ce4.jpg" >
+                        <span class="text text--3"> Miercoles</span>
+                      </div>
+                      <div class="item item--4" data-bs-toggle="modal" data-bs-target="#list_training" (click)="searchListTraining(4)">
+                        <img class="imagen" src="https://i.pinimg.com/originals/78/25/90/7825909afc5c3ce07d05515b93d2393f.jpg">
+                        <span class="text text--4"> Jueves</span>
+                      </div>
+                      <div class="item item--3" data-bs-toggle="modal" data-bs-target="#list_training" (click)="searchListTraining(5)">
+                        <img class="imagen" src="https://i.pinimg.com/736x/11/de/ec/11deecaf12d3997386d019b8866e0f5d.jpg" >
+                        <span class="text text--3">Viernes</span>
+                      </div>
+                      <div class="item item--4" data-bs-toggle="modal" data-bs-target="#list_training" (click)="searchListTraining(6)">
+                        <img class="imagen" src="https://fondosmil.com/fondo/18805.jpg">
+                        <span class="text text--4">Sabado</span>
+                      </div>
+
+                    </ng-template>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="list_training" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Lista de ejercicios: </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="mb-3">
+                  <label for="" class="form-label">Tipo de ejecución:</label>
+                  <input type="text" class="form-control" name="" id="" aria-describedby="helpId" value="{{nombre_ejecucion}}" placeholder="" readonly>
+                </div>
+
+                <div class="mb-3">
+                  <label for="" class="form-label">Número de series:</label>
+                  <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{numero_series}}" readonly>
+                </div>
+
+                <div class="mb-3">
+                  <label for="" class="form-label">Repeticiones:</label>
+                  <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{nombre_repeticion}}" readonly>
+                </div>
+
+                
+                <div class="centro1">
+                  <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro"> 
+                </div>
+
+                <table class="table table-striped">
+
+                  <thead class="thead-primary">
+        
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Categpria</th>
+                      <th>Sub-Categoria</th>
+                      <th>Acciones</th>
+                    </tr>
+        
+                  </thead>
+                  <tbody>
+        
+                    <tr *ngFor="let list of listTraining | paginate: { id: 'listTraining', itemsPerPage: 10, currentPage: p }">
+                      <th scope="row" class="scope"> <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}" width="60" height="60" alt=""></th>
+                      <td scope="row" class="scope"> {{list.nombre_ejercicios}} </td>
+                      <td scope="row" class="scope"> {{list.nombre_categoria}} </td>
+                      <td scope="row" class="scope"> {{list.nombre_sub}} </td>
+                      <td scope="row" class="scope"> <a (click)="searchOneTraining(list.id_ejercicio)" style="cursor: pointer; color: blue;" data-bs-toggle="modal" data-bs-target="#ver"> Ver Más </a> </td>
+                    </tr>  
+        
+                  </tbody>
+                </table>
+        
+                <pagination-controls id="listTraining" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+
+
+                <div class="modal-footer">
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cronograma">Atrás</button>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="modal fade" id="ver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+            <div class="modal-content">
+              <div >
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+
+
+                    <div class="d-flex text-black" *ngFor="let list of oneTraining">
+
+                        <div class="flex-shrink-0 button-container">
+                            <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}"
+                              alt="Generic placeholder image" class="img-fluid"
+                              style="width: 180px; height: 210px; border-radius: 10px;">
+                              <a class="ic" href="https://www.youtube.com/watch?v={{list.video}}" target="_blank">
+                                <img class="icono" src="https://img.icons8.com/material-outlined/96/000000/video.png"/>
+                              </a>
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1 ">{{list.nombre_ejercicios}}</p>
+                            </div>
+                          </div>
+                           <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Series</p>
+                                <p class="mb-0">{{list.numero_series}}</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Repeticiones</p>
+                                <p class="mb-0">{{list.nombre_repeticion}}</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1">Descripcion</p>
+                              <p class="mb-0">{{list.descripcion}}</p>
+                            </div>
+                          </div>
+                          </div>
+
+                    </div>
+
+                        <div class="d-flex pt-1">
+                          <button class="atras flex-grow-1" data-bs-toggle="modal" data-bs-target="#list_training">
+                            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                            <span>Atras</span>
+                          </button>
+                        </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalChallenges" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+            <div class="modal-content">
+              <div >
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+
+                <div *ngIf="stateChallenges == 'no_hay'; then noHay"></div>
+                <div *ngIf="stateChallenges == 'hay'; then hay"></div>
+
+
+                
+                <ng-template #hay>
+
+                  <div class="d-flex text-black" *ngFor="let list of dataChallenges">
+
+                    <div class="flex-shrink-0 button-container">
+                        <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}"
+                          alt="Generic placeholder image" class="img-fluid"
+                          style="width: 180px; height: 210px; border-radius: 10px;">
+                      </div>
+                      <div class="flex-grow-1 ms-3">
+                        <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1 ">{{list.nombre_reto}}</p>
+                        </div>
+                      </div>
+                       <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+                            <p class="small text-muted mb-1">Fecha y hora</p>
+                            <p class="mb-0">{{list.concat}}</p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+                            <p class="small text-muted mb-1">Descripción</p>
+                            <p class="mb-0">{{list.descripcion}}</p>
+                          </div>
+                        </div>
+
+                        <div *ngIf="stateTrainingChallenges == 'si_hay'; then hay_"></div>
+                        <div *ngIf="stateTrainingChallenges == 'no_hay'; then noHay_"></div>
+
+                        <ng-template #hay_>
+
+                          <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+  
+                            <div class="d-flex pt-1">
+                              <p class="small text-muted mb-1">Ejercicios pertenecientes al reto</p><br> 
+                              <button (click)="validateTrainingChallenges(list.id_retos)" class="atras flex-grow-1" data-bs-toggle="modal" data-bs-target="#trainingChallenges">
+                                <span>Ejercicios</span>
+                              </button>
+                            </div>
+  
+                          </div>
+                        </div>
+
+                        </ng-template>
+
+                        <ng-template #noHay_>
+
+                          <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                          style="background-color: #efefef;">
+                          <div>
+                            <p class="small text-muted mb-1">Ejercicios</p>
+                            <p class="mb-0">Para la realización de este reto no se cuenta con ejercicios.</p>
+                          </div>
+                        </div>
+
+
+                        </ng-template>
+
+         
+                      </div>
+
+                </div>
+
+
+
+                </ng-template>
+
+                <ng-template #noHay>
+
+                  <div class="mb-3">
+                    <small id="helpId" class="form-text text-muted"> <h3 for="" class="form-label">Actualmente no se encuentran retos activos.</h3> </small>
+                  </div>
+
+                </ng-template>
+
+
+                <div class="row">
+
+                    <div class="col">
+
+                      <div class="d-flex pt-1">
+                        <button class="atras flex-grow-1" data-bs-dismiss="modal">
+                          <span>Cerrar</span>
+                        </button>
+                      </div>
+
+                    </div>
+
+                    <div class="col">
+
+                      <div *ngIf="stateChallenges != 'hay'; then hay_btn"></div>
+
+
+                      <ng-template #hay_btn>
+    
+                        <div class="d-flex pt-1">
+                          <button class="atras flex-grow-1" (click)="registeredUserToChallenges()" data-bs-dismiss="modal">
+                            <span>Acepto el Reto</span>
+                          </button>
+                        </div>
+    
+                      </ng-template>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="trainingChallenges" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Lista de Ejercicios del Reto </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                
+                <div class="centro1">
+                  <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro"> 
+                </div>
+
+                <table class="table table-striped">
+
+                  <thead class="thead-primary">
+        
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Categoria</th>
+                      <th>Sub-Categoria</th>
+                      <th>Acciones</th>
+                    </tr>
+        
+                  </thead>
+                  <tbody>
+        
+                    <tr *ngFor="let list of listTrainingChallenges | paginate: { id: 'listTrainingChallenges', itemsPerPage: 10, currentPage: p }">
+                      <th scope="row" class="scope"> <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}" width="60" height="60" alt=""></th>
+                      <td scope="row" class="scope"> {{list.nombre_ejercicios}} </td>
+                      <td scope="row" class="scope"> {{list.nombre_categoria}} </td>
+                      <td scope="row" class="scope"> {{list.nombre_sub}} </td>
+                      <td scope="row" class="scope"> <a (click)="searchOneTrainingChallenges(list.id_ejercicio)" style="cursor: pointer; color: blue;" data-bs-toggle="modal" data-bs-target="#ver_training"> Ver Más </a> </td>
+                    </tr>  
+        
+                  </tbody>
+                </table>
+        
+                <pagination-controls id="listTrainingChallenges" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+
+
+                <div class="modal-footer">
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalChallenges">Atrás</button>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="modal fade" id="ver_training" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+            <div class="modal-content">
+              <div >
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+
+
+                    <div class="d-flex text-black" *ngFor="let list of oneTrainingChallenges">
+
+                        <div class="flex-shrink-0 button-container">
+                            <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}"
+                              alt="Generic placeholder image" class="img-fluid"
+                              style="width: 180px; height: 210px; border-radius: 10px;">
+                              <a class="ic" href="https://www.youtube.com/watch?v={{list.video}}" target="_blank">
+                                <img class="icono" src="https://img.icons8.com/material-outlined/96/000000/video.png"/>
+                              </a>
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1 ">{{list.nombre_ejercicios}}</p>
+                            </div>
+                          </div>
+                           <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Series</p>
+                                <p class="mb-0">{{list.numero_series}}</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                              style="background-color: #efefef;">
+                              <div>
+                                <p class="small text-muted mb-1">Repeticiones</p>
+                                <p class="mb-0">{{list.nombre_repeticion}}</p>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style="background-color: #efefef;">
+                            <div>
+                              <p class="small text-muted mb-1">Descripcion</p>
+                              <p class="mb-0">{{list.descripcion}}</p>
+                            </div>
+                          </div>
+                          </div>
+
+                    </div>
+
+                        <div class="d-flex pt-1">
+                          <button class="atras flex-grow-1" data-bs-toggle="modal" data-bs-target="#trainingChallenges">
+                            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                            <span>Atras</span>
+                          </button>
+                        </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        
+    </body>
+  
+
+
+
+
+
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="citasValoracion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Citas de valoración</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+            <div *ngIf="solicituad_env == ''; then vacio"></div>
+            <div *ngIf="solicituad_env == 'Pendiente'; then pendiente"></div>
+            <div *ngIf="solicituad_env == 'Asignada'; then asignada"></div>
+            <div *ngIf="solicituad_env == 'Finalizada'; then finalizada"></div>
+            <div *ngIf="solicituad_env == 'Cancelada'; then cancelada"></div>
+            <div *ngIf="solicituad_env == 'Inasistencia'; then inasistencia"></div>
+
+            <ng-template #vacio>
+
+              <div class="mb-3">
+                <small id="helpId" class="form-text text-muted"> <h2>No se ha realizado la primer valoración, solicitela dando click en el botón "Solicitar"</h2> </small>
+              </div>
+
+            </ng-template>
+
+            <ng-template #pendiente>
+
+              <div class="mb-3">
+                <small id="helpId" class="form-text text-muted"> <h2>Su Solicitud fue cargada con éxito, en los próximos días se le informará más acerca de la cita.</h2> </small>
+              </div>
+
+            </ng-template>
+
+
+            <ng-template #asignada>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Fecha de la Cita:</label>
+                <input type="text" class="form-control" value="{{fecha_cita}}" name="" id="" aria-describedby="helpId" placeholder="" readonly>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Hora de la Cita:</label>
+                <input type="text" class="form-control" value="{{hora_cita}}" name="" id="" aria-describedby="helpId" placeholder="" readonly>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Tipo de cita:</label>
+                <input type="text" class="form-control" value="{{tipo_cita}}" name="" id="" aria-describedby="helpId" placeholder="" readonly>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Estado de la cita:</label>
+                <input type="text" class="form-control" value="{{solicituad_env}}" name="" id="" aria-describedby="helpId" placeholder="" readonly>
+              </div>
+
+            </ng-template>
+
+
+            <ng-template #finalizada>
+
+                <div class="mb-3">
+                  <small id="helpId" class="form-text text-muted"> <h2>Actualmente no cuenta con una cita de valoración activa, puede solicitar una dando click en el botón "Solicitar".</h2> </small>
+                </div>
+
+            </ng-template>
+
+
+            <ng-template #cancelada>
+
+              <div class="mb-3">
+                <small id="helpId" class="form-text text-muted"> <h2>Su cita se canceló, debe solicitar nuavamente la cita dando click en el botón "Solicitar".</h2> </small>
+              </div>
+
+            </ng-template>
+
+            <ng-template #inasistencia>
+
+              <div class="mb-3">
+                <small id="helpId" class="form-text text-muted"> <h2>Su cita se canceló por falta de asistencia, debe solicitarla nuevamente dando click en el botón "Solicitar".</h2> </small>
+              </div>
+
+            </ng-template>
+          
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-warning" (click)="searchAllQuotesAssessment()" data-bs-toggle="modal" data-bs-target="#allQuotesAssessment">Historial</button>
+
+                <div *ngIf="solicituad_env == 'Finalizada'; then btn"></div>
+                <div *ngIf="solicituad_env == 'Cancelada'; then btn"></div>
+                <div *ngIf="solicituad_env == 'Inasistencia'; then btn"></div>
+                <div *ngIf="solicituad_env == ''; then btn"></div>
+
+                <div *ngIf="solicituad_env == 'Pendiente'; then cancelar"></div>
+                <div *ngIf="solicituad_env == 'Asignada'; then cancelar"></div>
+
+                
+                <ng-template #cancelar>
+
+                  <button type="button" class="btn btn-danger" (click)="cancellQuote()" data-bs-dismiss="modal">Cancelar</button>
+
+                </ng-template>
+
+
+                <ng-template #btn>
+
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#applyForQuote">Solicitar Valoración</button>
+
+                </ng-template>
+            
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="applyForQuote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Solicitar Valoración</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          <form [formGroup]="applyForm" (ngSubmit)="applyForAssessment(applyForm.value)">
+
+            <div class="mb-3">
+              <label for="" class="form-label">Tipo de valoración a solicitar:</label>
+              <select class="form-control" name="" id="" formControlName="id_reservacion_usuario">
+
+                <option selected value="0" > Seleccione </option>
+                <option *ngFor="let x of listTypeAssessment" value="{{x.id_reservacion}}"> {{x.nombre_reservacion}} </option>
+
+              </select>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#citasValoracion" >Regresar</button>
+              <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Registrar</button>
+            </div>
+    
+          </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="allQuotesAssessment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Historial de Citas de Valoración</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="centro1">
+          <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro"> 
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table class="table table-striped">
+
+          <thead class="thead-primary">
+
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>T. Valoración</th>
+              <th>Estado</th>
+            </tr>
+
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let list of listAllAssessment | reservaciones: filtro | paginate: { id: 'allQuotes', itemsPerPage: 10, currentPage: p }">
+              <th scope="row" class="scope" >{{list.fecha.substring(0,10)}}</th>
+              <td>{{formatTime(list.hora)}}</td>
+              <td>{{list.nombre_reservacion}}</td>
+              <td>{{list.tipo_de_estado}}</td>
+            </tr>  
+
+          </tbody>
+
+        </table>
+
+        <pagination-controls id="allQuotes" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#citasValoracion">Regresar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

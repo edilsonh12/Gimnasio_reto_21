@@ -1,0 +1,328 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class=" centro">
+        <h1 class="titulo">EDITAR PLAN NUTRICIONAL</h1>
+      </div>
+    </div>
+  <div id="accordion">
+  <div class="card">
+      <div class="card-header" id="headingOne" style="background:transparent;">
+        <h5 class="mb-0">
+            <button  class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                DESAYUNO
+              </button>
+        </h5>
+      </div>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion" style="background:transparent;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Tipo de Alimento</th>
+                            <th scope="col">Ingredientes</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Intercambios</th>
+                            <th scope="col">Accion</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+  
+  
+                          <tr *ngFor="let list of listBreakfast" >
+  
+                            <th scope="row">
+                              <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_alimento}}" readonly>
+                            </th>
+                            <td>
+                              <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_ingrediente}}" readonly>
+                            </td>
+                            <td><input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.cantidad}}" readonly></td>
+                            <td><textarea type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.intercambio}}" readonly></textarea></td>
+                            <td><a class="ic" (click)="deleteRegistered(list.id_ingrediente_nutri,list.id_tiempo_tiempo)"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" class="icono"/></a></td> 
+                            
+                          </tr>
+  
+  
+                        </tbody>
+                      </table>
+            </div>
+            <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#crear" (click)="assingTime(1)">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Agregar</div>
+            </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            NUEVES
+          </button>
+        </h5>
+      </div>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tipo de Alimento</th>
+                                    <th scope="col">Ingredientes</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Intercambios</th>
+                                    <th scope="col">Accion</th>
+                                  </tr>
+                            </thead>
+                            <tbody>
+  
+                              <tr *ngFor="let list of listNueves" >
+  
+                                <th scope="row">
+                                  <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_alimento}}" readonly>
+                                </th>
+                                <td>
+                                  <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_ingrediente}}" readonly>
+                                </td>
+                                <td><input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.cantidad}}" readonly></td>
+                                <td><textarea type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.intercambio}}" readonly></textarea></td>
+                                <td><a class="ic" (click)="deleteRegistered(list.id_ingrediente_nutri,list.id_tiempo_tiempo)"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" class="icono"/></a></td> 
+                                
+                              </tr>
+  
+                            </tbody>
+                          </table>
+                </div>
+                <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#crear" (click)="assingTime(2)">
+                    <div class="add-icon"></div>
+                    <div class="btn-txt">Agregar</div>
+                </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-yellow collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            ALMUERZO
+          </button>
+        </h5>
+      </div>
+    </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+        <div class="row">
+          <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo de Alimento</th>
+                                <th scope="col">Ingredientes</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Intercambios</th>
+                                <th scope="col">Accion</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+  
+                          <tr *ngFor="let list of listLunch" >
+  
+                            <th scope="row">
+                              <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_alimento}}" readonly>
+                            </th>
+                            <td>
+                              <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_ingrediente}}" readonly>
+                            </td>
+                            <td><input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.cantidad}}" readonly></td>
+                            <td><textarea type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.intercambio}}" readonly></textarea></td>
+                            <td><a class="ic" (click)="deleteRegistered(list.id_ingrediente_nutri,list.id_tiempo_tiempo)"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" class="icono"/></a></td> 
+                            
+                          </tr>
+  
+                        </tbody>
+                      </table>
+            </div>
+            <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#crear" (click)="assingTime(3)">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Agregar</div>
+            </button>
+  </div>
+  </div>
+      </div>
+  <div class="card">
+  <div class="card-header" id="headingfour">
+    <h5 class="mb-0">
+      <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+        ONCES
+      </button>
+    </h5>
+  </div>
+  </div>
+  <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-bs-parent="#accordion">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo de Alimento</th>
+                        <th scope="col">Ingredientes</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Intercambios</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                </thead>
+                <tbody>
+  
+                  <tr *ngFor="let list of listOnces" >
+  
+                    <th scope="row">
+                      <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_alimento}}" readonly>
+                    </th>
+                    <td>
+                      <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_ingrediente}}" readonly>
+                    </td>
+                    <td><input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.cantidad}}" readonly></td>
+                    <td><textarea type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.intercambio}}" readonly></textarea></td>
+                    <td><a class="ic" (click)="deleteRegistered(list.id_ingrediente_nutri,list.id_tiempo_tiempo)"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" class="icono"/></a></td> 
+                    
+                  </tr>
+  
+                </tbody>
+              </table>
+    </div>
+    <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#crear" (click)="assingTime(4)">
+        <div class="add-icon"></div>
+        <div class="btn-txt">Agregar</div>
+    </button>
+  </div>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingfive">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+          CENA
+        </button>
+      </h5>
+    </div>
+  </div>
+    <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-bs-parent="#accordion">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrap">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tipo de Alimento</th>
+                            <th scope="col">Ingredientes</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Intercambios</th>
+                            <th scope="col">Accion</th>
+                          </tr>
+                    </thead>
+                    <tbody>
+  
+                      <tr *ngFor="let list of listDinner" >
+  
+                        <th scope="row">
+                          <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_alimento}}" readonly>
+                        </th>
+                        <td>
+                          <input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.nombre_ingrediente}}" readonly>
+                        </td>
+                        <td><input type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.cantidad}}" readonly></td>
+                        <td><textarea type="text" class="form-control align-items-center" required="required" name="titulo" value="{{list.intercambio}}" readonly></textarea></td>
+                        <td><a class="ic" (click)="deleteRegistered(list.id_ingrediente_nutri,list.id_tiempo_tiempo)"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" class="icono"/></a></td> 
+                        
+                      </tr>
+  
+                    </tbody>
+                  </table>
+        </div>
+        <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#crear" (click)="assingTime(5)">
+            <div class="add-icon"></div>
+            <div class="btn-txt">Agregar</div>
+        </button>
+  </div>
+  </div>
+    </div>
+  </div>
+  
+  
+  <div class="contenedor">
+    <button class="fin" (click)="back()">
+      <span class="text">Finalizar</span>
+      <span class="icon">
+        <svg height="30" width="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+        </span>
+  </button>
+  </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="modal fade" id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar un Nuevo Alimento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <form [formGroup]="formCreateNutrition" (ngSubmit)="createNutrition(formCreateNutrition.value)">
+  
+            <div class="mb-4  selectdiv">
+              <label for="titulo" class="form-label ">Tipo de Alimento</label>
+              <select  name="categoria"  class="categoria" id="categoria" (change)="changueFeeding($event)">
+                <option selected value="0"> Seleccione </option>
+                <option *ngFor="let alimento of listAlimento" value="{{alimento.id_alimento}}" > {{alimento.nombre_alimento}} </option>
+              </select>
+            </div>
+            <div class="mb-4 selectdiv">
+                <label for="titulo" class="form-label ">Ingrediente</label>
+                <select  name="categoria"  class="categoria" id="categoria" formControlName="id_ingrediente_nutri">
+                  <option selected value="0"> Seleccione </option>
+                  <option *ngFor="let ingrediente of listIngrediente" value="{{ingrediente.id_ingrediente}}"> {{ingrediente.nombre_ingrediente}} </option>
+                </select>
+              </div>
+              <div class="mb-4 ">
+                <label for="titulo" class="form-label ">Cantidad</label>
+                <input type="text" class="form-control align-items-center" required="required" name="titulo" placeholder="Cantidad" formControlName="cantidad">
+              </div>
+            <div class="mb-4">
+              <label for="descripcion" class="form-label text-center">Intercambio </label>
+              <textarea type="text" class="form-control" required="required" name="descripcion" placeholder="Intercambio" formControlName="intercambio"></textarea>
+            </div>
+  
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-warning">Registrar</button>
+            </div>
+  
+          </form>
+  
+  
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  

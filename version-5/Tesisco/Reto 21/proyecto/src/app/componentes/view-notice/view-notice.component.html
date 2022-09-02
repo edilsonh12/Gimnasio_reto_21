@@ -1,0 +1,110 @@
+<body>
+  <div *ngFor="let notice of oneNotice">
+
+            <div class="container" style="padding-top: 20px;">
+              <div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative text-black">
+                  <div class="h-100 tofront">
+                      <div class="row justify-content-between">
+                          <div class="col-md-6 pt-6 pb-6 pr-6 align-self-center">
+                              <p class="text-uppercase font-weight-bold">
+                              </p>
+                              <h1 class="display-4 secondfont mb-3 font-weight-bold">{{notice.titulo}}</h1>
+                              <div class="d-flex align-items-center">
+                                  <img class="rounded-circle" src="data:image/png;base64,{{arrayBufferToBase64(notice.foto_personal.data)}}" width="70">
+                                  <small class="ml-2">{{notice.nombres + " " + notice.primer_apellido + " " + notice.segundo_apellido}}</small><br>
+
+                              </div>
+                              <small>Fecha de publicación: {{notice.fecha_informacion.substring(0,10)}}</small>
+                          </div>
+
+                          <div class="col-md-6 pr-0">
+                              <img src="data:image/png;base64,{{arrayBufferToBase64(notice.multimedia.data)}}" style="width:100%; height:100%">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- End Header -->
+
+          <!--------------------------------------
+          MAIN
+          --------------------------------------->
+          <div class="container m pt-4 pb-4">
+              <div class="row justify-content-center">
+                  <div class="col-md-12 col-lg-8">
+                      <article class="article-post">
+                      <p>
+                        {{notice.descripcion}}
+                      </p>
+
+                      </article>
+                  </div>
+              </div>
+          </div>
+
+
+
+  </div>
+
+
+
+
+  <div class="container m pt-4 pb-4">
+      <h5 class="font-weight-bold spanborder"><span>Continuar leyendo:</span></h5>
+      <div class="row">
+          <div class="col-lg-6">
+              <div class="card border-0 mb-4 box-shadow h-xl-300 text-dark" >
+                  <div style="background-image: url(./assets/reto21l.png); height: 150px; background-size: cover; background-repeat: no-repeat;">
+                  </div>
+                  <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
+
+                      <p class="card-text">
+                        El conocimiento no es algo separado y que se baste a sí mismo, sino que está envuelto en el proceso por el cual la vida se sostiene y se desenvuelve.
+                      </p>
+                      <div>
+                          <small class="d-block"><a class="text-muted">John Dewey</a></small>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+
+          <div class="col-lg-6">
+              <div class="flex-md-row mb-4 box-shadow h-xl-300">
+
+                  <div class="mb-3 d-flex align-items-center" *ngFor="let notices of listNotice">
+                      <img height="80" src="data:image/png;base64,{{arrayBufferToBase64(notices.multimedia.data)}}">
+                      <div class="pl-3">
+                          <h2 class="mb-2 h6 font-weight-bold">
+                          <a class="text-white" style="cursor: pointer;" (click)="refresh(notices.id_informacion)">{{notices.titulo}}</a>
+                          </h2>
+                          <div class="card-text text-muted small">
+                               {{notices.nombres + " " + notices.primer_apellido + " " + notices.segundo_apellido}}
+                          </div>
+                      </div>
+                  </div>
+
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  <!-- End Main -->
+
+  <!--------------------------------------
+  FOOTER
+  --------------------------------------->
+  <div class="container mt-5">
+      <footer class="bg-black border-top p-3 text-mutedd small">
+      <div class="row align-items-center justify-content-flex-end">
+          <div>
+              <span class="navbar-brand mr-2"><strong>Reto 21</strong></span> Copyright &copy;
+               . All rights reserved.
+          </div>
+      </div>
+      </footer>
+  </div>
+  <!-- End Footer -->
+</body>
+

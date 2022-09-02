@@ -1,0 +1,388 @@
+
+  <body >
+    
+    <div class="ver">
+    <div class="centro">
+        <h1 class="titulo" style="color: black;">PLAN ALIMENTARIO Y NUTRICIONAL</h1>
+        <img src="assets/logo_negroo.png" class="logo">
+        <div class="info" *ngFor="let x of dataNutrition"> 
+             <h1 class="info-l">Nombre del Plan:  {{x.nombre_plan}}</h1>
+    
+                <div class="row">
+    
+                    <div class="col">
+    
+                        <h3 class="titulo2" style="color:black;">Fecha de Inicio:  {{x.fecha_inicio.substring(0,10)}}</h3>
+    
+                    </div>
+    
+                    <div class="col">
+    
+                        <h3 class="titulo2" style="color:black;">Fecha de Finalización:  {{x.fecha_fin.substring(0,10)}}</h3>
+    
+    
+                    </div>
+    
+    
+                </div>
+    
+                    <div class="centro2">
+    
+                        <h3 class="titulo2" style="color:black;">Duración: {{x.age.months}} mes(es) y {{x.age.days}} día(s).</h3>
+    
+    
+                    </div>
+             
+        </div>
+        </div>
+    
+        <br>
+    
+        <div class="container" *ngFor="let list of listData">
+            <div class="row">
+                <div class="col">
+          
+              <h1>Información del usuario</h1>
+              <br>
+          
+              <div class="mb-2">
+                <label for="" class="form-label">Nombre: {{list.nombres + " " + list.primer_apellido + " " + list.segundo_apellido}} </label>
+              </div>
+          
+              <div class="mb-2">
+                <label for="" class="form-label">Documento de identidad: {{list.documento}} </label>
+              </div>
+          
+              <div class="mb-2">
+                <label for="" class="form-label">Teléfono: {{list.numero_telefono}} </label>
+              </div>
+          
+              <div class="mb-2">
+                <label for="" class="form-label">Email: {{list.correo}}</label>
+              </div>
+          
+              <div class="mb-2">
+                <label for="" class="form-label">Edad: {{list.edad.years}} años</label>
+              </div>
+          
+            </div>
+            <div class="col">
+          
+              <h1>Información importante </h1>
+              <br>
+          
+              <div class="mb-2">
+                <label for="" class="form-label">Bebidas alcholicas: {{list.alcohol}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Fuma: {{list.fuma}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Cafeina: {{list.cafe}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Ejercicio: {{list.ejercicio}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Cirugias: {{list.cirugias}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Alergias: {{list.alergia}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Medicamentos: {{list.medicamento}} </label>
+              </div>
+              <div class="mb-2">
+                <label for="" class="form-label">Enfermedades: {{list.enfermedad}} </label>
+              </div>
+            </div>
+        </div>
+        <hr width="100%">
+        </div>
+    
+    
+    
+    
+        <div class="container">
+
+            <div class="row">
+                <div class="col aqui">
+                    <div class="table-wrap">
+                        <table class="table table-striped" id="table_breakfast">
+                        <thead class="thead-primary">
+
+                          <tr>
+                            <th colspan="4" style="text-align: center;"> <h1 class="titulo2" style="color:black;">Desayuno</h1> </th>
+                          </tr>
+
+                          <tr>
+                              <th>TIPO DE ALIMENTO</th>
+                              <th>INGREDIENTE</th>
+                              <th>CANTIDAD</th>
+                              <th>INTERCAMBIOS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+        
+                            <tr *ngFor="let list of listBreakfast | paginate: { id: 'breakfast', itemsPerPage: 10, currentPage: p }">
+                                    
+                                    <td>{{list.nombre_alimento}}</td> 
+                                    <td>{{list.nombre_ingrediente}}</td>
+                                    <td>
+                                      {{list.cantidad}}
+                                    </td>
+                                    <td>{{list.intercambio}}</td>
+        
+                            </tr>
+        
+                        </tbody>
+                      </table>
+        
+                              
+                    <pagination-controls id="breakfast" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+                    </div>
+                </div>
+        
+        
+        
+
+        
+                <div class="col re" >
+                  <div class="table-wrap">
+                      <table class="table table-striped" id="table_nueves">
+                      <thead class="thead-primary">
+
+                          
+                        <tr>
+                          <th colspan="4" style="text-align: center;"> <h1 class="titulo2" style="color:black;">Nueves</h1> </th>
+                        </tr>
+
+                          <tr>
+                            <th>TIPO DE ALIMENTO</th>
+                            <th>INGREDIENTE</th>
+                            <th>CANTIDAD</th>
+                            <th>INTERCAMBIOS</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+        
+                        <tr *ngFor="let list of listNueves | paginate: { id: 'nueves', itemsPerPage: 10, currentPage: p }">
+                                    
+                          <td>{{list.nombre_alimento}}</td> 
+                          <td>{{list.nombre_ingrediente}}</td>
+                          <td>
+                            {{list.cantidad}}
+                          </td>
+                          <td>{{list.intercambio}}</td>
+        
+                        </tr>
+        
+                      </tbody>
+                    </table>
+        
+                    <pagination-controls id="nueves" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+        
+                  </div>
+              </div>
+        
+        
+        
+
+        
+              <div class="col aqui" >
+                <div class="table-wrap">
+                    <table class="table table-striped" id="table_lunch">
+                    <thead class="thead-primary">
+
+                      
+                      <tr>
+                        <th colspan="4" style="text-align: center;"> <h1 class="titulo2" style="color:black;">Almuerzo</h1> </th>
+                      </tr>
+
+                        <tr>
+                          <th>TIPO DE ALIMENTO</th>
+                          <th>INGREDIENTE</th>
+                          <th>CANTIDAD</th>
+                          <th>INTERCAMBIOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                      <tr *ngFor="let list of listLunch | paginate: { id: 'lunch', itemsPerPage: 10, currentPage: p }">
+                                    
+                        <td>{{list.nombre_alimento}}</td> 
+                        <td>{{list.nombre_ingrediente}}</td>
+                        <td>
+                          {{list.cantidad}}
+                        </td>
+                        <td>{{list.intercambio}}</td>
+        
+                      </tr>
+        
+                    </tbody>
+                  </table>
+        
+                  <pagination-controls id="lunch" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+        
+                </div>
+            </div>
+        
+        
+        
+
+        
+            <div class="col re">
+              <div class="table-wrap">
+                  <table class="table table-striped" id="table_onces">
+                  <thead class="thead-primary">
+
+                    
+                    <tr>
+                      <th colspan="4" style="text-align: center;"> <h1 class="titulo2" style="color:black;">Onces</h1> </th>
+                    </tr>
+
+                    <tr>
+                      <th>TIPO DE ALIMENTO</th>
+                      <th>INGREDIENTE</th>
+                      <th>CANTIDAD</th>
+                      <th>INTERCAMBIOS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+        
+                      <tr *ngFor="let list of listOnces | paginate: { id: 'onces', itemsPerPage: 10, currentPage: p }">
+                                    
+                        <td>{{list.nombre_alimento}}</td> 
+                        <td>{{list.nombre_ingrediente}}</td>
+                        <td>
+                          {{list.cantidad}}
+                        </td>
+                        <td>{{list.intercambio}}</td>
+        
+                      </tr>
+        
+                  </tbody>
+                </table>
+        
+                <pagination-controls id="onces" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+        
+              </div>
+          </div>
+        
+        
+        
+        
+
+        
+          <div class="col re2">
+            <div class="table-wrap">
+                <table class="table table-striped" id="table_dinner">
+                <thead class="thead-primary">
+
+                  
+                  <tr>
+                    <th colspan="4" style="text-align: center;"> <h1 class="titulo2" style="color:black;">Cena</h1> </th>
+                  </tr>
+
+                  <tr>
+                    <th>TIPO DE ALIMENTO</th>
+                    <th>INGREDIENTE</th>
+                    <th>CANTIDAD</th>
+                    <th>INTERCAMBIOS</th>
+                  </tr>
+                </thead>
+                <tbody>
+        
+        
+                      <tr *ngFor="let list of listDinner | paginate: { id: 'dinner', itemsPerPage: 10, currentPage: p }">
+                                    
+                        <td>{{list.nombre_alimento}}</td> 
+                        <td>{{list.nombre_ingrediente}}</td>
+                        <td>
+                          {{list.cantidad}}
+                        </td>
+                        <td>{{list.intercambio}}</td>
+        
+                      </tr>
+        
+        
+                </tbody>
+              </table>
+        
+              <pagination-controls id="dinner" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        
+        
+            </div>
+        </div>
+        
+        
+        
+        
+            </div>
+        
+        
+        
+        
+        
+        
+        
+        
+              <div class="container" style="padding:12px ;">
+        
+                  <div class="row">
+        
+                      <div class="col">
+
+                        <div *ngIf="role != 'cli_i-dfg078op1_0i1/'; then atras"></div>
+        
+                        <ng-template #atras>
+
+                          <button class="atras" (click)="backToList()">
+          
+                            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                    
+                            <span>Atras</span>
+                    
+                          </button>
+
+                        </ng-template>
+        
+        
+                      </div>
+        
+        
+                      <div class="col">
+        
+                        <div class="button" data-tooltip="Descargar" style="cursor: pointer;" (click)="download()">
+                          <div class="button-wrapper">
+                            <div class="text">Descargar</div>
+                              <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+                              </span>
+                            </div>
+                          </div>
+        
+        
+                      </div>
+        
+        
+        
+                  </div>
+        
+          
+               
+          
+                </div>
+        
+        
+        
+        
+        </div>
+
+      </div>
+</body>
+

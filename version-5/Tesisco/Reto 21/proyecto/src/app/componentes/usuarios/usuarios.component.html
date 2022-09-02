@@ -1,0 +1,353 @@
+<div class="bg-black centro">
+
+  <h2 class="titulo" >Usuarios</h2>
+
+  <a class="btn-agregar" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEJklEQVRoge2a3W+URRTGn9c2dkmr0K1baryRqEUJrl5qCPKRqMV6qwmodxiICR9R/gvjDQlG/xBDxChCS9MComhiKS3eiARI0KhQqWh+XMwZOw3d3fedzr6tCc/NSWbPnPOcd77OnFnpPlYWslSGgKqklyRtkrRB0hOS+iV1m8otSdck/STpR0mjkk5mWfZbKg7RACrAO8Ax4F+K4x/gc+BtoGspXKJGBFgl6T1JH0h61JrnJI1JOi7pB0lTkq5Kumm/90gakLReUl3SNkkvSvIBXJH0kaSPsyy7HcOraBDDwKXgq54BdgOrI2ytAd4Fzgb2ZoAd7eDunVaATwKH3wCvJLQ/BHwb2D8CVFLZ904GjDjALWAf0JHUifPTARwAZoPRXpvK+DobboBJYGMSw8191oEp8zkNrFuqwVpg8DTwSCKueXz3AqPm+xIwEGuoEkynMaC7da+0ALqB8WCaFV8zwcKexB12ywKgL5gVR4p2Hg4WdtvXRA4+9WADGMrbaRXz58S+NnPMDeBgsPhbTzHgUHBOJN9iYwF0At8Zt4OtlLuAX0z55ZI45gbwmnG70nRUcMkbwJkS+eUGkAU76a5misdMaXdC5+PAWEJ7e4zj0UYKVVxafZuIBLCJYwAS2usF5oA7Ic8HAp0tkjokncqy7PdUjlPDLmLjkjrlLnKSFgayyeTXJfKKxXGTm31DGMgzJs+XRicenuPTviEM5CmT06XRicdFk4O+IQykz+S10ujEw3P8LwcMA+kxeVMFAYzQAIFOI4xEBPKnyYcXC2S5kGxrdtbghn2hpCl76nPEbNbM7HXfFo7IDZNp7sjtRb/JX31DGIjfrQa18rHepN+9FgQyafK50ujEo27ygm8IAxk1ubU0OvHYZvLkPb9YMuaTxjWpPLYhaawGSeO9268lY1/K1WLfSOVYbqRjzopGeFPSg5K+yLLsj0U1gLfsA55N6DgZ7GJ1zjjubKbYBVw2xVdL5JgLwOvG7WdaPUMA75vyOVZe8eG8cdufp0OF+VrvgRI45kLwgadajkbQaYd1mgXqrXu0F8DzwF/GqdhTBu59wn+BvtY92gPLq6aNy+EYAxVc4RhcJWQ5itg9wIRxmMg9pRYxVAMumKHTQC0x12a+q8Ap8z3DUh98cA89fmingLbnYrYmvM+LwOOpDK8NptksrqDcmcT4Qj+dtjv5hT0B9LfuWcxJJdgAwBWUk7y+4k7s4eCcADgcvSZyOh0Khh1cLXYP0BthqwrsZT7t8FOp8Gtx7B8GKpL2Sjok6TFr/luuAviVpO/lLj1XNV8oeEjuzwWDkp6VtF3SC3IJoCRdlvShpE+zLJuL4RUNXG62CziKuwIUxR3gM2DnUqdRyj/VrJarxW6Wq1o+KakmNxKSG5nrkmbkbnYjkk40TMXv43+Ou80+2KQ0vwbpAAAAAElFTkSuQmCC"></a>
+  <a class="btn-agregar" data-bs-toggle="modal" data-bs-target="#nuevo" style="cursor:pointer;"><img src="https://img.icons8.com/fluency/48/000000/add-user-group-man-man.png"/></a>
+
+
+      <input type="text" class="buscar" placeholder="Buscar" [(ngModel)]="filtro" name="filtro">
+
+  </div>
+
+
+
+<div class="col b d-lg-block bg-black" >
+  <div class="row">
+
+
+
+          <table  class="table table-striped custom-table row-border hover" >
+            <thead>
+              <tr>
+                <th scope="col">Documento</th>
+                <th scope="col">Usuarios</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr scope="row" *ngFor="let Users of listaUsuarios | filtres: filtro | paginate: { id: 'users' , itemsPerPage: 10, currentPage: p } ">
+
+                        <td>{{Users.documento}}</td>
+                        <td>
+                          {{Users.nombres + " " + Users.primer_apellido + " " + Users.segundo_apellido}}
+                        </td>
+                        <td><a>{{Users.nombre_rol}}</a></td>
+                        <td> <span class="{{Users.nombre_cuenta}}"></span> </td>
+                        <td>
+                          <a class="btn-update" style="cursor: pointer;" (click)="updateStateUser(Users.documento,Users.nombre_cuenta)"><img src="data:image/png;base64,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"></a>
+                          <a class="btn" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#ModalUpdate" (click)="actualizarUsuario(Users.documento)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAhElEQVRIie3TsQmAMBCF4VtSUugC2SFg9nEcB9HewG9zwXBgo2ch5FXhiu9dAhHpEREgATsQvsAzVwowfYEfwNKc39/EbB51Vks2TxxgBaJuD5A88EPR1ZRlLzzoLHrjBRh1NjTPMne843/HFaupnyg0+PNPZAvcN7cFJj74TYEf3nOXE2kR/ChH3hDIAAAAAElFTkSuQmCC"></a>
+                        </td>
+              </tr>
+
+
+            </tbody>
+          </table>
+    </div>
+
+    <pagination-controls id="users"
+    (pageChange)="handlePageChange($event)"
+    previousLabel="Prev"
+    nextLabel="Next"
+  ></pagination-controls>
+</div>
+
+
+
+
+<!------------------------- Modal de registrar Cliente ------------------------------->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-top: -5rem;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black" id="exampleModalLabel">Registrar usuarios</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="usuariosForm" (ngSubmit)="registrarUsuarios(usuariosForm.value)">
+
+          <div class="row">
+
+
+            <div class="col"><!--Lado derecho-->
+
+              <div class="mb-3">
+                <label for="" class="form-label">Tipo de documento</label>
+
+                <select class="form-select" name="" id="" formControlName="id_documento">
+
+                    <option *ngFor="let document of listaDocumento; let iControl=index" value="{{document.id_documento}}"> {{document.nombre_tipo_documento}} </option>
+
+                </select>
+
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Documento de identidad</label>
+                <input type="number" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Número de documento" formControlName="documento">
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Nombres</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nombres" formControlName="nombres">
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Primer Apellido</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Primer Apellido" formControlName="primer_apellido">
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Segundo Apellido</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Segundo Apellido" formControlName="segundo_apellido">
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Genero</label>
+                <select class="form-select" name="" id="" formControlName="genero">
+
+                  <option *ngFor="let gender of listaGender; let iControl=index"  value="{{gender.id_genero}}">{{gender.nombre_tipo_genero}}</option>
+
+                </select>
+              </div>
+
+
+
+            </div> <!--Aquí termina el lado derecho-->
+
+
+
+            <div class="col"><!--Lado izquierdo-->
+
+              <div class="mb-3">
+                <label for="" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Correo electronico" formControlName="correo">
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Telefono:</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Número de teléfono" formControlName="telefono">
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Tipo de usuario</label>
+                <select class="form-select" name="" id="" formControlName="rol">
+
+                  <option *ngFor="let rol of listaRol; let iControl=index" value="{{rol.id_rol}}"> {{rol.nombre_rol}} </option>
+
+                </select>
+              </div>
+
+
+
+            </div><!--Aquí termina el lado izquierdo-->
+
+
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="input" class="btn btn-warning text-white">Registrar</button>
+          </div>
+
+
+        </form>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-----------------------   Modal para actualizar el usuario    -------------------------->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" aria-labelledby="modalUpdate" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="updateUserForm" (ngSubmit)="updateUsers(updateUserForm.value)" >
+
+          <div *ngFor="let oneuser of oneUser">
+
+            <input type="hidden" formControlName="documento" [(ngModel)]="oneuser.documento">
+
+            <div class="mb-3">
+              <label for="" class="form-label">Nombres:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" [(ngModel)]="oneuser.nombres" formControlName="nombres">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Primer Apellido:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" [(ngModel)]="oneuser.primer_apellido" formControlName="primer_apellido">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Segundo Apellido:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" [(ngModel)]="oneuser.segundo_apellido" formControlName="segundo_apellido">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Telefono:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" [(ngModel)]="oneuser.numero_telefono" formControlName="numero_telefono">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Correo Electronico:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" [(ngModel)]="oneuser.correo" formControlName="correo">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Tipo de usuario</label>
+              <select class="form-select" name="" id="" formControlName="rol" [(ngModel)]="oneuser.rol">
+
+                <option *ngFor="let rol of listaRol; let index=index" [selected]="index == oneuser.rol" [value]="rol.id_rol"> {{rol.nombre_rol}} </option>
+
+              </select>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" data-bs-dismiss="modal" class="btn btn-warning">Actualizar</button>
+          </div>
+
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nuevos Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="createNewUser" (ngSubmit)="createNewUsers(createNewUser.value)">
+
+            <div class="row">
+              <div class="col">
+                  <div class="mb-4 ">
+                    <label for="titulo" class="form-label ">Documento</label>
+                    <input type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="documento">
+                  </div>
+                  <div class="mb-4">
+                    <label for="descripcion" class="form-label text-center">Nombres</label>
+                    <input type="text" class="form-control" required="required" name="descripcion" formControlName="nombres">
+                  </div>
+                  <div class="mb-4">
+                    <label for="descripcion" class="form-label text-center">Segundo Apellido</label>
+                    <input type="text" class="form-control" required="required" name="descripcion" formControlName="segundo_apellido">
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="descripcion" class="form-label text-center">Número de teléfono</label>
+                    <input type="text" class="form-control" required="required" name="descripcion" formControlName="numero_telefono">
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="descripcion" class="form-label text-center">Genero</label><br>
+                    <select  name="categoria"  class="categoria" id="categoria" formControlName="genero">
+                      <option selected value="0"> Seleccione </option>
+                      <option *ngFor="let gender of listaGender" value="{{gender.id_genero}}">{{gender.nombre_tipo_genero}}</option>
+                  </select>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="descripcion" class="form-label text-center">Tipo de Valoración</label><br>
+                    <select  name="categoria"  class="categoria" id="categoria" formControlName="id_valoracion_tipo">
+                      <option selected value="0"> Seleccione </option>
+                      <option *ngFor="let type of listTypeAssessment" value="{{type.id_valoracion}}">{{type.nombre_valoracion}}</option>
+                  </select>
+                  </div>
+
+
+
+              </div>
+              <div class="col">
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label text-center">Tipo de Documento</label>
+                  <select  name="categoria"  class="categoria" id="categoria" formControlName="tipo_de_documento">
+                    <option selected value="0"> Seleccione </option>
+                    <option *ngFor="let document of listaDocumento" value="{{document.id_documento}}">{{document.nombre_tipo_documento}}</option>
+                </select>
+                </div>
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label text-center">Primer Apellido</label>
+                  <input type="text" class="form-control" required="required" name="descripcion" formControlName="primer_apellido" >
+                </div>
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label text-center">Correo</label>
+                  <input type="email" class="form-control" required="required" name="descripcion" formControlName="correo">
+                </div>
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label text-center">Fecha de Nacimiento</label>
+                  <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_nacimiento" >
+                </div>
+
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label text-center">Plan a contratar</label><br>
+                  <select  name="categoria"  class="categoria" id="categoria" formControlName="id_suscripcion_pago" (change)="changueDateFormat($event)">
+                    <option selected value="0"> Seleccione </option>
+                    <option *ngFor="let suscription of listSuscription" value="{{suscription.id_suscripcion}}">{{suscription.titulo_suscripcion}}</option>
+                </select>
+                </div>
+
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label text-center">Fecha de finalización del plan</label>
+                  <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_de_fin" [(ngModel)]="date_temp" readonly>
+                  <small id="helpId" class="form-text text-muted">La fecha de inicio se toma automaticamente del día actual.</small>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-warning">Registrar</button>
+            </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

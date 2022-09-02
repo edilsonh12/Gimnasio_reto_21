@@ -1,0 +1,105 @@
+<body>
+<mat-card class="container" style="  border-color: #000000;">
+  <div class="row justify-content-center">
+    <div class="ver2">
+      <div class="cabecera">
+          <div class="ver" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+          <h1 class="titulo">Valoracion </h1>
+          <h1 class="titulo2">Basica</h1>
+      </div>
+      </div>
+  </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrap">
+
+              <form [formGroup]="formCreateMeasures" (ngSubmit)="createMeasures(formCreateMeasures.value)">
+                <table class="table table-striped">
+
+                  <div *ngFor="let list of listMeasures">
+
+                    <input type="hidden" [(ngModel)]="id_medidas" formControlName="id_medidas">
+                    <input type="hidden" [(ngModel)]="list.documento_valoracion" formControlName="documento_valoracion">
+                    <input type="hidden" [(ngModel)]="list.estatura" formControlName="estatura">
+
+                    <tr>
+                      <th>Peso</th>
+                      <td><input type="number" class="form-control align-items-center" required="required" formControlName="peso" [(ngModel)]="list.peso"  name="titulo" ></td>
+                      </tr>
+
+                      <tr>
+                        <th>Antebrazo D</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="antebrazo_derecho" [(ngModel)]="list.antebrazo_derecho" name="titulo" ></td>
+                    </tr>
+                    <tr>
+                        <th>Antebrazo I</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="antebrazo_izquierdo" [(ngModel)]="list.antebrazo_izquierdo" name="titulo" ></td>
+                    </tr>
+                    <tr>
+                        <th>Brazo D </th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="brazo_derecho" [(ngModel)]="list.brazo_derecho" name="titulo" ></td>
+                      </tr>
+                      <tr>
+                        <th>Brazo I</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="brazo_izquierdo" [(ngModel)]="list.brazo_izquierdo" name="titulo" ></td>
+                      </tr>
+                      <tr>
+                        <th>Pecho</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="pecho" name="titulo" [(ngModel)]="list.pecho"></td>
+                      </tr>
+                      <tr>
+                        <th>Abdomen</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="abdomen" name="titulo" [(ngModel)]="list.abdomen"></td>
+                      </tr>
+                      <tr>
+                        <th>Gluteo</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="gluteo" name="titulo" [(ngModel)]="list.gluteo"></td>
+                      </tr>
+                      <tr>
+                        <th>Pierna D</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="pierna_derecha" name="titulo" [(ngModel)]="list.pierna_derecha"></td>
+                      </tr>
+                      <tr>
+                        <th>Pierna I</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="pierna_izquierda" name="titulo" [(ngModel)]="list.pierna_izquierda"></td>
+                      </tr>
+                       <tr>
+                        <th>Pantorrilla D</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="pantorrilla_derecha" name="titulo" [(ngModel)]="list.pantorrilla_derecha"></td>
+                      </tr>
+                      <tr>
+                        <th>Pantorrilla I</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" formControlName="pantorrilla_izquierda" name="titulo" [(ngModel)]="list.pantorrilla_izquierda"></td>
+                    </tr>
+
+
+                  </div>
+
+
+                  <tr>
+                    <th><button class="cancelar" type="button" (click)="cancellCreateAssessment()">
+                      <span class="text">Cancelar</span>
+                      <span class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+              </svg></span>
+          </button></th>
+                    <td class="boton"><button class="learn-more" type="submit" >
+                      <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Finalizar</span>
+                    </button>
+                </td>
+                  </tr>
+              </table>
+
+            </form>
+
+            </div>
+        </div>
+    </div>
+
+</mat-card>
+
+</body>

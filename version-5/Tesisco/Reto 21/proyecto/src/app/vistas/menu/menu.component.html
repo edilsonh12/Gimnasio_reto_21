@@ -1,0 +1,20 @@
+<body>
+  <header class="header">
+  <div class="container logo-nav-container" >
+  <img src="data:image/png;base64,{{content}}" width="65" height="65"><!-- logo del gimnasio  -->
+  <nav class=" navigation">
+    <ul>
+      <li><a [routerLink]="['inicio']" routerLinkActive="router-link-active" >Inicio</a></li><!-- redireccion a la interfaz principal  -->
+      <li><a  >conocenos</a><!-- conocenos  --></li>
+      <li><a href="">Encuentranos</a></li>
+      <li><a href="">Personal</a></li>
+      <li><a routerLink="list-notices">Noticias</a></li>
+
+      <a ><button class="button text-black" data-bs-toggle="modal" data-bs-target="#exampleModal">iniciar sesion</button></a><!-- mostrar el usuario registrado -->
+
+    </ul>
+  </nav>
+  </div>
+  </header>
+  </body>
+
