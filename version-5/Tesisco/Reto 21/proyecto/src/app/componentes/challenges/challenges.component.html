@@ -1,0 +1,474 @@
+<body>
+  <div class="ver2">
+    <div class="contenedor">
+    <div class="cabecera">
+        <div class="ver" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+        <h1 class="titulo">RETOS</h1>
+        <h1 class="titulo2">TOS</h1>
+    </div>
+    </div>
+    <div class="container">
+        <div class="centro">
+                <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro">
+          </div>
+          <div class="cont">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Imagen</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Fecha y Hora</th>
+          <th scope="col">Estado</th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+          <th scope="col">Acciones</th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let list of listChallenges | challenges:filtro | paginate: { id: 'challenges', itemsPerPage: 10, currentPage: p }">
+          <th scope="row"> <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}" width="80px" height="65px"> </th>
+          <td>{{list.nombre_reto}}</td>
+          <td>{{list.descripcion.substring(0,40)}}... </td>
+          <td>{{list.fecha.substring(0,10)}} - {{validateTime(list.hora)}}</td>
+          <td>{{list.estado}}</td> 
+          <td ><a class="ic" data-bs-toggle="modal" data-bs-target="#editChallenges" (click)="searchChallenges(list.id_retos)"><img class="icono" src="https://img.icons8.com/ios-glyphs/30/undefined/edit--v1.png" /></a></td>
+          <td><a class="ic"(click)="searchClientRegisterChallenges(list.id_retos)" ><img class="icono" src="https://img.icons8.com/ios-glyphs/30/000000/add-user-male.png" data-bs-toggle="modal" data-bs-target="#exampleModal"/></a></td>
+          <td ><a class="ic" (click)="searchChallengesData(list.id_retos)" data-bs-toggle="modal" data-bs-target="#viewChallenges"><img class="icono" src="https://img.icons8.com/ios-glyphs/30/000000/view-file.png"/></a></td>
+          <td><a class="ic" (click)="updateStateChallenges(list.id_retos,list.estado)" ><img class="icono" src="https://img.icons8.com/ios-glyphs/30/000000/change--v1.png"/></a></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <pagination-controls id="challenges" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+    </div>
+
+    <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#retos">
+        <div class="add-icon"></div>
+        <div class="btn-txt">Agregar</div>
+    </button>
+    </div>
+</div>
+
+
+
+
+
+    <div class="modal fade" id="retos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Registrar un Nuevo Reto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           
+            <form [formGroup]="formCreateChallenges" (ngSubmit)="createChallenges(formCreateChallenges.value)">
+
+                <div class="mb-4 ">
+                    <label for="titulo" class="form-label ">Titulo del Reto</label>
+                    <input type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="nombre_reto">
+                  </div>
+                  <div class="mb-4">
+                    <label for="descripcion" class="form-label text-center">Descripcion del Reto </label>
+                    <textarea type="text" class="form-control" required="required" name="descripcion" formControlName="descripcion"></textarea>
+                  </div>
+                  <div class="mb-4 selectdiv">
+                    <label for="categoria" class="form-label s text-center">Fecha</label>
+                    <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha">
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="categoria" class="form-label s text-center">Hora</label>
+                    <input type="time" class="form-control align-items-center" required="required" name="titulo" formControlName="hora">
+                  </div>
+                
+                <div>
+                  <label for="subcategoria" class="form-label s text-center">Icono</label>
+                  <input type="file" class="form-control inputfile align-items-center" required="required" name="image" (change)="getImg($event)"  accept="image/png">
+                  <p style="color: red; font-size: 15px; padding: 4px 0 0 0;"><img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="20"/>Solo se admiten archivos .png<img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="20"/></p>
+                </div>
+
+                <div class="mb_4">
+                    <label for="subcategoria" class="form-label s text-center">Visualización previa:</label>
+                    <br>
+                    <img src="{{previewImg}}" class="img-fluid rounded-top" alt="">
+
+                </div>
+              
+    
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Registrar</button>
+              </div>
+
+            </form>
+
+
+        </div>
+
+        </div>
+      </div>
+    </div>
+    </body>
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Clientes Inscritos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <div class="centro1">
+              <input type="text" class="buscar" placeholder="Buscar"  name="clientRegistered" [(ngModel)]="clientRegistered"> 
+            </div>
+       
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Documento</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let list of listClientRegister | clientes:clientRegistered | paginate: { id: 'clientRegistered', itemsPerPage: 10, currentPage: page }">
+                  <th scope="row">{{list.documento}}</th>
+                  <td>{{list.nombres + " " + list.primer_apellido + " " + list.segundo_apellido}}</td>
+                  <td> <a href="" style="cursor: pointer;" (click)="searchOneUser(list.documento)" data-bs-toggle="modal" data-bs-target="#perfil"> Ver Más </a> </td> 
+                </tr>
+
+              </tbody>
+            </table>
+          
+            <pagination-controls id="clientRegistered" (pageChange)="changePage($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+
+            <div class="modal-footer">
+
+              <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#agregar" (click)="searchClientNoRegisteredChallenges()">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Registrar</div>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    
+
+<!---------------------- Modal Registrar Usuarios ------------------->
+<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Usuarios</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="centro1">
+          <input type="text" class="buscar" placeholder="Buscar"  name="clientNoRegistered" [(ngModel)]="clientNoRegistered"> 
+        </div>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Documento</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let list of listClientNoRegister | clientes:clientNoRegistered | paginate: { id: 'clientNoRegister', itemsPerPage: 10, currentPage: pagina }">
+              <td>{{list.documento}}</td>
+              <td>{{list.nombres + " " + list.primer_apellido + " " + list.segundo_apellido}}</td>
+              <td><button class="cssbuttons-io-button" (click)="registeredClientToChallenges(list.documento)"> Registrar
+                <div class="icon">
+                  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+                </div>
+              </button></td> 
+            </tr>
+
+          </tbody>
+        </table>
+        <pagination-controls id="clientNoRegister" (pageChange)="cambiarPagina($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!----------------- Modal for view data the users client registered------------------>
+<div class="modal fade" id="perfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+      <div class="modal-content">
+        <div class="modal-body" *ngFor="let one of oneUser">
+                  <div class="d-flex text-black">
+                    <div class="flex-shrink-0">
+                      <img src="data:image/png;base64,{{arrayBufferToBase64(one.foto_personal.data)}}"
+                        alt="Generic placeholder image" class="img-fluid"
+                        style="width: 180px; border-radius: 10px;">
+                    </div>
+                    <div class="flex-grow-1 ms-3" >
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1">Nombre</p>
+                          <p class="mb-0">{{one.nombres + " " + one.primer_apellido + " " + one.segundo_apellido}}</p>
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                      style="background-color: #efefef;">
+                      <div>
+                        <p class="small text-muted mb-1">Documento</p>
+                        <p class="mb-0">{{one.documento}}</p>
+                      </div>
+                      </div>
+
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1">correo</p>
+                          <p class="mb-0">{{one.correo}}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                      style="background-color: #efefef;">
+                      <div>
+                        <p class="small text-muted mb-1">Numero de celular</p>
+                        <p class="mb-0">{{one.numero_telefono}}</p>
+                      </div>
+                    </div>
+                      <div class="d-flex pt-1">
+                        <button class="atras flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                          <span>Atras</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!---------- Modal For edit Challenges ------------->
+<div class="modal fade" id="editChallenges" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Reto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngFor="let list of listDataChallenges">
+        
+        <form [formGroup]="formUpdateChallenges" (ngSubmit)="updateChallenges(formUpdateChallenges.value)">
+
+          <input type="hidden" [(ngModel)]="list.id_retos" formControlName="id_retos">
+
+          <div class="mb-3">
+            <label for="" class="form-label">Titulo del Reto</label>
+            <input type="text"
+              class="form-control" name="" id="" aria-describedby="helpId" placeholder="" [(ngModel)]="list.nombre_reto" formControlName="nombre_reto">
+          </div>
+  
+          <div class="mb-3">
+            <label for="" class="form-label">Descripción del reto</label>
+            <textarea class="form-control" name="" id="" rows="2" [(ngModel)]="list.descripcion" formControlName="descripcion"></textarea>
+          </div>
+  
+          <div class="mb-3">
+            <label for="" class="form-label">Estado del Reto</label>
+            <select class="form-select" name="" id="" formControlName="state" [(ngModel)]="list.state">
+
+              <option *ngFor="let state of listState; let index=index" [selected]="index == list.state" [value]="state.id_estado"> {{state.estado}} </option>
+
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <input type="hidden" value="{{transformDate(list.fecha)}}">
+                <label for="" class="form-label">Fecha del Reto</label>
+                <br>
+                <input class="form-control" type="date" [(ngModel)]="fecha" formControlName="fecha" />
+    
+                <script>
+                  const input = document.querySelector('input');
+                  input.value = '2020-11-30';
+                </script>
+    
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <input type="hidden" value="{{transformTime(list.hora)}}">
+                <label for="" class="form-label">Hora del Reto</label>
+                <br>
+                <input class="form-control" type="time" [(ngModel)]="hora" formControlName="hora">
+    
+              </div>
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+
+            <label for="" class="form-label">Imagen Actual</label>
+            <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}"  class="img-fluid rounded-top" alt="">
+
+            <div>
+              <label for="subcategoria" class="form-label s text-center">Icono</label>
+              <input type="file" class="form-control inputfile align-items-center" required="required" name="image" (change)="getImg_update($event)"  accept="image/png">
+              <p style="color: red; font-size: 15px; padding: 4px 0 0 0;"><img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="20"/>Solo se admiten archivos .png<img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="20"/></p>
+            </div>
+
+            <div class="mb-3">
+
+              <label for="subcategoria" class="form-label s text-center">Previsualización de la imagen</label>
+              <br>
+              <img src="{{previewImg_update}}" class="img-fluid rounded-top" alt="">
+
+
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
+              </div>
+            </div>
+
+          </div>
+
+
+  
+
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal For view Data The challenges -->
+<div class="modal fade" id="viewChallenges" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Información del Reto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <div *ngFor="let list of listDataFromChallenges">
+
+          <div class="mb-3">
+            <label for="" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{list.nombre_reto}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Descripción:</label>
+            <textarea class="form-control" name="" id="" rows="2" value="{{list.descripcion}}" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Fecha del Reto:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{transformDate_(list.fecha)}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Hora del Reto:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{transformTime_(list.hora)}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Estado del Reto:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value="{{list.estado}}" readonly>
+          </div>
+
+        </div>
+
+        <hr width="100%" color="black" />
+
+        <div>
+          <label for="" class="form-label">Estado del Reto:</label>
+        
+          <br>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Sub-Categoria</th>
+              </tr>
+            </thead>
+            <tbody>
+      
+              <tr *ngFor="let list of listTraining | paginate: { id: 'ejercicios', itemsPerPage: 10, currentPage: pague }">
+                <th scope="row"> <img src="data:image/png;base64,{{arrayBufferToBase64(list.imagen.data)}}" width="80px" height="65px"> </th>
+                <td>{{list.nombre_ejercicios}}</td>
+                <td>{{list.nombre_categoria}}</td>
+                <td>{{list.nombre_sub}}</td>
+              </tr>
+      
+            </tbody>
+          </table>
+      
+          <pagination-controls id="ejercicios" (pageChange)="changePague($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+      
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

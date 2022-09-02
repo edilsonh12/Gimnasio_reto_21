@@ -1,0 +1,347 @@
+<body >
+<mat-card class="container">
+  <div class="row justify-content-center">
+    <div class="ver2">
+      <div class="cabecera">
+          <div class="ver" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+          <h1 class="titulo">Valoracion </h1>
+          <h1 class="titulo2">Avanzada</h1>
+      </div>
+      </div>
+  </div>
+  <mat-stepper orientation="vertical">
+    <mat-step>
+      <ng-template matStepLabel>GENERALES</ng-template>
+      <ng-template matStepContent>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="table-wrap">
+
+                <form [formGroup]="formCreateGenerales" (ngSubmit)="createGenerales(formCreateGenerales.value)">
+
+                  <table class="table table-striped">
+
+                      <input type="hidden" [(ngModel)]="ID" formControlName="id_generales">
+                      <input type="hidden" [(ngModel)]="estatura" formControlName="estatura">
+                      <tr>
+                        <th>Peso</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="peso"></td>
+                    </tr>
+                    <tr>
+                        <th>Agua Corporal</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="agua_corporal"></td>
+                    </tr>
+                    <tr>
+                        <th>Masa Osea </th>
+                        <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="masa_osea"></td>
+                      </tr>
+
+                      <tr>
+                        <th>Grasa Visceral</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="grasa_visceral"></td>
+                      </tr>
+
+                      <tr>
+                        <th class="ti"><p>Edad Metabolica</p></th>
+                      </tr>
+                      <tr>
+                        <th>BMR</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="bmr"></td>
+                      </tr>
+                      <tr>
+                        <th>K/cal</th>
+                        <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="k_caloria"></td>
+                      </tr>
+
+
+
+                    <tr>
+                      <th></th>
+                      <td><button class="learn-more" type="submit">
+                        <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">Guardar</span>
+                      </button></td>
+                    </tr>
+                </table>
+
+              </form>
+
+          </div>
+      </div>
+    </div>
+  </ng-template>
+</mat-step>
+<mat-step>
+  <ng-template matStepLabel>MASA MUSCULAR</ng-template>
+  <ng-template matStepContent>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="table-wrap">
+
+                    <form [formGroup]="formCreateMasaMuscular" (ngSubmit)="createMasa_Muscular(formCreateMasaMuscular.value)">
+
+                      <table class="table table-striped">
+
+                          <input type="hidden" [(ngModel)]="ID" formControlName="id_masa">
+
+                          <tr>
+                            <th>Total</th>
+                            <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="total"></td>
+                        </tr>
+                        <tr>
+                            <th>Brazo D </th>
+                            <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="brazo_derecho"></td>
+                          </tr>
+                          <tr>
+                            <th>Brazo I</th>
+                            <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="brazo_izquierdo"></td>
+                          </tr>
+                          <tr>
+                            <th>Pierna D</th>
+                            <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pierna_derecha"></td>
+                          </tr>
+                          <tr>
+                            <th>Pierna I</th>
+                            <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pierna_izquierda"></td>
+                          </tr>
+                           <tr>
+                            <th>Torso</th>
+                            <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="torso"></td>
+                          </tr>
+
+                          <tr>
+                            <th>Valoracion Fisica</th>
+                            <td><select name="cat" class="cat" id="cat" formControlName="valoracion_fisica" [(ngModel)]="assessmentTemp">
+                              <option value="0" selected>Seleccione</option>
+
+                                <option *ngFor="let list of listAssessment" value="{{list.id_valoracion_fisica}}" >{{list.rango}}</option>
+
+
+                            </select></td> <td> <a href="" data-bs-toggle="modal" data-bs-target="#viewDetailsTableAssessment">Tabla de valoración</a> </td>
+                        </tr>
+
+
+                        <tr>
+                          <th></th>
+                          <td><button class="learn-more" type="submit">
+                            <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">Guardar</span>
+                          </button></td>
+                        </tr>
+                    </table>
+
+                    </form>
+
+          </div>
+      </div>
+    </div>
+  </ng-template>
+</mat-step>
+<mat-step>
+  <ng-template matStepLabel>GRASA CORPORAL</ng-template>
+  <ng-template matStepContent>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrap">
+
+              <form [formGroup]="formCreateGrasaCorporal" (ngSubmit)="createGrasaCorporal(formCreateGrasaCorporal.value)">
+
+                <table class="table table-striped">
+
+
+                    <input type="hidden" [(ngModel)]="ID" formControlName="id_grasa">
+
+                  <tr>
+                      <th>Total</th>
+                      <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="total"></td>
+                  </tr>
+                  <tr>
+                      <th>Brazo D </th>
+                      <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="brazo_derecho"></td>
+                    </tr>
+                    <tr>
+                      <th>Brazo I</th>
+                      <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="brazo_izquierdo"></td>
+                    </tr>
+                    <tr>
+                      <th>Pierna D</th>
+                      <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="pierna_derecha"></td>
+                    </tr>
+                    <tr>
+                      <th>Pierna I</th>
+                      <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="pierna_izquierda"></td>
+                    </tr>
+                     <tr>
+                      <th>Torso</th>
+                      <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="torso"></td>
+                    </tr>
+
+
+                  <tr>
+                    <th></th>
+                    <td><button class="learn-more" type="submit">
+                      <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Guardar</span>
+                    </button></td>
+                  </tr>
+              </table>
+
+              </form>
+
+
+    </div>
+</div>
+</div>
+</ng-template>
+</mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>MEDIDAS</ng-template>
+        <ng-template matStepContent>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="table-wrap">
+
+          <form [formGroup]="formCreateMeasures" (ngSubmit)="createMeasures(formCreateMeasures.value)">
+
+            <table class="table table-striped">
+
+
+                <input type="hidden" [(ngModel)]="ID" formControlName="id_medidas">
+
+              <tr>
+                  <th>Antebrazo D</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="antebrazo_derecho"></td>
+              </tr>
+              <tr>
+                  <th>Antebrazo I</th>
+                  <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="antebrazo_izquierdo"></td>
+              </tr>
+              <tr>
+                  <th>Brazo D </th>
+                  <td><input type="number" class="form-control align-items-center"  required="required" name="titulo" formControlName="brazo_derecho"></td>
+                </tr>
+                <tr>
+                  <th>Brazo I</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="brazo_izquierdo"></td>
+                </tr>
+                <tr>
+                  <th>Pecho</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pecho"></td>
+                </tr>
+                <tr>
+                  <th>Abdomen</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="abdomen"></td>
+                </tr>
+                <tr>
+                  <th>Gluteo</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="gluteo"></td>
+                </tr>
+                <tr>
+                  <th>Pierna D</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pierna_derecha"></td>
+                </tr>
+                <tr>
+                  <th>Pierna I</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pierna_izquierda"></td>
+                </tr>
+                 <tr>
+                  <th>Pantorrilla D</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pantorrilla_derecha"></td>
+                </tr>
+                <tr>
+                  <th>Pantorrilla I</th>
+                  <td><input type="number" class="form-control align-items-center" required="required" name="titulo" formControlName="pantorrilla_izquierda"></td>
+              </tr>
+
+
+
+              <tr>
+                <th></th>
+                <td><button class="learn-more" type="submit">
+                  <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                  </span>
+                  <span class="button-text">Guardar</span>
+                </button></td>
+              </tr>
+          </table>
+
+
+          </form>
+
+
+</div>
+</div>
+</div>
+</ng-template>
+</mat-step>
+    </mat-stepper>
+    <div class="row botones">
+
+      <div class="col">
+        <div class="contcan"><button class="cancelar" (click)="cancellAssessmentAdvanced()">
+          <span class="text">Cancelar</span>
+          <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+        </svg></span>
+        </button></div>
+        
+      </div>
+      <div class="col">
+        <div class="contenedor">
+          <button class="fin" (click)="finishAssessmentAdvanced()">
+            <span class="text">Finalizar</span>
+            <span class="icon">
+              <svg height="30" width="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+              </span>
+        </button>
+        </div>
+
+      </div>
+    </div>
+
+
+</mat-card>
+
+
+
+
+
+<!-- Modal View Details assessment -->
+<div class="modal fade" id="viewDetailsTableAssessment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tabla de Valoración Física</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <div>
+
+          <img src="https://actitud10x.com/img/Tanita-Composicion-Corporal.jpg" class="img-fluid rounded-top" alt="">
+
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+</body>

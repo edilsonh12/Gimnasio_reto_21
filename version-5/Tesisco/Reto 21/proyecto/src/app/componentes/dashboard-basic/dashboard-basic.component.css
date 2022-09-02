@@ -1,0 +1,287 @@
+
+body{
+    overflow-x: hidden;
+}
+
+.ver{
+  padding: 12px 12px 0 50px;
+}
+
+.linea{
+    width:"100%";
+    background: black;
+}
+
+.table thead{
+  background-color: #ffee00;
+  text-align: center;
+}
+
+.table tr:hover{
+  background: #0000005d;
+  color: #ffffff;
+}
+.t1{
+    padding: 0 50px 10px 0;
+}
+.canvas{
+  width:700px;
+  height:400px;
+}
+.tabla{
+ padding: 0.5em;
+}
+.texto{
+  padding: 20px;
+}
+
+.btn{
+    color: white;
+    text-decoration: none;
+  }
+  
+  .btn:hover{
+    background: yellow;
+    color: black;
+  }
+  .todo{
+    background: black;
+    align-items: center;
+  }
+
+.card {
+  align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #000000;
+    border-radius: 8px;
+    z-index: 1;
+   }
+   
+   .tools {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+   }
+   
+   .circle {
+    padding: 0 4px;
+   }
+   
+   .box {
+    display: inline-block;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    border-radius: 50%;
+   }
+   
+   .red {
+    background-color: #ffffff;
+   }
+   
+   .yellow {
+    background-color: #ffee00;
+   }
+   
+   .green {
+    background-color: #ff0800;
+   }
+
+   .grafica{
+    width: 100%; 
+    padding: 0 12px 0 0;
+   }
+.btimc {
+  cursor: pointer;
+  font-weight: 100;
+  font-family: Helvetica,"sans-serif";
+  transition: all .2s;
+  padding: 5px 9px;
+  border-radius: 100px;
+  background: #ffee00;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  text-decoration: none;
+  color:#000000;
+}
+
+.btimc:hover {
+  background: #ffffff;
+  color: #000000;
+  transition: transform .3s ease-in-out;
+}
+
+.btimc > svg {
+  width: 25px;
+  margin-left: 10px;
+  transition: transform .3s ease-in-out;
+}
+
+.btimc:hover svg {
+  transform: translateX(5px);
+}
+
+.btimc:active {
+  transform: scale(0.95);
+}
+
+.atras {
+  display: flex;
+  height: 3em;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffee004b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: rgb(255, 238, 1);
+ }
+ 
+ .atras > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+ }
+ 
+ .atras:hover > svg {
+  font-size: 1.2em;
+  transform: translateX(-5px);
+ }
+ 
+ .atras:hover {
+  box-shadow: 9px 9px 33px #fffb00, -9px -9px 33px #ffe601;
+  transform: translateY(-2px);
+ }
+
+ @media(max-width:1112px){
+  .ver{
+    padding: 20px 55px 0 55px;
+  }
+  .tabla{
+    padding: 0 100px 0 0;
+    overflow: scroll;
+  }
+ }
+
+ @media(max-width:1037px){
+  .canvas{
+    width:500px;
+    height:400px;
+  }
+ }
+   @media(max-width:998px){
+ .tabla{
+    overflow: scroll;
+ }
+
+}
+@media(max-width:886px){
+  .ver{
+    padding: 20px 15px 0 9px;
+  }
+  .card{
+    overflow: scroll;
+  }
+
+}
+@media(max-width:866px){
+  .ver{
+    padding: 20px 55px 0 9px;
+  }
+ }
+ @media(max-width:728px){
+  .ver{
+    padding: 20px 10px 0 8px;
+  }
+ }
+@media(max-width:575px){
+    .card1{
+        background: black;
+        align-items: center;
+        padding: 0 120px 0 120px;
+      }
+}
+@media(max-width:414px){
+  .t1{
+   padding: 12px 12px 0 12px;
+  }
+  .t2{
+    padding: 1em 0.6em 0 0.2em;
+  }
+  .ver{
+    padding: 20px 10px 0 25px;
+  }
+}
+@media(max-width:375px){
+  .t1{
+   padding: 12px 12px 0 12px;
+  }
+  .t2{
+    padding: 1em 0.6em 0 0.2em;
+  }
+  .ver{
+    padding: 20px 10px 0 20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btimc_red {
+  cursor: pointer;
+  font-weight: 100;
+  font-family: Helvetica,"sans-serif";
+  transition: all .2s;
+  padding: 5px 9px;
+  border-radius: 100px;
+  background: red;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.btimc_red:hover {
+  background: #fa6262;
+  color: #000000;
+  transition: transform .3s ease-in-out;
+}
+
+.btimc_red > svg {
+  width: 25px;
+  margin-left: 10px;
+  transition: transform .3s ease-in-out;
+}
+
+.btimc_red:hover svg {
+  transform: translateX(5px);
+}
+
+.btimc_red:active {
+  transform: scale(0.95);
+}

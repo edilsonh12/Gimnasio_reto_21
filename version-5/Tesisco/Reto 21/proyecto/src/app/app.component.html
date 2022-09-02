@@ -1,0 +1,310 @@
+<div *ngIf="!usuarioIsLogin; then menu1" ></div>
+
+<div *ngIf="state == 'primera'; then first_session"></div> <!--Primera sessión del Cliente-->
+<div *ngIf="state_recepcion == 'primera'; then primera_session_recepcion"></div> <!--Primera sessión de recepcion-->
+<div *ngIf="state_document == 'primera'; then sesssion_personal"></div> <!--Primera sessión de los roles que deben cargar documentos-->
+
+<div *ngIf="state_reset_password == 'reset'; then reset_password" ></div>
+
+
+
+<div *ngIf="role=='ad_i-dfg9op1_i/'; then Administrador" ></div>
+
+<div *ngIf="role=='en_i-dfg8op1_i/'; then Entrenador" ></div>
+
+<div *ngIf="role=='nt_i-dfg12op1_i2/'; then nutricion" ></div>
+
+<div *ngIf="role=='cli_i-dfg078op1_0i1/'; then Cliente"></div>
+
+<div *ngIf="role == 'rp_i-dfg458op1_i9/'; then recepcion"></div>
+
+
+
+
+
+<!----------------------    Menu Inicial o principal           --------------->
+
+
+<ng-template #menu1>
+
+  <app-menu></app-menu>
+  <router-outlet></router-outlet>
+
+</ng-template >
+
+
+<!-----------------------      Menu Administrador             ----------------->
+
+
+<ng-template #Administrador>
+
+<app-menu-admin></app-menu-admin>
+
+</ng-template>
+
+
+<!--------------------------------------     Menu Entrenador      ----------------------------------------->
+
+
+<ng-template #Entrenador>
+
+  <app-menu-entrenador></app-menu-entrenador>
+
+</ng-template>
+
+
+<!-------------------------------------    Menu Nutricionista     ------------------------------------------>
+
+<ng-template #nutricion>
+
+  <app-menu-nutricion></app-menu-nutricion>
+
+</ng-template>
+
+
+<!------------------------------------   Menu Recepción    ------------------------------------------------->
+
+
+<ng-template #recepcion>
+
+  <app-menu-recepcion></app-menu-recepcion>
+
+</ng-template>
+
+
+<!-------------------------------------   Menu Cliente       ------------------------------------------------>
+
+
+<ng-template #Cliente>
+
+<app-menu-cliente></app-menu-cliente>
+
+</ng-template>
+
+
+<!--------------------------------------- _Reset Password ----------------------------------->
+
+<ng-template #reset_password>
+
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-black">
+  <div class="container-logo bg-black text-blacl">
+    <a class="navbar-brand"href="#">
+      <img class="logo" src="data:image/png;base64,{{content}}" >logo del gimnasio 
+    </a>
+  </div>
+  <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse bg-black" id="navbarSupportedContent" style="width:300px">
+    <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
+
+
+      <button class="button2" (click)="backToInit()">Regresar</button>
+    </ul>
+  </div>
+  </nav>
+  <app-reset-password></app-reset-password> 
+
+</ng-template>
+
+
+<!------------------------------------------------------------------------------------------->
+
+
+
+<!------------------------------------ Menu de Registro de formulario --------------------------------------->
+
+<ng-template #first_session>
+
+    
+    <head>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-black">
+    <div class="container-logo bg-black text-blacl">
+      <a class="navbar-brand">
+        <img class="logo" src="data:image/png;base64,{{content}}" >logo del gimnasio 
+      </a>
+    </div>
+    <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse bg-black" id="navbarSupportedContent" style="width:300px">
+      <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{nombre}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: black;">
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="closeSession()">Cerrar Sesion</a></li>
+          </ul>
+        </li>
+        <button class="button2" (click)="finishActivateCuenta()">FINALIZAR</button>
+      </ul>
+    </div>
+    </nav>
+    <app-poll></app-poll>
+
+</ng-template>
+
+
+
+<!----------------------------------------------------------------------------------------------------------->
+
+
+<!---------------------------- Menu para registrar documentos del usuario ----------------------------------->
+
+<ng-template #sesssion_personal>
+
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-black">
+  <div class="container-logo bg-black text-blacl">
+    <a class="navbar-brand"href="#">
+      <img class="logo" src="data:image/png;base64,{{content}}" >logo del gimnasio 
+    </a>
+  </div>
+  <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse bg-black" id="navbarSupportedContent" style="width:300px">
+    <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{nombre}}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: black;">
+          <li><a class="dropdown-item" style="cursor: pointer;" (click)="closeSession()">Cerrar Sesion</a></li>
+        </ul>
+      </li>
+      <button class="button2" (click)="finishActivateCuenta()">FINALIZAR</button>
+    </ul>
+  </div>
+  </nav>
+  <app-documentos-personal></app-documentos-personal>
+
+
+</ng-template>
+
+
+<!------------------------------------------------------------------------------------------------->
+
+
+
+<!------------------- Primera session de recepcion --------------------------------------->
+
+<ng-template #primera_session_recepcion>
+
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-black">
+  <div class="container-logo bg-black text-blacl">
+    <a class="navbar-brand"href="#">
+      <img class="logo" src="data:image/png;base64,{{content}}" >logo del gimnasio 
+    </a>
+  </div>
+  <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse bg-black" id="navbarSupportedContent" style="width:300px">
+    <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{nombre}}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: black;">
+          <li><a class="dropdown-item" style="cursor: pointer;" (click)="closeSession()">Cerrar Sesion</a></li>
+        </ul>
+      </li>
+      <button class="button2" (click)="finishActivateCuenta()">FINALIZAR</button>
+    </ul>
+  </div>
+  </nav>
+  <app-poll-recepcion></app-poll-recepcion>
+
+</ng-template>
+
+
+
+<!---------------------------------------------------------------------------------------->
+
+
+
+
+<!-------------------------------------------------  Modal de inicio de sesión   ------------------>
+
+
+
+<div class="modal fade log" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" >
+    <div class="modal-content wrap-login100">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+  <div class="login100-form-title" style="background-image: url(assets/logo_negroo.png);  object-fit: cover;">
+    <h2 class="fw-bold text-center py-5 text-warning">Bienvenido </h2>
+  </div>
+<h1></h1>
+
+    <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="ingresar(loginForm.value)">
+
+
+        <div class="wrap-input100 " data-validate="Username is required">
+          <span class="label-input100">Correo</span>
+          <input class="input100" type="email" name="username" placeholder="Ingrese su correo" formControlName="correo" >
+        </div>
+
+        <div class="wrap-input100" data-validate = "Password is required">
+          <span class="label-input100">Contraseña</span>
+          <input matinput class="input100" type="password" name="pass" placeholder="Ingrese su Contraseña" formControlName="password">
+          <span>{{state_password}}</span>
+        </div>
+        <div class="flex-sb-m w-full p-b-30 " style="padding: 5px 0 5px 80px; ">
+          <div>
+            <a style="cursor: pointer;" class="txt1" (click)="goToResetPassword()" data-bs-dismiss="modal">
+              Olvidaste tu Contraseña
+            </a>
+          </div>
+        </div>
+        <div class="container-login100-form-btn" style="padding: 12px 0 0 80px;">
+          <button class="btn" data-bs-dismiss="modal" type="submit"> 
+            Ingresar
+          </button>
+        </div>
+  
+
+    </form>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

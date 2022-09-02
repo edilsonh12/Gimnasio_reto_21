@@ -1,0 +1,558 @@
+<body>
+  <div class="ver2">
+    <div class="contenedor">
+    <div class="cabecera">
+        <div class="ver" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+        <h1 class="titulo">USUARIOS</h1>
+        <h1 class="titulo2">RIOS</h1>
+    </div>
+    </div>
+    <div class="container">
+      <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#nuevo">
+        <div class="add-icon"></div>
+        <div class="btn-txt">Agregar</div>
+    </button>
+        <div class="centro">
+                <input type="text" class="buscar" placeholder="Buscar"  name="filtro" [(ngModel)]="filtro"> 
+          </div>
+          <div class="cont">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Documento</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">plan</th>
+          <th scope="col">Estado</th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+          <th scope="col">Acciones</th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+          <th scope="col"><span style="color: transparent;"> acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let list of listAllClient | clientes:filtro | paginate: { id: 'client' , itemsPerPage: 10, currentPage: p }">
+          <th scope="row">{{list.documento}}</th>
+          <td>{{list.nombres + ' ' + list.primer_apellido + ' ' + list.segundo_apellido}}</td>
+          <td><button class="btimc" data-bs-toggle="modal" data-bs-target="#manplan" (click)="searchPlanes(list.id_suscripcion,list.documento)">
+            <span> {{list.titulo_suscripcion}} </span>
+            <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+            </svg>
+          </button></td>
+          <td><span class="{{list.nombre_cuenta}}"></span></td>
+          <td> <a class="ic" (click)="updateStateUsers(list.nombre_cuenta,list.documento)"><img class="icono" src="https://img.icons8.com/ios-glyphs/30/000000/change--v1.png" width="35%"/></a></td>
+          <td><a class="ic" data-bs-toggle="modal" data-bs-target="#persona" (click)="searchPerfilUser(list.documento)"><img class="icono" src="https://img.icons8.com/ios-glyphs/60/000000/edit--v1.png" width="35%"/></a></td>
+          <td><a class="ic" data-bs-toggle="modal" data-bs-target="#plan" (click)="assingDocumentoAndValidateDate(list.documento)"><img class="icono" src="https://img.icons8.com/ios-filled/50/000000/money-circulation.png" width="35%"/></a></td>
+          <td><a class="ic" data-bs-toggle="modal" data-bs-target="#perfila" (click)="searchPerfilUser(list.documento)"><img class="icono" src="https://img.icons8.com/ios-glyphs/30/000000/view-file.png"  width="30%"/></a></td>
+          <td><a class="ic" data-bs-toggle="modal" data-bs-target="#asis" (click)="assingDocument(list.documento)"><img class="icono" src="https://img.icons8.com/ios-filled/50/000000/ingredients-list.png" width="30%" /></a></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+
+    <pagination-controls id="client" (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+    </div>
+    </div>
+
+  </div>
+
+    <!--modal de un nuevo usuario -->
+    <div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Nuevos Datos Personales</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="createNewUser" (ngSubmit)="createNewUsers(createNewUser.value)">
+
+                <div class="row">
+                  <div class="col">
+                      <div class="mb-4 ">
+                        <label for="titulo" class="form-label ">Documento</label>
+                        <input type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="documento">
+                      </div>
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Nombres</label>
+                        <input type="text" class="form-control" required="required" name="descripcion" formControlName="nombres">
+                      </div>
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Segundo Apellido</label>
+                        <input type="text" class="form-control" required="required" name="descripcion" formControlName="segundo_apellido">
+                      </div>
+
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Número de teléfono</label>
+                        <input type="text" class="form-control" required="required" name="descripcion" formControlName="numero_telefono">
+                      </div>
+
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Genero</label><br>
+                        <select  name="categoria"  class="categoria" id="categoria" formControlName="genero">
+                          <option selected value="0"> Seleccione </option>
+                          <option *ngFor="let gender of listGender" value="{{gender.id_genero}}">{{gender.nombre_tipo_genero}}</option>
+                      </select>
+                      </div>
+
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Tipo de Valoración</label><br>
+                        <select  name="categoria"  class="categoria" id="categoria" formControlName="id_valoracion_tipo">
+                          <option selected value="0"> Seleccione </option>
+                          <option *ngFor="let type of listTypeAssessment" value="{{type.id_valoracion}}">{{type.nombre_valoracion}}</option>
+                      </select>
+                      </div>
+
+
+
+                  </div>
+                  <div class="col">
+                    <div class="mb-4">
+                      <label for="descripcion" class="form-label text-center">Tipo de Documento</label>
+                      <select  name="categoria"  class="categoria" id="categoria" formControlName="tipo_de_documento">
+                        <option selected value="0"> Seleccione </option>
+                        <option *ngFor="let document of listTypeDocument" value="{{document.id_documento}}">{{document.nombre_tipo_documento}}</option>
+                    </select>
+                    </div>
+                    <div class="mb-4">
+                      <label for="descripcion" class="form-label text-center">Primer Apellido</label>
+                      <input type="text" class="form-control" required="required" name="descripcion" formControlName="primer_apellido" >
+                    </div>
+                    <div class="mb-4">
+                      <label for="descripcion" class="form-label text-center">Correo</label>
+                      <input type="email" class="form-control" required="required" name="descripcion" formControlName="correo">
+                    </div>
+                    <div class="mb-4">
+                      <label for="descripcion" class="form-label text-center">Fecha de Nacimiento</label>
+                      <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_nacimiento" >
+                    </div>
+
+                    <div class="mb-4">
+                      <label for="descripcion" class="form-label text-center">Plan a contratar</label><br>
+                      <select  name="categoria"  class="categoria" id="categoria" formControlName="id_suscripcion_pago" (change)="changueDateFormat($event)">
+                        <option selected value="0"> Seleccione </option>
+                        <option *ngFor="let suscription of listSuscription" value="{{suscription.id_suscripcion}}">{{suscription.titulo_suscripcion}}</option>
+                    </select>
+                    </div>
+
+                    <div class="mb-4">
+                      <label for="descripcion" class="form-label text-center">Fecha de finalización del plan</label>
+                      <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_de_fin" [(ngModel)]="date_temp" readonly>
+                      <small id="helpId" class="form-text text-muted">La fecha de inicio se toma automaticamente del día actual.</small>
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-warning">Registrar</button>
+                </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Modal Asistencia -->
+    <div class="modal fade" id="asis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Asistencia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="formRegisterAssissment" (ngSubmit)="registerAssissment(formRegisterAssissment.value)">
+
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Digite la Temperatura</label>
+                <input type="text" class="form-control" id="recipient-name" formControlName="temperatura">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label" style="color: red;"><img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="30px" />Recuerde que la Fecha y Hora de Ingreso seran tomadas automaticamente<img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="30px"/></label>
+              </div>
+            
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Registrar</button>
+              </div>
+            
+            
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+  <!--Modal Editar-->
+    <div class="modal fade" id="persona" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Actualizacion Datos Personales</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" *ngFor="let list of perfil">
+
+            <form [formGroup]="formUpdateDateUser" (ngSubmit)="updateInfoUser(formUpdateDateUser.value)">
+
+                <input type="hidden" [(ngModel)]="list.documento" formControlName="documento">
+                  <div class="row">
+                    <div class="col">
+                        <div class="mb-4 ">
+                          <label for="titulo" class="form-label ">Nombres</label>
+                          <input type="text" class="form-control align-items-center" required="required" name="titulo" [(ngModel)]="list.nombres" formControlName="nombres">
+                        </div>
+                        <div class="mb-4">
+                          <label for="descripcion" class="form-label text-center">Segundo Apellido</label>
+                          <input type="text" class="form-control" required="required" name="descripcion" [(ngModel)]="list.segundo_apellido" formControlName="segundo_apellido">
+                        </div>
+                        <div class="mb-4">
+                          <label for="descripcion" class="form-label text-center">Telefono</label>
+                          <input type="text" class="form-control" required="required" name="descripcion" [(ngModel)]="list.numero_telefono" formControlName="numero_telefono">
+                        </div>
+                    </div>
+                    <div class="col">
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Primer Apellido </label>
+                        <input type="text" class="form-control" required="required" name="descripcion" [(ngModel)]="list.primer_apellido" formControlName="primer_apellido">
+                      </div>
+                      <div class="mb-4">
+                        <label for="descripcion" class="form-label text-center">Correo</label>
+                        <input type="email" class="form-control" required="required" name="descripcion" [(ngModel)]="list.correo" formControlName="correo">
+                      </div>
+                    </div>
+                  </div>
+      
+      
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
+                  </div>
+
+            </form>
+
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- Modal perfil -->
+   <div class="modal fade" id="perfila" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="border-radius: 50%;">
+      <div class="modal-content">
+        <div class="modal-body" *ngFor="let perfil of perfil">
+                  <div class="d-flex text-black">
+                    <div class="flex-shrink-0">
+                      <img src="data:image/png;base64,{{arrayBufferToBase64(perfil.foto_personal.data)}}"
+                        alt="Generic placeholder image" class="img-fluid">
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1">Nombre</p>
+                          <p class="mb-0">{{perfil.nombres + ' ' + perfil.primer_apellido + ' ' + perfil.segundo_apellido}}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                      style="background-color: #efefef;">
+                      <div>
+                        <p class="small text-muted mb-1">Edad</p>
+                        <p class="mb-0">{{perfil.edad.years}} Años</p>
+                      </div>
+                    </div>
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef;">
+                        <div>
+                          <p class="small text-muted mb-1">correo</p>
+                          <p class="mb-0">{{perfil.correo}}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                      style="background-color: #efefef;">
+                      <div>
+                        <p class="small text-muted mb-1">Numero de celular</p>
+                        <p class="mb-0">{{perfil.numero_telefono}}</p>
+                      </div>
+                    </div>
+                      <div class="d-flex pt-1">
+                        <button class="atras flex-grow-1" data-bs-dismiss="modal">
+                          <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                          <span>Atras</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--Modal Editar Plan-->
+  <div class="modal fade" id="plan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Actualizacion de Planes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <mat-stepper orientation="vertical">
+            <mat-step>
+              <ng-template matStepLabel>Cambio del plan Contratado</ng-template>
+              <ng-template matStepContent>
+
+                    <div class="row">
+
+                      <div *ngIf="state_update_plans == 'disponible'; then disponible_"></div>
+                      <div *ngIf="state_update_plans == 'no_disponible'; then no_disponible_"></div>
+
+                      <ng-template #disponible_>
+
+                        <form [formGroup]="formUpdatePlans" (ngSubmit)="updatePlans(formUpdatePlans.value)">
+
+                            <div class="mb-4 selectdiv">
+                              <span>Selecciona un nuevo plan</span><hr>
+                                <select  name="categoria"  class="categoria" id="categoria" formControlName="id_suscripcion_pago" (change)="changueDateFormatUpdate($event)">
+                                    <option selected value="0"> Seleccione </option>
+                                    <option *ngFor="let suscription of listSuscription" value="{{suscription.id_suscripcion}}">{{suscription.titulo_suscripcion}}</option>
+                                </select>
+                              </div>
+      
+                              <div class="mb-4">
+                                <label for="descripcion" class="form-label text-center">Fecha de finalización del plan</label>
+                                <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_de_fin" [(ngModel)]="date_temp_update" readonly>
+                                <small id="helpId" class="form-text text-muted">La fecha de inicio se toma automaticamente del día actual.</small>
+                              </div>
+
+                              <button class="sus" type="submit">
+                                <div class="svg-wrapper-1">
+                                  <div class="svg-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                      <path fill="none" d="M0 0h24v24H0z"></path>
+                                      <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                    </svg>
+                                  </div>
+                                </div>
+                                <span>Actualizar</span>
+                              </button>
+
+                        </form>  
+
+                      </ng-template>
+
+                      <ng-template #no_disponible_>
+
+                        <div class="mb-4 selectdiv">
+                          <span>Actualmente no es posible actualizar el plan contratado, ya que se encuentra uno vigente.</span><hr>
+                        </div> 
+
+                      </ng-template>
+
+                    </div>
+                   
+   
+
+
+                  
+
+              </ng-template>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Cambio del tipo de Valoracion</ng-template>
+              <ng-template matStepContent>
+                
+                <form [formGroup]="formUpdateTypeAssessment" (ngSubmit)="updateTypeAssessment(formUpdateTypeAssessment.value)">
+
+                      <div class="row">
+
+                        <div class="mb-4 selectdiv">
+                          <span>Selecciona un nuevo tipo de valoracion</span><hr>
+                            <select  name="categoria"  class="categoria" id="categoria">
+                                <option selected value="0"> Seleccione </option>
+                                <option *ngFor="let type of listTypeAssessment" value="{{type.id_valoracion}}">{{type.nombre_valoracion}}</option>
+                            </select>
+                      </div>
+      
+                      </div>
+                    
+                        <button class="sus">
+                          <div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <span>Actualizar</span>
+                        </button>
+
+                </form>
+
+                  
+              </ng-template>
+            </mat-step>
+          </mat-stepper>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--Modal actualizar fecha mantener plan-->
+  <div class="modal fade" id="manplan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Actualizacion Fecha de pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <strong style="text-align: center;">Bienvenido. <br>
+           <p style="color: red;"> <img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="30px" /> Recuerda que la fecha de inicio sera tomada automaticamente y que el plan: {{nameSuscription}} con una duración de {{formatDurationTime(duracion_plan)}} y tiene un costo de: ${{costSuscription}} <img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="30px" /></p> 
+            </strong>
+
+
+            <div *ngIf="state_fecha_pago == 'al_dia'; then estado_correcto"></div>
+            <div *ngIf="state_fecha_pago == 'casi'; then limite"></div>
+            <div *ngIf="state_fecha_pago == 'sin'; then sinPagar"></div>
+
+            <ng-template #estado_correcto>
+
+                <div class="col">
+                    <div class="mb-4 ">
+                      <label for="descripcion" class="form-label text-center">Actualmente te encuentras al día en tus pagos.</label>
+                    </div>
+                </div>
+
+            </ng-template>
+
+            <ng-template #limite>
+
+                  <form [formGroup]="formUpdatePago" (ngSubmit)="updateTimePago(formUpdatePago.value)">
+
+                    <input type="hidden" [(ngModel)]="documento_usuario" formControlName="documento_usuarios_pago">
+                    <div class="col">
+                      <div class="mb-4 ">
+                        <label for="descripcion" class="form-label text-center">Fecha de Finalizacion</label>
+                        <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_de_fin" [(ngModel)]="date_temp_update_pago" readonly>
+                        <small id="helpId" class="form-text text-muted">Ten en cuenta que hoy es el último día de vigencia de pago.</small>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+
+                      <button type="submit" class="btn btn-warning">Actualizar</button>
+          
+                    </div>
+
+                  </form>
+
+            </ng-template>
+
+            <ng-template #sinPagar>
+
+              <form [formGroup]="formUpdatePago" (ngSubmit)="updateTimePago(formUpdatePago.value)">
+
+                <input type="hidden" formControlName="documento_usuarios_pago" [(ngModel)]="documento_usuario">
+                <div class="col">
+                    <div class="mb-4 ">
+                      <label for="descripcion" class="form-label text-center">Fecha de Finalizacion</label>
+                      <input type="date" class="form-control align-items-center" required="required" name="titulo" formControlName="fecha_de_fin" [(ngModel)]="date_temp_update_pago" readonly>
+                      <small id="helpId" class="form-text text-muted">La vigencia del pago se encuentra vencido, actualice para evitar el bloqueo de la cuenta.</small>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                  <button type="submit" class="btn btn-warning">Actualizar</button>
+      
+                </div>
+               
+              </form>  
+
+            </ng-template>
+
+
+
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+    </body>

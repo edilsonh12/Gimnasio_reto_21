@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Koulen&family=Permanent+Marker&family=Signika+Negative:wght@700&display=swap');
+
+body{
+	font-family: 'Permanent Marker', cursive;
+	background-color: rgb(7, 7, 7);
+	font-size: 1.2rem;
+	line-height: 1.6em;
+	margin: 0;
+}
+html{
+	scroll-behavior: smooth;
+  }
+.button2 {
+	margin-top: 18px;
+	background-color: rgb(255, 230, 0);
+	border: none;
+	padding: 1rem;
+	font-size: 1rem;
+	width: 9em;
+	height: 1.5cm;
+	border-radius: 1rem;
+	color: rgb(253, 252, 252);
+	cursor: pointer;
+   }
+   
+   .button2:active {
+	color: rgb(7, 7, 7);
+	box-shadow: 0 0.2rem #dfd9d9;
+	transform: translateY(0.2rem);
+   }
+   
+   .button2:hover:not(:disabled) {
+	background: linear-gradient(-45deg,#f83b02, #f5dd00, #ffee07, #f7d200);
+	color: rgb(5, 5, 5);
+	text-shadow: 0 0.1rem #bcb4b4;
+   }
+   
+   .button2:disabled {
+	cursor: auto;
+	color: grey;
+   }
+
+nav{
+    background: #070707;
+    height: 80px;
+    width: 100%;
+}
+
+.container-logo{
+    height: 95px;
+    width: 10%;
+}
+
+
+nav ul{
+    float: right;
+    margin-right: 20px;
+}
+.nav-item{
+    line-height: 80px;
+    margin: 0 5px 0 70px;
+}
+.dropdown-item{
+    line-height: 20px;
+    margin: 0 5px 0 2px;
+}
+nav ul .button2{
+	margin: 20px 20px 0 0;
+}
+nav ul li a{
+    color: rgb(255, 255, 255);
+	display: block;
+	padding: 0.5rem 0.5rem;
+	transition: all 0.4s linear;
+	border-radius: 5px;
+}
+
+nav ul li a:hover{
+    background: #fffb03;
+	color: #000000;
+    transition: .5s;
+}
+
+.header{
+	background:transparent;
+	color: white;
+	padding: 0.4rem 0;
+}
+.header a{
+	color: white;
+	text-decoration: none;
+}
+
+
+.collapse{
+	background-color: #070707;
+	z-index: 2000;
+	width: 500px;
+}
+
+.collapse .nav-link, .collapse .button2{
+    margin: 0 0 0 -70px;
+}
+
+.logo{
+	width:50px;
+	height:50px;
+}
+.navbar-brand{
+	display: flex;
+	margin-top: 25px;
+	margin-left: 12px;
+}
+.wrap-input100 {
+	width: 100%;
+	position: relative;
+	padding: 5px;
+  }
+  
+.limiter {
+	width: 100%;
+	margin: 0 auto;
+  }
+  
+  .container-login100 {
+	width: 100%;  
+	min-height: 100vh;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	background: #ebeeef;
+  }
+  
+  
+  .wrap-login100 {
+	width: 670px;
+	background: #fff;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .label-input100 {
+	font-family: Poppins-Regular;
+	font-size: 15px;
+	color: #808080;
+	line-height: 1.2;
+	text-align: right;
+  
+	position: absolute;
+	top: 14px;
+	left: -105px;
+	width: 80px;
+  
+  }
+  
+  /*---------------------------------------------*/
+  .input100 {
+	background: white;
+	border-radius: 20px;
+	width: 100%;
+	border:1px solid rgb(0, 0, 0);
+	outline: none; 	
+	font-family: Poppins-Regular;
+	font-size: 15px;
+  }
+  
+
+  /*---------------------------------------------*/
+  .input100 {
+	height: 45px;
+  }
+  
+  
+  .input100:focus + .focus-input100::before {
+	width: 100%;
+  }
+
+.log{
+	position: fixed;
+	z-index: 2000; 
+}
+.login100-form {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 43px 88px 93px 190px;
+  }
+  
+.login100-form-title {
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+  
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+  
+	padding: 10px 15px 10ppx 15px;
+  }
+  .login100-form-title::before {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(5, 6, 7, 0.7);
+  }
+  
+  .container-login100-form-btn {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+  }
+  
+.btn {
+	position: relative;
+	font-size: 17px;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 1em 2.5em;
+	display: inline-block;
+	border-radius: 6em;
+	transition: all .2s;
+	border: none;
+	font-family: inherit;
+	font-weight: 500;
+	color: black;
+	background-color: rgb(255, 238, 0);
+   }
+   
+   .btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btn:active {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btn::after {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all .4s;
+   }
+   
+   .btn::after {
+	background-color: rgb(255, 251, 0);
+   }
+   
+   .btn:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+   }
+  
+@media(max-width:990px){
+	.btn-close{
+		margin-left: 397px;
+		padding-top: 12px;
+	}
+	.container-logo{
+		margin-top: -12px;
+		margin-left: 18px;
+		height: 15px;
+		width: 50%;
+	}
+	.navbar-brand{
+		margin-top: -10px;
+	}
+	.logo{
+    width:50px;
+	height:50px;
+	}
+
+}
+@media(max-width:730px){
+	.btn-close{
+		margin-left:10px;
+		padding-top: 12px;
+	}
+	.container-logo{
+		margin-top: -12px;
+		margin-left: 18px;
+		height: 15px;
+		width: 50%;
+	}
+	.navbar-brand{
+		margin-top: -10px;
+	}
+	.logo{
+    width:50px;
+	height:50px;
+	}
+	nav ul li{
+		line-height: 80px;
+		margin: 0 1px;
+	}
+	nav ul li a{
+		color: rgb(255, 255, 255);
+		display: block;
+		padding: 0.01rem 0.01rem;
+		transition: all 0.4s linear;
+		border-radius: 5px;
+	}
+	
+	li a:hover{
+		background: #fffb03;
+		transition: .5s;
+	}
+}
+@media (max-width: 576px) {
+	.login100-form {
+	  padding: 43px 15px 57px 117px;
+	}
+  }
+  
+  @media (max-width: 480px) {
+	.login100-form {
+	  padding: 43px 15px 57px 15px;
+	}
+  
+	.label-input100 {
+	  text-align: left;
+	  position: unset;
+	  top: unset;
+	  left: unset;
+	  width: 100%;
+	  padding: 0 5px;
+	}
+  }
+  

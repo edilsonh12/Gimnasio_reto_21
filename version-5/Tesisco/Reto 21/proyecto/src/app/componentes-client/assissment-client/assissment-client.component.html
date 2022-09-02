@@ -1,0 +1,189 @@
+<body>
+    <div class="calendario ">
+        <div class="row ">
+            <div class="col d-lg-block">
+                <div class="contenedor">
+                    <div class="cabecera" *ngFor="let x of img">
+                        <div class="ver2" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+                        <h1 class="titulo">ASISTENCIA</h1>
+                        <h1 class="titulo2">ENCIA</h1>
+                    </div>
+                    </div>
+                  <div class="col d-lg-block ver">
+                    <button class="icon-btn add-btn" data-bs-toggle="modal" data-bs-target="#registrar">
+                        <div class="add-icon"></div>
+                        <div class="btn-txt">Registrar</div>
+                    </button>
+                    <div class="row text-center">
+                        <div class="col">
+                            <div class="btn-group">
+                                <div class="btn" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                                  <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/circled-chevron-left.png"/></a>
+                                </div>
+                                <div class="btn" mwlCalendarToday [(viewDate)]="viewDate">
+                                  <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/today.png" width="150px" height="150px"/></a>
+                                </div>
+                                <div class="btn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" style="background-color: transparent;">
+                                    <a class="ic"><img class="icono" src="https://img.icons8.com/ios-filled/100/000000/circled-chevron-right.png"/></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                          <h2>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
+                        </div>
+                        <div class="col">
+                          <div class="btn-group">
+                              <div class="btn btn-dark" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+                                  Mes
+                              </div>
+                              <div class="btn btn-warning" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+                                  Semana
+                              </div>
+                              <div class="btn btn-dark btn-dark2" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+                                  Dia
+                              </div>
+                          </div> 
+                      </div>
+                    
+                    </div>
+                    
+                    <div [ngSwitch]="view">
+                    
+                        <mwl-calendar-month-view  style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#viewInformation"
+                        *ngSwitchCase="CalendarView.Month"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        (dayClicked)="dayClicked($event.day)"
+                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)"
+                      >
+                      </mwl-calendar-month-view>
+  
+                      <mwl-calendar-week-view style="cursor: pointer;"
+                        *ngSwitchCase="CalendarView.Week"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        [eventSnapSize]="15"
+                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)"
+                      >
+                      </mwl-calendar-week-view>
+  
+                      <mwl-calendar-day-view style="cursor: pointer;"
+                        *ngSwitchCase="CalendarView.Day"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)"
+                      >
+                      </mwl-calendar-day-view>
+                      </div>
+                  </div>
+    
+    </div>
+    </div>
+    </div>
+    <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
+    <div class="modal fade" id="registrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Asistencia</h5>
+              <i type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </i>
+            </div>      
+            <div class="modal-body">
+
+              <form [formGroup]="createAssistForm" (ngSubmit)="registeredAssist(createAssistForm.value)">
+
+                <div class="mb-4 ">
+                  <label for="titulo" class="form-label ">Temperatura</label>
+                  <input type="text" class="form-control align-items-center" required="required" name="titulo" placeholder="Temperatura" formControlName="temperetura">
+                </div>
+                <div class="mb-4">
+                
+                  <div>
+                    <p style="color: red; font-size: 15px; padding: 15px 0 0 0;"><img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/>La Fecha y Hora seran tomadas automaticamente<img src="https://img.icons8.com/tiny-color/16/undefined/experimental-error-tiny-color.png" width="12px"/></p>
+                  </div>  
+
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Registrar</button>
+                </div>
+
+
+              </form>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="viewInformation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Información del día: {{date_selected}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div *ngIf="state_temp == 'noAsistencia'; then noAsistencia"></div>
+        <div *ngIf="state_temp == 'asistencia'; then asistencia"></div>
+        
+        <ng-template #asistencia>
+
+          <div *ngFor="let list of listData">
+
+            <div class="mb-3">
+              <label for="" class="form-label">Fecha de la Asistencia:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" readonly value="{{list.fecha}}">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Hora de la Asistencia: </label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" readonly value="{{list.hora}}">
+            </div>
+
+
+          </div>
+
+        </ng-template>
+
+        <ng-template #noAsistencia>
+
+          <div class="mb-3">
+            <label for="" class="form-label"> 
+              <small id="helpId" class="form-text text-muted">En la fecha seleccionada no se encuentan registrada asistencia.</small> 
+            </label>
+          </div>
+
+        </ng-template>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

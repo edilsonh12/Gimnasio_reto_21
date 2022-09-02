@@ -1,0 +1,142 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+<div class="container">
+  <div class="contenedor">
+    <div class="cabecera">
+        <div class="ver" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M208.08,0.00 C152.69,67.09 262.02,75.98 200.80,150.00 L0.00,150.00 L0.00,0.00 Z" style="stroke: none; fill: rgb(251, 255, 0);"></path></svg></div>
+        <h1 class="titulo">PLANES</h1>
+        <h1 class="titulo2">OFERTADOS</h1>
+    </div>
+    </div>
+  <H1 style="color: red;"><img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="50"/>LA INFORMACION VISTA ACONTINUACION SE VERA REFLEJADA EN LA PAGINA PRINCIPAL<img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="50"/></H1>
+  <div style="padding:.8em"><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="icon-btn add-btn">
+    <div class="add-icon"></div>
+    <div class="btn-txt">Agregar</div>
+</button></div>
+<div class="tabla">
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th scope="col">Titulo</th>
+    <th scope="col">Descripcion</th>
+    <th scope="col">Duración</th>
+    <th scope="col">Precio</th>
+    <th scope="col">Accion</th>
+  </tr>
+</thead>
+<tbody>
+
+
+  <tr *ngFor="let list of listPlans | paginate: { itemsPerPage: 10, currentPage: p }">
+    <td>{{list.titulo_suscripcion}}</td>
+    <td>{{list.descripcion}}</td>
+    <td>{{formatDurationTime(list.duracion)}}</td>
+    <td>{{list.precio}}</td>
+    <td><a class="ic"><img class="icono" (click)="selectOnePlan(list.id_suscripcion)" data-bs-toggle="modal" data-bs-target="#updatePlans" style="cursor: pointer;" src="https://img.icons8.com/ios-glyphs/30/undefined/edit--v1.png"/></a></td>
+  </tr>
+
+
+</tbody>
+</table>
+<pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Prev" nextLabel="Next"></pagination-controls>
+</div>
+</div>
+</body>
+
+<!-- Modal para registrar Plan -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Plan de Oferta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form  style="padding: .9em; " [formGroup]="planForm" (ngSubmit)="createPlans(planForm.value)" >
+          <div class="mb-4 ">
+            <label for="plan" class="form-label ">Titulo:</label>
+            <input type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="titulo_suscripcion">
+          </div>
+          <div class="mb-4">
+            <label for="descripcion" class="form-label ">Descripcion:</label>
+            <textarea type="text" class="form-control align-items-center" required="required" name="descripcion" formControlName="descripcion"></textarea>
+          </div>
+          <div class="mb-4 ">
+            <label for="precio" class="form-label ">Precio:</label>
+            <input type="number" class="form-control align-items-center" required="required" name="precio" step="any" formControlName="precio" >
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Duración:</label>
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" formControlName="duracion">
+            <small id="helpId" class="form-text text-muted">La duración será tomada como meses.</small>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Registrar</button>
+          </div>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal para actualizar planes -->
+<div class="modal fade" id="updatePlans" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Información</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form  style="padding: .9em; " [formGroup]="updatePlanForm" (ngSubmit)="updatePlan(updatePlanForm.value)" >
+
+          <div *ngFor="let one of onePlan">
+
+            <input type="hidden" [(ngModel)]="one.id_suscripcion" formControlName="id_suscripcion">
+
+            <div class="mb-4 ">
+              <label for="plan" class="form-label ">Titulo:</label>
+              <input type="text" class="form-control align-items-center" required="required" name="titulo" formControlName="titulo_suscripcion" [(ngModel)]="one.titulo_suscripcion">
+            </div>
+            <div class="mb-4">
+              <label for="descripcion" class="form-label ">Descripcion:</label>
+              <textarea type="text" class="form-control align-items-center" required="required" name="descripcion" formControlName="descripcion" [(ngModel)]="one.descripcion"></textarea>
+            </div>
+            <div class="mb-4 ">
+              <label for="precio" class="form-label ">Precio:</label>
+              <input type="number" class="form-control align-items-center" required="required" name="precio" step="any" formControlName="precio" [(ngModel)]="one.precio">
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Duración:</label>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" formControlName="duracion" [(ngModel)]="one.duracion">
+              <small id="helpId" class="form-text text-muted">La duración será tomada como meses</small>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" data-bs-dismiss="modal"  class="btn btn-warning">Actualizar</button>
+          </div>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

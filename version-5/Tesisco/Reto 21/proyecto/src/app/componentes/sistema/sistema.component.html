@@ -1,0 +1,247 @@
+<body>
+  <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw2MzQ2fDB8MXxzZWFyY2h8Mnx8Z3ltfGVufDB8fHx8MTY0OTM3MzkyMg&ixlib=rb-1.2.1&q=80&w=1080" alt="">
+  <table>
+  <div class="card" style="width: 50rem;">
+      <div class="card-body">
+          <tr>
+        <th><h1 class="card-title">Mision</h1></th>
+      </tr>
+
+      <tr *ngFor="let x of mision">
+       <td><p class="card-text">{{x.mision}}</p></td>
+      </tr>
+
+      <tr>
+        <td><a data-bs-toggle="modal" data-bs-target="#updateMision" (click)="updateData()" class="btn btn-warning">Editar</a></td>
+      </tr>
+      </div>
+    </div>
+    </table>
+    <table class="tabla2">
+    <div class="card" style="width: 50rem;">
+      <div class="card-body">
+          <tr>
+        <th><h1 class="card-title">Vision</h1></th>
+      </tr>
+
+      <tr *ngFor="let x of vision">
+       <td><p  class="card-text">{{x.vision}}</p></td>
+      </tr>
+
+      <tr>
+        <td><a data-bs-toggle="modal" data-bs-target="#updateVision" (click)="updateData()" class="btn btn-warning">Editar</a></td>
+      </tr>
+      </div>
+    </div>
+    </table>
+    <table class="tabla3">
+    <div class="card" style="width: 50rem;">
+      <div class="card-body">
+          <tr>
+        <th><h1 class="card-title">Objetivos</h1></th>
+      </tr>
+
+      <tr *ngFor="let x of objetivo">
+       <td><p class="card-text"></p>{{x.objetivos}}</td>
+      </tr>
+
+      <tr>
+        <td><a data-bs-toggle="modal" data-bs-target="#updateObjetivo"  (click)="updateData()"   class="btn btn-warning">Editar</a></td>
+      </tr>
+      </div>
+    </div>
+  </table>
+  <table class="tabla4">
+      <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <tr>
+          <th><h1 class="card-title">Valores Institucionales</h1></th>
+        </tr>
+
+        <tr *ngFor="let x of values">
+         <td><p class="card-text">{{x.valores}}</p></td>
+        </tr>
+
+        <tr>
+          <td><a  data-bs-toggle="modal" data-bs-target="#updateValues" (click)="updateData()" class="btn btn-warning">Editar</a></td>
+        </tr>
+        </div>
+      </div>
+    </table>
+    <table class="tabla5">
+      <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <tr>
+          <th><h1 class="card-title">Logo</h1></th>
+        </tr>
+
+        <tr *ngFor="let x of img">
+         <td>  <img src="data:image/png;base64,{{content}}" width="400px" alt=""> </td>
+        </tr>
+
+        <tr>
+          <td><a data-bs-toggle="modal" data-bs-target="#updateImg" (click)="updateData()" class="btn btn-warning">Editar</a></td>
+        </tr>
+        </div>
+      </div>
+    </table>
+</body>
+
+
+<!---------------------   Modal para actualizar Mision ------------------------->
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateMision" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Misión</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="misionForm" (ngSubmit)="updateMision(misionForm.value)">
+          <div *ngFor="let x of mision">
+
+            <textarea type="text" class="form-control align-items-center" required="required" name="usuario" style="max-width: 100%; height: 160px;" formControlName="mision" [ngModel]="x.mision"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" data-bs-dismiss="modal" class="btn btn-warning">Actualizar</button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--------------------  Modal para actualizar vision ------------------------------>
+
+<div class="modal fade" id="updateVision" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="visionForm" (ngSubmit)="updateVision(visionForm.value)">
+          <div *ngFor="let x of vision">
+
+            <textarea type="text" class="form-control align-items-center" required="required" name="usuario" style="max-width: 100%; height: 160px;" formControlName="vision" [ngModel]="x.vision"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" data-bs-dismiss="modal" class="btn btn-warning">Actualizar</button>
+          </div>
+
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-------------------- Modal para actualiza objetivo  -------------->
+
+<div class="modal fade" id="updateObjetivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Objetivo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="objetivoForm" (ngSubmit)="updateObjetivo(objetivoForm.value)">
+          <div *ngFor="let x of objetivo">
+
+            <textarea type="text" class="form-control align-items-center" required="required" name="usuario" style="max-width: 100%; height: 180px;" formControlName="objetivos" [ngModel]="x.objetivos"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" data-bs-dismiss="modal"  data-bs-dismiss="modal" class="btn btn-warning">Actualizar</button>
+          </div>
+
+        </form>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!---------------- Modal para actualizar valores ----------------->
+<div class="modal fade" id="updateValues" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Valores</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <form [formGroup]="valuesForm" (ngSubmit)="updateValues(valuesForm.value)">
+          <div *ngFor="let x of values">
+
+            <textarea type="text" class="form-control align-items-center" required="required" name="usuario" style="max-width: 100%; height: 180px;" formControlName="valores" [ngModel]="x.valores"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" data-bs-dismiss="modal"  data-bs-dismiss="modal" class="btn btn-warning">Actualizar</button>
+          </div>
+
+        </form>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!------------------------ Modal para actualizar imagen -------------------->
+<div class="modal fade" id="updateImg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Logo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="updateData()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+          <div class="mb-4 ">
+            <label for=" modificar" class="form-label ">Editar</label>
+            <input type="file"  class="form-control align-items-center" accept="image/png"required="required" name="usuario" (change)="getImg($event)">
+            <small id="helpId" class="form-text text-muted">Solo se admiten imagenes con extención ".png"</small>
+          </div>
+
+          <label for=" modificar" class="form-label ">Imagen Seleccionada:</label> <img src="{{previewImg}}" width="350px;" style="padding-left: 100px; padding-bottom: 10px;" alt="">
+
+
+           <div class="d-grid b">
+            <input type="submit" class="btn btn-outline-warning" (click)="sendFile()" name="Editar" value="Editar">
+            </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

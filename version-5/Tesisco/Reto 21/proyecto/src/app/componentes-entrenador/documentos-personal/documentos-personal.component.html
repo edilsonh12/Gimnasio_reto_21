@@ -1,0 +1,313 @@
+<body>
+    <div class="text-center cuerpo">
+      <div class="ima far fa-4x mb-3 text-primary">
+        <img class="far fa-file-alt fa-4x mb-3 text-primary" src="assets/logo_negroo.png">
+      </div>
+      <div class="texto far mb-3 ">
+        <p>
+          <strong>Bienvenido a la familia</strong>
+        </p>
+        <p>
+          Antes de iniciar tu proceso, responde la siguiente encuesta.
+          <strong>Queremos brindarte el mejor servicio, por ende el como te encuentras de salud es muy importante para nosotros.</strong>
+        </p>
+      </div>
+    </div>
+
+
+
+    <mat-stepper>
+
+
+      <mat-step label="Documentacion y Certificacion" state="phone">
+        <div class="centro">
+        <mat-card class="card2">
+          <div class="row justify-content-md-center">
+
+
+            <form [formGroup]="formRegisteredDocument" (ngSubmit)="sendImg(formRegisteredDocument.value)">
+
+                  <div class="mb-3">
+                    <label for="" class="form-label">Titulo</label>
+                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Titulo" formControlName="titulo">
+                  </div>
+      
+                  <div>
+                    <label for="subcategoria" class="form-label s text-center">Documentos</label>
+                    <input type="file" class="form-control inputfile align-items-center" required="required" name="image" accept="image/png" (change)="getImg($event)">
+                    <p style="color: red;"> <img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="30px" /> Solo se permiten imagenes en formato .png Recuerda que en este apartado debes subir todos los documentos que te certifiquen como profesional (universitario,tecino, tecnologo,etc...) <img src="https://img.icons8.com/plasticine/100/000000/box-important--v1.png" width="30px" /></p> 
+                  </div>
+      
+                  <div class="d-flex pt-1">
+                    <button class="button flex-grow-1" type="submit"> GUARDAR
+                    </button>
+                  </div>  
+
+
+            </form>
+
+
+          </div>
+
+        
+        </mat-card>
+      </div>
+      </mat-step>
+
+
+
+
+
+
+
+      <mat-step label="Acuerdo de Terminos y Condiciones" state="phone" >
+        <div class="centro">
+          <mat-card class="card2">
+            <div class="row justify-content-md-center">
+    
+              <embed src="assets/terminos y condiciones.pdf" type="application/pdf" width="100%" height="300px" />
+
+            </div>
+
+            <div class="row">
+
+              <section class="example-section">
+
+                <div class="mb-3">
+                  <mat-checkbox class="example-margin" [(ngModel)]="terminos" (change)="validateCheck()">Acepto los terminos y condiciones</mat-checkbox>
+                  <div *ngIf="state_terminos == 'si'; then terminos_"></div>
+                  
+                  <ng-template #terminos_>
+  
+                    <small id="helpId" class="form-text text-muted" style="color: red;">Para poder finalizar el proceso de activación de la cuenta debe aceptar los terminos y condiciones.</small>
+  
+                  </ng-template>
+  
+                </div>              
+  
+                <div class="mb-3">
+                  <mat-checkbox class="example-margin" [(ngModel)]="politicas" (change)="validateCheckPolitics()">Acepto las Políticas de Tratamiento de Datos Personales</mat-checkbox>
+                  <div *ngIf="state_politicas == 'si_'; then politicas_"></div>
+    
+                  <ng-template #politicas_>
+    
+                    <small id="helpId" class="form-text text-muted" style="color: red;">Para poder finalizar el proceso de activación de la cuenta debe aceptar las políticas de uso de datos personales.</small>
+    
+                  </ng-template>
+                </div>
+  
+              </section>
+
+            </div>
+
+          </mat-card>
+        </div>
+      </mat-step>
+
+
+
+
+
+
+
+      <mat-step label="Cambio de contraseña" state="phone" >
+        <div class="centro">
+          <mat-card class="card2">
+            <div class="row justify-content-md-center">
+
+              <form [formGroup]="formUpdatePasswordUser" (ngSubmit)="updatePasswordUser(formUpdatePasswordUser.value)">
+
+                <p class="text-center"><strong>Ingrese su contraseña actual</strong></p>
+  
+                <mat-form-field appearance="fill">
+                    <mat-label>Digite su Contraseña</mat-label>
+                    <input matInput type="password" name="password" formControlName="password_old">
+                </mat-form-field>
+        
+                <p class="text-center"><strong>Ingrese su nueva contraseña </strong></p>
+          
+                <mat-form-field appearance="fill">
+                  <mat-label>Digite su Contraseña</mat-label>
+                  <input matInput type="password" name="password" formControlName="password_new" (ngModelChange)="segurityPassword($event)">
+
+
+                                      
+                  <div *ngIf="state_password == ''; then vacio_"></div>
+                  <div *ngIf="state_password == 'correcto'; then correcto_"></div>
+
+                  <ng-template #correcto_>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡Tú contraseña es segura! </p>
+                  </ng-template>
+
+                  <ng-template #vacio_>
+
+                    <div *ngIf="state_long_password == ''; then config_long_text"></div>
+                    <div *ngIf="state_long_password == 'insuficiente'; then password_long_insuficiente"></div>
+                    <div *ngIf="state_long_password == 'suficiente'; then password_long_suficiente"></div>
+                    <div *ngIf="state_long_password == 'superior'; then password_characteres_superior"></div>
+
+
+                    <div *ngIf="state_number_password == ''; then config_number"></div>
+                    <div *ngIf="state_number_password == 'insuficiente'; then password_number_insuficiente"></div>
+                    <div *ngIf="state_number_password == 'suficiente'; then password_number_suficiente"></div>
+
+
+                    <div *ngIf="state_letra_minuscula == ''; then config_letra_minuscula"></div>
+                    <div *ngIf="state_letra_minuscula == 'insuficiente'; then password_letra_minuscula_insuficiente"></div>
+                    <div *ngIf="state_letra_minuscula == 'suficiente'; then password_letra_minuscula_suficiente"></div>
+
+
+                    <div *ngIf="state_letra_mayuscula == ''; then config_letra_mayuscula"></div>
+                    <div *ngIf="state_letra_mayuscula == 'insuficiente'; then password_letra_mayuscula_insuficiente"></div>
+                    <div *ngIf="state_letra_mayuscula == 'suficiente'; then password_letra_mayuscula_suficiente"></div>
+
+
+                    <div *ngIf="state_characters_password == ''; then config_character_exist"></div>
+                    <div *ngIf="state_characters_password == 'insuficiente'; then password_character_unique_insuficiente"></div>
+                    <div *ngIf="state_characters_password == 'suficiente'; then password_characteres_suficientes"></div>
+
+
+                  </ng-template>
+
+                  <!--Mostrar requerimientos-->
+
+                  <ng-template #config_long_text>
+                    <p> <img src="https://img.icons8.com/ios-glyphs/30/000000/info--v1.png"/> La Contraseña Debe Tener Entre 12 y 16 Caracteres. </p>
+                  </ng-template>
+
+                  <ng-template #config_number>
+                    <p> <img src="https://img.icons8.com/ios-glyphs/30/000000/info--v1.png"/> La Contraseña Debe Contener Minimo 1 Número. </p>
+                  </ng-template>
+
+                  <ng-template #config_letra_minuscula>
+                    <p> <img src="https://img.icons8.com/ios-glyphs/30/000000/info--v1.png"/> La Contraseña Debe Contener Minimo 1 Letra Minuscula. </p>
+                  </ng-template>
+
+                  <ng-template #config_letra_mayuscula>
+                    <p> <img src="https://img.icons8.com/ios-glyphs/30/000000/info--v1.png"/> La Contraseña Debe Contener Minimo 1 Letra Mayuscula. </p>
+                  </ng-template>
+
+                  <ng-template #config_character_exist>
+                    <p> <img src="https://img.icons8.com/ios-glyphs/30/000000/info--v1.png"/> La Contraseña Debe Contener Minimo 1 Caracter Especial. </p>
+                  </ng-template>
+
+
+
+                  <!--Validaciones Erroneas-->
+
+                  <ng-template #password_long_insuficiente>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La Cantidad de Caracteres es Insuficiente. </p>
+                  </ng-template>
+
+                  <ng-template #password_number_insuficiente>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La Cantidad de Números es Insuficiente.</p>
+                  </ng-template>
+
+                  <ng-template #password_letra_minuscula_insuficiente>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La Cantidad de Letras Minusculas es Insuficiente.</p>
+                  </ng-template>
+
+                  <ng-template #password_letra_mayuscula_insuficiente>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La Cantidad de Letras Mayusculas es Insuficiente.</p>
+                  </ng-template>
+
+                  <ng-template #password_character_unique_insuficiente>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La Cantidad de Caracteres Unicos es Insuficiente. </p>
+                  </ng-template>
+
+
+
+
+                  <!--Validaciones satisfactorias-->
+
+                  <ng-template #password_long_suficiente>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡La Cantidad de Caracteres es Perfecta!. </p>
+                  </ng-template>
+
+                  <ng-template #password_number_suficiente>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡La Cantidad de Números es Perfecta!. </p>
+                  </ng-template>
+
+                  <ng-template #password_letra_minuscula_suficiente>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡La Cantidad de Letras Minusculas es Perfecta!. </p>
+                  </ng-template>
+
+                  <ng-template #password_letra_mayuscula_suficiente>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡La Cantidad de Letras Mayusculas es Perfecta!. </p>
+                  </ng-template>
+
+                  <ng-template #password_characteres_suficientes>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡La cantidad de Caracteres Especiales es Perfecta!. </p>
+                  </ng-template>
+
+
+                  <!--Validaciones cuando son superiores-->
+
+                  <ng-template #password_characteres_superior>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La cantidad de caracteres que ingreso es superior a la solicitada. </p>
+                  </ng-template>
+
+
+
+
+
+
+
+
+                </mat-form-field>
+          
+                <p class="text-center"><strong>Confirme su nueva contraseña </strong></p>
+          
+                <mat-form-field appearance="fill">
+                  <mat-label>Digite su Contraseña</mat-label>
+                  <input matInput type="password" name="password" formControlName="password_new_conf" (ngModelChange)="confirmPassword($event)">
+
+                  <div *ngIf="state_conf_password == 'iguales'; then iguales"></div>
+                  <div *ngIf="state_conf_password == 'diferentes'; then diferentes"></div>
+                  <div *ngIf="state_conf_password == ''; then vacio"></div>
+
+                  <ng-template #diferentes>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> Las Contraseñas no son iguales. </p>
+                  </ng-template>
+
+                  <ng-template #vacio>
+                    <p> <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/000000/external-cancel-ui-basic-anggara-flat-anggara-putra.png"/> La Contraseña no se puede quedar vacio. </p>
+                  </ng-template>
+
+                  <ng-template #iguales>
+                    <p> <img src="https://img.icons8.com/color/48/000000/checked--v1.png"/> ¡Las Contraseñas Son Iguales!. </p>
+                  </ng-template>
+
+
+                </mat-form-field>
+        
+                <div class="d-flex pt-1">
+                  <button class="button flex-grow-1" type="submit" [disabled]="state_btn_update_password"> Actualizar
+                  </button>
+                </div>
+
+              </form>
+
+
+
+            </div>
+
+          </mat-card>
+        </div>
+      </mat-step>
+
+
+
+
+
+
+
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="phone">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="chat">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+    </mat-stepper>
+  </body>

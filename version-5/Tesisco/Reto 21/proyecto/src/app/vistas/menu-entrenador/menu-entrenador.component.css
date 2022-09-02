@@ -1,0 +1,339 @@
+body{
+    overflow-x: hidden;
+  }
+  .d-flex{
+    height: 100%;
+    background-color:black;
+    width: 234px;
+    position: fixed;
+  }
+  
+  .nav-link{
+    border-radius:0px !important;
+    transition:all 0.5s;
+    width:234px;
+    flex-direction:column;
+  }
+  .imag{
+    padding: 60px 0 12px 35px;
+  }
+   .imag .img{
+    width:150px;
+    height:150px;
+   }
+  .content{
+    margin-top: -3.0rem; 
+    width: 100%;
+    margin-left: 175px;
+  }
+  .content .navbar{
+    width: 100%
+  }
+  .container-content{
+    margin-left: 12.1px;
+    margin-top: -1.3rem; 
+    width: 100%;
+  }
+  small{
+    color: white;
+
+  }
+  i{
+    color: white;
+  }
+  .nav-link small{
+    font-size:15px;
+  }
+  .nav-link:hover{
+    background-color: #fbff04e1 !important;
+  }
+  .nav-link .fa{
+    padding: 0 12px 0 12px;
+    transition: all 1s;
+    font-size:14px
+  }
+  .nav-link:hover .fa{
+    transform: rotate(360deg)
+  }
+  
+  .footer{
+    color: white;
+    font-size: 12px;
+  }
+  @media(max-width:1137px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:1063px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:958px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:890px){
+    .nav-link .texto{
+      font-size:5px;
+    }
+    .texto{
+      visibility: hidden;
+    }
+    .imag{
+      padding: 20px 0 12px 30px;
+    }
+    .imag .img{
+      width:60px;
+      height:60px;
+     }
+    .d-flex{
+      height: 100%;
+      background-color:black;
+      width: 120px;
+      position: fixed;
+    }
+    .nav-link{
+      border-radius:0px !important;
+      transition:all 0.5s;
+      width:116px;
+      display: flex;
+      flex-direction:column
+    }
+    .nav-link .fa{
+      transition: all 1s;
+      font-size:23px
+    }
+    .content .navbar{
+      width: 780px
+    }
+    .content{
+      margin-top: -3.0rem; 
+      margin-left: 72px;
+    }
+    .container-content{
+      margin-left: -230px;
+      margin-top: -1.3rem; 
+      width:100%;
+    }
+  }
+  @media(max-width:853px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:812px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:797px){
+    .content .navbar{
+      width:100%;
+    }
+  }
+  @media(max-width:766px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:763px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:753px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:715px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:664px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:613px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 95px;
+    }
+  }
+  @media(max-width:593px){
+    small{
+      visibility: hidden;
+    }
+    .d-flex{
+      height: 100%;
+      background-color:black;
+      width: 100px;
+      position: fixed;
+    }
+    .nav-link{
+      border-radius:0px !important;
+      transition:all 0.5s;
+      width:100px;
+      display: flex;
+      flex-direction:column
+    }
+    .imag{
+        padding: 60px 0 12px 20px;
+      }
+      .content .navbar{
+        width:100%;
+      }
+      .content{
+        margin-top: -2.0rem; 
+        margin-left: 75px;
+      }
+  }
+  @media(max-width:569px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 60px;
+    }
+  }
+  @media(max-width:566px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+    .d-flex{
+        height: 100%;
+        background-color:black;
+        width: 100px;
+        position: fixed;
+      }
+      .nav-link{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:100px;
+        display: flex;
+        flex-direction:column
+      }
+      .imag{
+          padding: 60px 0 12px 20px;
+        }
+  }
+  @media(max-width:524px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+    .d-flex{
+        height: 100%;
+        background-color:black;
+        width: 100px;
+        position: fixed;
+      }
+      .nav-link{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:100px;
+        display: flex;
+        flex-direction:column
+      }
+      .imag{
+          padding: 60px 0 12px 20px;
+        }
+  }
+  @media(max-width:517px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:495px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:468px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:415px){
+    .content .navbar{
+      width:100%;
+    }
+    .content{
+      margin-top: -2.0rem; 
+      margin-left: 75px;
+    }
+  }
+  @media(max-width:375px){
+    .content .navbar{
+      width:100%;
+      }
+      .content{
+        margin-top: -2.0rem; 
+        margin-left: 55px;
+      }
+    .d-flex{
+        height: 100%;
+        background-color:black;
+        width: 80px;
+        position: fixed;
+      }
+      .nav-link{
+        border-radius:0px !important;
+        transition:all 0.5s;
+        width:80px;
+        display: flex;
+        flex-direction:column
+      }
+      .imag{
+          padding: 60px 0 12px 10px;
+        }
+
+  }
